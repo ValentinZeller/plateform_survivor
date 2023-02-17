@@ -14,14 +14,14 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            if (playerMovement.getDashing())
+            if (UnlockService.Unlocked.ContainsKey("Dash"))
             {
                 Destroy(collision.gameObject);
             }

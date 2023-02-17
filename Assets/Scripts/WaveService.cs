@@ -22,7 +22,7 @@ public class WaveService : MonoBehaviour
 
     private IEnumerator Spawn()
     {
-        float randomSpawnX = Random.Range(player.position.x - 10, player.position.x + 10);
+        float randomSpawnX = Random.Range(player.position.x - 10, player.position.x + 11);
         if (Mathf.Abs(randomSpawnX - player.position.x) <= 1)
         {
             randomSpawnX *= 2;

@@ -30,29 +30,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private TrailRenderer tr;
 
-    private bool dashUnlocked = false;
-    private bool doubleJumpUnlocked = false;
-
-    public float getHorizontal()
-    {
-        return horizontal;
-    }
-
-    public bool getDashing()
-    {
-        return isDashing;
-    }
-
-    public void UnlockDoubleJump()
-    {
-        doubleJumpUnlocked = true;
-    }
-
-    public void UnlockDash()
-    {
-        dashUnlocked = true;
-    }
-
     void Start()
     {
         
@@ -82,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jumpBufferTimeCounter = jumpBufferTime;
-            if ((coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f) || (canDoubleJump && doubleJumpUnlocked))
+            if ((coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f) || (canDoubleJump && UnlockService.Unlocked.ContainsKey("Double Jump")))
             {
                 rb.velocity = new Vector2(rb.velocity.x, canDoubleJump ? doubleJumpForce : jumpForce);
                 canDoubleJump = !canDoubleJump;
@@ -100,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter = 0f;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && dashUnlocked)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && UnlockService.Unlocked.ContainsKey("Dash"))
         {
             StartCoroutine(Dash());
         }
