@@ -7,6 +7,8 @@ public class UnlockService : MonoBehaviour
 {
     private float maxActive = 6;
     private float maxPassive = 6;
+    private float maxLevelActive = 8;
+    private float maxLevelPassive = 5;
 
     [SerializeField] private GameObject canvas;
     [SerializeField] GameObject player;
@@ -99,17 +101,18 @@ public class UnlockService : MonoBehaviour
             _instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
         }
 
-        if (_instance._abilitiesUnlocked[isActive].ContainsKey(itemName) && _instance._abilitiesUnlocked[isActive][itemName] <= 8)
+        if (_instance._abilitiesUnlocked[isActive].ContainsKey(itemName) && _instance._abilitiesUnlocked[isActive][itemName] <= _instance.maxLevelActive)
         {
             _instance._abilitiesUnlocked[isActive][itemName]++;
-            if (_instance._abilitiesUnlocked[isActive][itemName] == 8)
+            EventManager.Trigger("add_passive", itemName);
+            if (_instance._abilitiesUnlocked[isActive][itemName] == _instance.maxLevelActive)
             {
                 if (isActive)
                 {
                     _instance.activeAbilities.Remove(_instance.activeAbilities.Find(abilityObject => abilityObject.name == itemName));
                 } else
                 {
-                    _instance.activeAbilities.Remove(_instance.passiveAbilities.Find(abilityObject => abilityObject.name == itemName));
+                    _instance.passiveAbilities.Remove(_instance.passiveAbilities.Find(abilityObject => abilityObject.name == itemName));
                 }
             }
         } else if (!_instance._abilitiesUnlocked[isActive].ContainsKey(itemName))
@@ -118,6 +121,9 @@ public class UnlockService : MonoBehaviour
             if (isActive)
             {
                 AddAbility(itemName);
+            } else
+            {
+                EventManager.Trigger("add_passive", itemName);
             }
         }
 
