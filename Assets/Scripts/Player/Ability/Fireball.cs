@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float fireCooldown = 1f;
+    private bool canFire = true;
+    private Vector2 offset = new Vector2(1f, 0.5f);
+    private Vector2 velocity = new Vector2(10, -10);
+
+    [SerializeField] private GameObject fireProjectile;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (canFire && Input.GetKeyDown(KeyCode.E))
+        {
+            GameObject instance = Instantiate(fireProjectile, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
+            instance.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * transform.localScale.x, velocity.y);
+            StartCoroutine(FireAction());
+        }
+    }
+
+    private IEnumerator FireAction()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(fireCooldown);
+        canFire = true;
     }
 }

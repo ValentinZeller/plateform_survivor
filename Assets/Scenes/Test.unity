@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 202363575}
   - component: {fileID: 202363577}
   - component: {fileID: 202363576}
+  - component: {fileID: 202363578}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -245,7 +246,7 @@ Rigidbody2D:
   m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 1
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &202363568
@@ -537,6 +538,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf3fc9c2e5808244a92d919d5b470b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &202363578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202363566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 211dae70922f3b1409297e036b966778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireProjectile: {fileID: 1747353814447383292, guid: b9516333301091b468deda2134337d99, type: 3}
 --- !u!1 &301338171
 GameObject:
   m_ObjectHideFlags: 0
