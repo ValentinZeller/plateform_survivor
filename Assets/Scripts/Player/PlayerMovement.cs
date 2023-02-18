@@ -5,30 +5,23 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 8f;
-    private float jumpForce = 16f;
     private bool isFacingRight = true;
 
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
 
-    private float jumpBufferTime = 0.2f;
-    private float jumpBufferTimeCounter;
+    [HideInInspector] public float jumpBufferTime = 0.2f;
+    [HideInInspector] public float jumpBufferTimeCounter;
 
-    private float doubleJumpForce = 12f;
-    private bool canDoubleJump;
-
-    private bool canDash = true;
-    private bool isDashing;
-    private float dashForce = 24f;
-    private float dashTime = 0.2f;
-    private float dashCooldown = 1f;
+    private float bounceForce = 12f;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private TrailRenderer tr;
+    [SerializeField] private PlayerStat stat;
+    [SerializeField] private Dash dash;
 
     void Start()
     {
@@ -36,17 +29,15 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (isDashing)
+        if (dash.enabled)
         {
-            return;
+            if (dash.GetDashing())
+            {
+                return;
+            }
         }
 
         horizontal = Input.GetAxis("Horizontal");
-
-        if (IsGrounded() && !Input.GetButton("Jump"))
-        {
-            canDoubleJump = false;
-        }
 
         if (IsGrounded())
         {
@@ -59,10 +50,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jumpBufferTimeCounter = jumpBufferTime;
-            if ((coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f) || (canDoubleJump && UnlockService.Unlocked.ContainsKey("Double Jump")))
+            if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
             {
-                rb.velocity = new Vector2(rb.velocity.x, canDoubleJump ? doubleJumpForce : jumpForce);
-                canDoubleJump = !canDoubleJump;
+                rb.velocity = new Vector2(rb.velocity.x, stat.currentJumpForce);
                 jumpBufferTimeCounter = 0f;
             }
 
@@ -77,15 +67,10 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter = 0f;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && UnlockService.Unlocked.ContainsKey("Dash"))
-        {
-            StartCoroutine(Dash());
-        }
-
         if(OnEnemy())
         {
             Destroy(Physics2D.OverlapCircle(groundCheck.position, 0.2f, enemyLayer).gameObject);
-            rb.velocity = new Vector2(rb.velocity.x, doubleJumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, bounceForce);
         }
 
         Flip();
@@ -93,11 +78,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDashing)
+        if (dash.enabled)
         {
-            return;
+            if (dash.GetDashing())
+            {
+                return;
+            }
         }
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * stat.currentSpeed, rb.velocity.y);
     }
 
     private bool OnEnemy()
@@ -105,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, enemyLayer);
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
@@ -119,23 +107,6 @@ public class PlayerMovement : MonoBehaviour
             localScale.x *= -1;
             transform.localScale = localScale;
         }
-    }
-
-    private IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        float originalGravity = rb.gravityScale;
-        rb.velocity = new Vector2(transform.localScale.x * dashForce, 0f);
-        tr.emitting = true;
-
-        yield return new WaitForSeconds(dashTime);
-        tr.emitting = false;
-        rb.gravityScale = originalGravity;
-        isDashing = false;
-
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

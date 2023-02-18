@@ -10,7 +10,7 @@ public class UnlockService : MonoBehaviour
     [SerializeField] private List<string> unlocks;
     private Dictionary<string, int> _unlocked = new Dictionary<string, int>();
     public static Dictionary<string, int> Unlocked { get { return Instance._unlocked; } }
-    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] GameObject player;
 
     private static UnlockService _instance;
     private static UnlockService Instance { get { return _instance; } }
@@ -50,11 +50,13 @@ public class UnlockService : MonoBehaviour
             {
                 string randomUnlock = randomUnlocks[i];
                 _instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { UnlockItem(randomUnlock); });
+
+                string randomUnlocktext = randomUnlock;
                 if (_instance._unlocked.ContainsKey(randomUnlock))
                 {
-                    randomUnlock += " " + (_instance._unlocked[randomUnlock] + 1);
+                    randomUnlocktext += " " + (_instance._unlocked[randomUnlock] + 1);
                 }
-                _instance.canvas.transform.GetChild(i).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = randomUnlock;
+                _instance.canvas.transform.GetChild(i).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = randomUnlocktext;
             }
         }
         _instance.canvas.gameObject.SetActive(canDisplay);
@@ -78,8 +80,16 @@ public class UnlockService : MonoBehaviour
         } else
         {
             _instance._unlocked.Add(itemName, 1);
+            AddAbility(itemName);
         }
 
         DisplayUpgrade(false);
+    }
+
+    public static void AddAbility(string itemName)
+    {
+        Behaviour ability = _instance.player.GetComponent(itemName) as Behaviour;
+        ability.enabled = true;
+
     }
 }

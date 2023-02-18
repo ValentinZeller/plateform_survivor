@@ -197,10 +197,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 704054835}
   unlocks:
-  - Double Jump
+  - DoubleJump
   - Dash
   - Fireball
-  playerMovement: {fileID: 202363571}
+  player: {fileID: 202363566}
 --- !u!1 &202363566
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,11 +213,13 @@ GameObject:
   - component: {fileID: 202363569}
   - component: {fileID: 202363568}
   - component: {fileID: 202363567}
+  - component: {fileID: 202363573}
   - component: {fileID: 202363571}
   - component: {fileID: 202363572}
-  - component: {fileID: 202363573}
   - component: {fileID: 202363574}
   - component: {fileID: 202363575}
+  - component: {fileID: 202363577}
+  - component: {fileID: 202363576}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -352,6 +354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4571e9f8647c3ab4d99d8911331db06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpBufferTime: 0.2
+  jumpBufferTimeCounter: 0
   rb: {fileID: 202363567}
   groundCheck: {fileID: 301338172}
   groundLayer:
@@ -361,6 +365,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   tr: {fileID: 202363573}
+  stat: {fileID: 202363575}
+  dash: {fileID: 202363577}
 --- !u!114 &202363572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,6 +509,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43eb510a5d278844589ce1b5512fbee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSpeed: 0
+  currentJumpForce: 0
+--- !u!114 &202363576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202363566}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32b97393e5c36447b1aeb167a873ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &202363577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202363566}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf3fc9c2e5808244a92d919d5b470b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &301338171
