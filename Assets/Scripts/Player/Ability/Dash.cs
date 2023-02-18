@@ -53,4 +53,15 @@ public class Dash : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if (isDashing)
+            {
+                Destroy(collision.gameObject);
+            }
+        }
+    }
 }

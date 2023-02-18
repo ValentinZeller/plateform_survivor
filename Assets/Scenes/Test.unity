@@ -196,11 +196,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 704054835}
-  unlocks:
-  - DoubleJump
-  - Dash
-  - Fireball
   player: {fileID: 202363566}
+  activeAbilities:
+  - {fileID: 11400000, guid: 628f868dd2490b74dab4c9c8c53e10d9, type: 2}
+  - {fileID: 11400000, guid: b4ee4f2a0bbe2984b9dd3a9b58c85ee9, type: 2}
+  - {fileID: 11400000, guid: dd436ddf25d622042a7eed5c695a0d6a, type: 2}
+  passiveAbilities:
+  - {fileID: 11400000, guid: 9b285efa6f48db249b7ff8c29e23e912, type: 2}
 --- !u!1 &202363566
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +217,6 @@ GameObject:
   - component: {fileID: 202363567}
   - component: {fileID: 202363573}
   - component: {fileID: 202363571}
-  - component: {fileID: 202363572}
   - component: {fileID: 202363574}
   - component: {fileID: 202363575}
   - component: {fileID: 202363577}
@@ -368,18 +369,6 @@ MonoBehaviour:
   tr: {fileID: 202363573}
   stat: {fileID: 202363575}
   dash: {fileID: 202363577}
---- !u!114 &202363572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202363566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8e6480a9661a914c94ec7972b00d97b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!96 &202363573
 TrailRenderer:
   serializedVersion: 2
@@ -545,7 +534,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202363566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 211dae70922f3b1409297e036b966778, type: 3}
   m_Name: 
@@ -766,7 +755,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnlockService, Assembly-CSharp
-        m_MethodName: UnlockAbility
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1599,7 +1588,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnlockService, Assembly-CSharp
-        m_MethodName: UnlockAbility
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1733,7 +1722,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnlockService, Assembly-CSharp
-        m_MethodName: UnlockAbility
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
