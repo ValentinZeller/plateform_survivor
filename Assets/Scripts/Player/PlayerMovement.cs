@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferTimeCounter = jumpBufferTime;
             if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
             {
-                rb.velocity = new Vector2(rb.velocity.x, stat.currentJumpForce);
+                rb.velocity = new Vector2(rb.velocity.x, stat.currentStats["JumpForce"]);
                 jumpBufferTimeCounter = 0f;
             }
 
@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
         }
-        rb.velocity = new Vector2(horizontal * stat.currentSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * stat.currentStats["Speed"], rb.velocity.y);
     }
 
     private bool OnEnemy()

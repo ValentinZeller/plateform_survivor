@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DoubleJump
   m_EditorClassIdentifier: 
   abilityName: DoubleJump
-  level: 0
   isActive: 1
+  maxLevel: 8

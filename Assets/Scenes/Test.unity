@@ -203,6 +203,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd436ddf25d622042a7eed5c695a0d6a, type: 2}
   passiveAbilities:
   - {fileID: 11400000, guid: 9b285efa6f48db249b7ff8c29e23e912, type: 2}
+  - {fileID: 11400000, guid: 2f6fa4b152ad7444a8244ad34d4fa086, type: 2}
 --- !u!1 &202363566
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,8 +502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43eb510a5d278844589ce1b5512fbee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeed: 0
-  currentJumpForce: 0
 --- !u!114 &202363576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,7 +895,7 @@ GameObject:
   - component: {fileID: 704054837}
   - component: {fileID: 704054836}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasLevelUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,8 +7,6 @@ public class UnlockService : MonoBehaviour
 {
     private float maxActive = 6;
     private float maxPassive = 6;
-    private float maxLevelActive = 8;
-    private float maxLevelPassive = 5;
 
     [SerializeField] private GameObject canvas;
     [SerializeField] GameObject player;
@@ -101,19 +99,16 @@ public class UnlockService : MonoBehaviour
             _instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
         }
 
-        if (_instance._abilitiesUnlocked[isActive].ContainsKey(itemName) && _instance._abilitiesUnlocked[isActive][itemName] <= _instance.maxLevelActive)
+        AbilityObject abilityObject = _instance.GetAbilityListByActive(isActive).Find(abilityObject => abilityObject.name == itemName);
+        int maxLevel = abilityObject.maxLevel;
+
+        if (_instance._abilitiesUnlocked[isActive].ContainsKey(itemName) && _instance._abilitiesUnlocked[isActive][itemName] <= maxLevel)
         {
             _instance._abilitiesUnlocked[isActive][itemName]++;
             EventManager.Trigger("add_passive", itemName);
-            if (_instance._abilitiesUnlocked[isActive][itemName] == _instance.maxLevelActive)
+            if (_instance._abilitiesUnlocked[isActive][itemName] == maxLevel)
             {
-                if (isActive)
-                {
-                    _instance.activeAbilities.Remove(_instance.activeAbilities.Find(abilityObject => abilityObject.name == itemName));
-                } else
-                {
-                    _instance.passiveAbilities.Remove(_instance.passiveAbilities.Find(abilityObject => abilityObject.name == itemName));
-                }
+                _instance.GetAbilityListByActive(isActive).Remove(abilityObject);
             }
         } else if (!_instance._abilitiesUnlocked[isActive].ContainsKey(itemName))
         {
@@ -134,5 +129,16 @@ public class UnlockService : MonoBehaviour
     {
         Behaviour ability = _instance.player.GetComponent(itemName) as Behaviour;
         ability.enabled = true;
+    }
+
+    public List<AbilityObject> GetAbilityListByActive(bool isActive)
+    {
+        if (isActive)
+        {
+            return activeAbilities;
+        }  else
+        {
+            return passiveAbilities;
+        }
     }
 }

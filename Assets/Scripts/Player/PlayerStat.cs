@@ -5,17 +5,18 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    private float baseSpeed = 8f;
-    private float baseJumpForce = 16f;
-
-    public float currentSpeed;
-    public float currentJumpForce;
+    private Dictionary<string, float> baseStats = new();
+    public Dictionary<string, float> currentStats = new();
 
     // Start is called before the first frame update
     void Start()
     {
-        currentSpeed = baseSpeed;
-        currentJumpForce = baseJumpForce;
+        baseStats.Add("Speed", 8f);
+        baseStats.Add("JumpForce", 16f);
+
+        currentStats.Add("Speed", baseStats["Speed"]);
+        currentStats.Add("JumpForce", baseStats["JumpForce"]);
+
         EventManager.AddListener("add_passive", _OnAddPassive);
     }
 
@@ -28,11 +29,6 @@ public class PlayerStat : MonoBehaviour
     private void _OnAddPassive(object data)
     {
         string itemName = (string)data;
-        switch (itemName)
-        {
-            case "Speed":
-                currentSpeed = baseSpeed + baseSpeed * 5 / 100 * UnlockService.AbilitiesUnlocked[false][itemName];
-                break;
-        }
+        currentStats[itemName] = baseStats[itemName] + baseStats[itemName] * 5 / 100 * UnlockService.AbilitiesUnlocked[false][itemName];
     }
 }

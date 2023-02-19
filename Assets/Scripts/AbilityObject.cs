@@ -6,6 +6,6 @@ using UnityEngine;
 public class AbilityObject : ScriptableObject
 {
     public string abilityName;
-    public int level;
     public bool isActive;
+    public int maxLevel;
 }

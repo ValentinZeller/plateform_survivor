@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   abilityName: Dash
-  level: 0
   isActive: 1
+  maxLevel: 8
