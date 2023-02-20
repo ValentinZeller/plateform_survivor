@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdae390d5324acf47aa826e99e59a936, type: 3}
-  m_Name: Fireball
+  m_Script: {fileID: 11500000, guid: d9458bc05ac8e46489701c9067e37d0f, type: 3}
+  m_Name: Classic
   m_EditorClassIdentifier: 
-  abilityName: Fireball
-  abilityDisplayName: Fireball
-  abilityDescription: 
-  isActive: 1
-  maxLevel: 8
+  speed: 6
+  jumpForce: 14

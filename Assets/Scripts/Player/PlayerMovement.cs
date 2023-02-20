@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float jumpBufferTime = 0.2f;
     [HideInInspector] public float jumpBufferTimeCounter;
 
-    private float bounceForce = 12f;
+    private float bounceForce = 6f;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -116,11 +116,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (collision.gameObject.name == "Left")
             {
-                transform.SetPositionAndRotation(new Vector3(34, transform.position.y, 0), transform.rotation);
+                transform.SetPositionAndRotation(new Vector3(32, transform.position.y, 0), transform.rotation);
             }
             else if (collision.gameObject.name == "Right")
             {
-                transform.SetPositionAndRotation(new Vector3(-34, transform.position.y, 0), transform.rotation);
+                transform.SetPositionAndRotation(new Vector3(-36, transform.position.y, 0), transform.rotation);
             }
         }
     }

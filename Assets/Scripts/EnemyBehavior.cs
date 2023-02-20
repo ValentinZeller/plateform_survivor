@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 8f;
+    private float vertical;
+    public float speed = 8f;
     private bool isFacingRight = true;
     [SerializeField] private Rigidbody2D rb;
     private Transform player;
@@ -17,18 +18,27 @@ public class EnemyBehavior : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         horizontal = player.position.x - transform.position.x;
+        vertical = player.position.y - transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        vertical = Mathf.Clamp(player.position.y - transform.position.y, -0.5f, 0.5f);
         horizontal = Mathf.Clamp(player.position.x - transform.position.x, -0.5f, 0.5f);
         Flip();
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (rb.isKinematic)
+        {
+            rb.velocity = new Vector2(horizontal * speed, vertical * speed);
+        } else
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
+        
     }
 
     private void Flip()

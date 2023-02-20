@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: JumpForce
   m_EditorClassIdentifier: 
   abilityName: JumpForce
+  abilityDisplayName: Jump Force
+  abilityDescription: 
   isActive: 0
   maxLevel: 5

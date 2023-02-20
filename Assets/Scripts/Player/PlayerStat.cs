@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
+    [SerializeField] StatObject stat;
     private Dictionary<string, float> baseStats = new();
     public Dictionary<string, float> currentStats = new();
 
     // Start is called before the first frame update
     void Start()
     {
-        baseStats.Add("Speed", 8f);
-        baseStats.Add("JumpForce", 16f);
+        baseStats.Add("Speed", stat.speed);
+        baseStats.Add("JumpForce", stat.jumpForce);
 
         currentStats.Add("Speed", baseStats["Speed"]);
         currentStats.Add("JumpForce", baseStats["JumpForce"]);

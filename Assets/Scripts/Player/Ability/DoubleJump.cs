@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoubleJump : MonoBehaviour
 {
-    private float doubleJumpForce = 12f;
+    private float doubleJumpForce = 10f;
     private bool canDoubleJump;
 
     private Rigidbody2D rb;

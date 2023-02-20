@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Speed
   m_EditorClassIdentifier: 
   abilityName: Speed
+  abilityDisplayName: Speed
+  abilityDescription: 
   isActive: 0
   maxLevel: 5

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: DoubleJump
   m_EditorClassIdentifier: 
   abilityName: DoubleJump
+  abilityDisplayName: Double Jump
+  abilityDescription: 
   isActive: 1
   maxLevel: 8

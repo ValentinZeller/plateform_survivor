@@ -79,7 +79,7 @@ public class UnlockService : MonoBehaviour
 
                 _instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { UnlockItem(randomUnlock, randomActive); });
                 
-                string randomUnlocktext = randomUnlock;
+                string randomUnlocktext = randomAbilities[i].abilityDisplayName;
                 // Increment level value
                 if (_instance._abilitiesUnlocked[randomAbilities[i].isActive].ContainsKey(randomUnlock))
                 {
@@ -105,7 +105,13 @@ public class UnlockService : MonoBehaviour
         if (_instance._abilitiesUnlocked[isActive].ContainsKey(itemName) && _instance._abilitiesUnlocked[isActive][itemName] <= maxLevel)
         {
             _instance._abilitiesUnlocked[isActive][itemName]++;
-            EventManager.Trigger("add_passive", itemName);
+            if (isActive)
+            {
+                EventManager.Trigger("add_"+itemName, _instance._abilitiesUnlocked[isActive][itemName]);
+            } else
+            {
+                EventManager.Trigger("add_passive", itemName);
+            }
             if (_instance._abilitiesUnlocked[isActive][itemName] == maxLevel)
             {
                 _instance.GetAbilityListByActive(isActive).Remove(abilityObject);
