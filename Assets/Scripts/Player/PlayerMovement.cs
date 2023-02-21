@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(OnEnemy())
         {
-            Destroy(Physics2D.OverlapCircle(groundCheck.position, 0.2f, enemyLayer).gameObject);
+            Physics2D.OverlapCircle(groundCheck.position, 0.2f, enemyLayer).gameObject.GetComponent<EnemyBehavior>().Damage(stat.currentStats["Strength"]);
             rb.velocity = new Vector2(rb.velocity.x, bounceForce);
         }
 
@@ -106,22 +106,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1;
             transform.localScale = localScale;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        if (collision.gameObject.layer == LayerMask.NameToLayer("TP"))
-        {
-            if (collision.gameObject.name == "Left")
-            {
-                transform.SetPositionAndRotation(new Vector3(32, transform.position.y, 0), transform.rotation);
-            }
-            else if (collision.gameObject.name == "Right")
-            {
-                transform.SetPositionAndRotation(new Vector3(-36, transform.position.y, 0), transform.rotation);
-            }
         }
     }
 }

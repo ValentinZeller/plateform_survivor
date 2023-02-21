@@ -7,4 +7,6 @@ public class StatObject : ScriptableObject
 {
     public float speed;
     public float jumpForce;
+    public float strength;
+    public float health;
 }

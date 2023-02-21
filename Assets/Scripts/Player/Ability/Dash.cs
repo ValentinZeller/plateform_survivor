@@ -12,10 +12,12 @@ public class Dash : MonoBehaviour
 
     private TrailRenderer tr;
     private Rigidbody2D rb;
+    private PlayerStat stat;
     void Start()
     {
         tr = GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        stat= GetComponent<PlayerStat>();
     }
 
     public bool GetDashing()
@@ -60,7 +62,7 @@ public class Dash : MonoBehaviour
         {
             if (isDashing)
             {
-                Destroy(collision.gameObject);
+                collision.gameObject.GetComponent<IDamageable>().Damage(stat.currentStats["Strength"]);
             }
         }
     }

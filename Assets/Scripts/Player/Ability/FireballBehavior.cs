@@ -7,11 +7,13 @@ public class FireballBehavior : MonoBehaviour
     private float lifespan = 1.5f;
     private Vector2 velocity;
     [SerializeField] private Rigidbody2D rb;
+    PlayerStat stat;
 
     void Start()
     {
         Destroy(this.gameObject, lifespan);
         velocity = rb.velocity;
+        stat = FindObjectOfType<PlayerStat>();
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class FireballBehavior : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<IDamageable>().Damage(stat.currentStats["Strength"]);
             Explode();
         }
 

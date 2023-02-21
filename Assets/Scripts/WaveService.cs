@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveService : MonoBehaviour
 {
-    private float spawnCooldown = 5f;
+    //private float spawnCooldown = 5f;
     private int waveIndex = 0;
     private float waveDuration = 30f; //second
     private float waveDurationCounter = 0f;

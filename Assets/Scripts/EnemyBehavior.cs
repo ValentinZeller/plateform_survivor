@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour
+public class EnemyBehavior : MonoBehaviour, IDamageable
 {
     private float horizontal;
     private float vertical;
     public float speed = 8f;
+    public float strength = 1f;
     private bool isFacingRight = true;
     [SerializeField] private Rigidbody2D rb;
     private Transform player;
     [SerializeField] GameObject coin;
     private bool isQuitting = false;
+
+    public float Health { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -62,5 +65,22 @@ public class EnemyBehavior : MonoBehaviour
         {
             Instantiate(coin, transform.position, Quaternion.identity);
         }   
+    }
+
+    public void Damage(float damage)
+    {
+        Health -= damage;
+        if (Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<IDamageable>().Damage(strength);
+        }
     }
 }
