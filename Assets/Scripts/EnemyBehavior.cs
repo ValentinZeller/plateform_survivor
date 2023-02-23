@@ -12,7 +12,6 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
     [SerializeField] private Rigidbody2D rb;
     private Transform player;
     [SerializeField] GameObject coin;
-    private bool isQuitting = false;
 
     public float Health { get; set; }
 
@@ -55,28 +54,17 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
         }
     }
 
-    private void OnApplicationQuit()
-    {
-        isQuitting = true;
-    }
-    private void OnDestroy()
-    {
-        if (!isQuitting)
-        {
-            Instantiate(coin, transform.position, Quaternion.identity);
-        }   
-    }
-
     public void Damage(float damage)
     {
         Health -= damage;
         if (Health <= 0)
         {
+            Instantiate(coin, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
