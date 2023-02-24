@@ -25,8 +25,14 @@ public class PlayerStat : MonoBehaviour, IDamageable
         
         for (int i = 0; i < StatObject.Keys().Count; i++ )
         {
+            float percent = 0;
+            UpgradeObject currentUpgrade = Resources.Load<UpgradeObject>("CustomData/Upgrades/" + StatObject.Keys()[i]);
+            if (currentUpgrade != null)
+            {
+                percent = currentUpgrade.percentEffect;
+            }
             baseStats.Add(StatObject.Keys()[i], stat[i]);
-            currentStats.Add(StatObject.Keys()[i], baseStats[StatObject.Keys()[i]] + baseStats[StatObject.Keys()[i]] * 5/100 * persistentDataManager.statsUpgrade[StatObject.Keys()[i]] );
+            currentStats.Add(StatObject.Keys()[i], baseStats[StatObject.Keys()[i]] + baseStats[StatObject.Keys()[i]] * percent * persistentDataManager.statsUpgrade[StatObject.Keys()[i]] );
         }
 
         EventManager.AddListener("add_passive", _OnAddPassive);
@@ -41,7 +47,8 @@ public class PlayerStat : MonoBehaviour, IDamageable
     private void _OnAddPassive(object data)
     {
         string itemName = (string)data;
-        currentStats[itemName] = baseStats[itemName] + baseStats[itemName] * 5 / 100 * UnlockService.AbilitiesUnlocked[false][itemName];
+        AbilityObject currentAbility = Resources.Load<AbilityObject>("CustomData/Abilities/" + itemName);
+        currentStats[itemName] = currentStats[itemName] + currentStats[itemName] * currentAbility.percent * UnlockService.AbilitiesUnlocked[false][itemName];
     }
 
     public void Damage(float damage)

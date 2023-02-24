@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602d538b59badf6498879545710f6fbc, type: 3}
-  m_Name: Health
+  m_Script: {fileID: 11500000, guid: bdae390d5324acf47aa826e99e59a936, type: 3}
+  m_Name: Speed
   m_EditorClassIdentifier: 
-  upgradeName: Health
-  upgradeDesc: 
+  abilityName: Speed
+  abilityDisplayName: Speed
+  abilityDescription: 
+  isActive: 0
   maxLevel: 5
-  basePrice: 5
+  percent: 0.05

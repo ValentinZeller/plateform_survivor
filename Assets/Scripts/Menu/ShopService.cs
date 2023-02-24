@@ -13,6 +13,7 @@ public class ShopService : MonoBehaviour
     [SerializeField] ToggleGroup buyToggleGroup;
     [SerializeField] TextMeshProUGUI coinText;
     [SerializeField] TextMeshProUGUI priceText;
+    [SerializeField] TextMeshProUGUI rankText;
     [SerializeField] PersistentDataManager persistentDataManager;
 
 
@@ -33,11 +34,13 @@ public class ShopService : MonoBehaviour
             string upgradeSelected = buyToggleGroup.GetFirstActiveToggle().name;
             UpgradeObject upgradeObject = upgradeObjects.Find(upgradeObject => upgradeObject.upgradeName == upgradeSelected);
             priceText.text = upgradeObject.basePrice.ToString();
+            rankText.text = persistentDataManager.statsUpgrade[upgradeSelected] + "/" + upgradeObject.maxLevel;
             buyButton.onClick.AddListener(delegate { BuyPassiveUpgrade(buyToggleGroup.GetFirstActiveToggle().name); });
             buyButton.interactable = true;
         }
         else
         {
+            rankText.text = "";
             priceText.text = "";
             buyButton.interactable = false;
         }
@@ -48,17 +51,17 @@ public class ShopService : MonoBehaviour
         string upgradeSelected = buyToggleGroup.GetFirstActiveToggle().name;
         int currentLevel = persistentDataManager.statsUpgrade[upgradeSelected];
         int maxLevel = upgradeObjects.Find(upgradeObject => upgradeObject.upgradeName == upgradeSelected).maxLevel;
-        return maxLevel > currentLevel ;
+        return currentLevel < maxLevel ;
     }
 
     public void BuyPassiveUpgrade(string upgradeName)
     {
-        if (CanBuy()) { 
-            persistentDataManager.statsUpgrade[upgradeName]++;
-            refundButton.interactable = true;
-            string upgradeSelected = buyToggleGroup.GetFirstActiveToggle().name;
-            persistentDataManager.coins -= upgradeObjects.Find(upgradeObject => upgradeObject.upgradeName == upgradeSelected).basePrice;
-        } else
+        persistentDataManager.statsUpgrade[upgradeName]++;
+        refundButton.interactable = true;
+        string upgradeSelected = buyToggleGroup.GetFirstActiveToggle().name;
+        rankText.text = persistentDataManager.statsUpgrade[upgradeSelected] + "/" + upgradeObjects.Find(upgradeObject => upgradeObject.upgradeName == upgradeSelected).maxLevel;
+        persistentDataManager.coins -= upgradeObjects.Find(upgradeObject => upgradeObject.upgradeName == upgradeSelected).basePrice;
+        if (!CanBuy())
         {
             buyButton.interactable = false;
         }

@@ -9,4 +9,5 @@ public class UpgradeObject : ScriptableObject
     public string upgradeDesc;
     public int maxLevel;
     public int basePrice;
+    public float percentEffect;
 }

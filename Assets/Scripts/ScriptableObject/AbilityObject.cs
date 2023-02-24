@@ -10,4 +10,5 @@ public class AbilityObject : ScriptableObject
     public string abilityDescription;
     public bool isActive;
     public int maxLevel;
+    public float percent;
 }
