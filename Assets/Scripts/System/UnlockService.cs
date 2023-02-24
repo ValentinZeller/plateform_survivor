@@ -133,6 +133,9 @@ public class UnlockService : MonoBehaviour
 
     public static void AddAbility(string itemName)
     {
+        if (!_instance._abilitiesUnlocked[true].ContainsKey(itemName)) {
+            _instance._abilitiesUnlocked[true].Add(itemName, 1);
+        }
         Behaviour ability = _instance.player.GetComponent(itemName) as Behaviour;
         ability.enabled = true;
     }

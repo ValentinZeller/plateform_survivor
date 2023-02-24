@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum activeAbility { Dash, DoubleJump, Fireball }
+
 [CreateAssetMenu(fileName = "New Stat", menuName = "CustomData/Stat", order = 2)]
 public class StatObject : ScriptableObject
 {
+    public activeAbility startAbility;
     public float speed;
     public float jumpForce;
     public float strength;

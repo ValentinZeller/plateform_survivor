@@ -22,7 +22,9 @@ public class PlayerStat : MonoBehaviour, IDamageable
             persistentDataManager = FindObjectOfType<PersistentDataManager>();
             stat = persistentDataManager.chosenCharacter;
         }
-        
+
+        UnlockService.AddAbility(Enum.GetName(typeof(activeAbility), stat.startAbility));
+
         for (int i = 0; i < StatObject.Keys().Count; i++ )
         {
             float percent = 0;

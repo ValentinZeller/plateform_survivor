@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9458bc05ac8e46489701c9067e37d0f, type: 3}
   m_Name: Classic
   m_EditorClassIdentifier: 
+  startAbility: 1
   speed: 6
   jumpForce: 14
   strength: 1
