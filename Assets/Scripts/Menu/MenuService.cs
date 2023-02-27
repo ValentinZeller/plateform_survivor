@@ -10,8 +10,12 @@ public class MenuService : MonoBehaviour
     [SerializeField] ToggleGroup characterToggleGroup;
     [SerializeField] SceneService sceneService;
     [SerializeField] GameObject togglePrefab;
-    [SerializeField] Button startButton;
+    [SerializeField] Button startCharacterButton;
     [SerializeField] PersistentDataManager persistentDataManager;
+
+    [SerializeField] GameObject stageScreen;
+    [SerializeField] ToggleGroup stageToggleGroup;
+    [SerializeField] Button startStageButton;
     void Start()
     {
         foreach(StatObject character in characters)
@@ -21,17 +25,30 @@ public class MenuService : MonoBehaviour
             instance.GetComponentInChildren<Text>().text = character.name;
             instance.GetComponent<Toggle>().group = characterToggleGroup;
         };
+
+        foreach(string stage in sceneService.stages)
+        {
+            GameObject instance = Instantiate(togglePrefab, stageToggleGroup.transform);
+            instance.name = stage;
+            instance.GetComponentInChildren<Text>().text = stage;
+            instance.GetComponent<Toggle>().group = stageToggleGroup;
+        }
     }
 
-    public void DisplaySceneMenu()
+    public void StartGame()
+    {
+        sceneService.SwapScene(stageToggleGroup.GetFirstActiveToggle().name);
+    }
+
+    public void DisplayStageMenu()
     {
         persistentDataManager.chosenCharacter = characters.Find(stat => stat.name == characterToggleGroup.GetFirstActiveToggle().name);
-        if (sceneService.scenes.Count <= 1 )
+        if (sceneService.stages.Count < 2)
         {
-            sceneService.SwapScene(sceneService.scenes[0]);
+            sceneService.SwapScene(sceneService.stages[0]);
         } else
         {
-
+            stageScreen.SetActive(true);
         }
     }
 
@@ -41,11 +58,19 @@ public class MenuService : MonoBehaviour
         {
             if (characterToggleGroup.AnyTogglesOn())
             {
-                startButton.interactable = true;
+                startCharacterButton.interactable = true;
             }
             else
             {
-                startButton.interactable = false;
+                startCharacterButton.interactable = false;
+            }
+
+            if (stageToggleGroup.AnyTogglesOn())
+            {
+                startStageButton.interactable = true;
+            } else
+            {
+                startStageButton.interactable = false;
             }
         }
     }

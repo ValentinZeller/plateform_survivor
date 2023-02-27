@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneService : MonoBehaviour
 {
-    public List<string> scenes;
+    public List<string> stages;
 
     public void SwapScene(string sceneName)
     {

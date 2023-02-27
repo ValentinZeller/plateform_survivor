@@ -11,7 +11,6 @@ public class PersistentDataManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-
         for (int i = 0; i < StatObject.Keys().Count; i++)
         {
             statsUpgrade.Add(StatObject.Keys()[i], 0);
