@@ -12,8 +12,6 @@ public class PlayerStat : MonoBehaviour, IDamageable
 
     private PersistentDataManager persistentDataManager;
 
-    public float Health { get; set; }
-
     // Start is called before the first frame update
     void Start()
     {
