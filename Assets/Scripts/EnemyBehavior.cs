@@ -71,4 +71,12 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
             collision.gameObject.GetComponent<IDamageable>().Damage(strength);
         }
     }
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<IDamageable>().Damage(strength);
+        }
+    }
 }

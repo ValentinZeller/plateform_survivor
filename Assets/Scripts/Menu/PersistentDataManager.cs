@@ -5,7 +5,9 @@ using UnityEngine;
 public class PersistentDataManager : MonoBehaviour
 {
     [HideInInspector] public StatObject chosenCharacter;
-    [HideInInspector] public Dictionary<string, int> statsUpgrade = new();
+    public Dictionary<string, int> statsUpgrade = new();
+    public List<StatObject> charactersUnlocked;
+    public List<string> stagesUnlocked;
     public int coins = 100;
 
     private void Awake()

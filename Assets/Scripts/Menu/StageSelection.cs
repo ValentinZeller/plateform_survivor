@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class StageSelection : MonoBehaviour
 {
-    public List<string> stages;
+    private List<string> stages;
     [SerializeField] GameObject stageScreen;
     [SerializeField] ToggleGroup stageToggleGroup;
     [SerializeField] GameObject togglePrefab;
@@ -15,6 +15,8 @@ public class StageSelection : MonoBehaviour
 
     private void Start()
     {
+        stages = persistentDataManager.stagesUnlocked;
+
         foreach (string stage in stages)
         {
             GameObject instance = Instantiate(togglePrefab, stageToggleGroup.transform);

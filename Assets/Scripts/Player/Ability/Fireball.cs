@@ -17,7 +17,7 @@ public class Fireball : MonoBehaviour
 
     void Update()
     {
-        if (canFire && Input.GetKeyDown(KeyCode.E))
+        if (canFire && Input.GetButtonDown("Fire1"))
         {
             GameObject instance = Instantiate(fireProjectile, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
             instance.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * transform.localScale.x, velocity.y);

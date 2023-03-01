@@ -1080,8 +1080,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 819150599}
-        m_TargetAssemblyTypeName: MenuService, Assembly-CSharp
+      - m_Target: {fileID: 819150596}
+        m_TargetAssemblyTypeName: StageSelection, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -2088,9 +2088,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36e6a6cbcc12a843a6c7b11af627e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stages:
-  - Stage1
-  - Stage2
+  stageScreen: {fileID: 1145093848}
+  stageToggleGroup: {fileID: 1112552532}
+  togglePrefab: {fileID: 7849061835523977804, guid: 1fb6b4e520b013142b92e55346c2ddbb, type: 3}
+  startStageButton: {fileID: 299122659}
+  persistentDataManager: {fileID: 2030511835}
 --- !u!4 &819150598
 Transform:
   m_ObjectHideFlags: 0
@@ -2118,17 +2120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b38a680de761fc4ebb9b5c7bd395765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters:
-  - {fileID: 11400000, guid: cab2d4b9bd307ff4b84505d37f65f9e2, type: 2}
-  - {fileID: 11400000, guid: bdb6f1d7d14aa7845831012e841da131, type: 2}
   characterToggleGroup: {fileID: 1802703243}
-  sceneService: {fileID: 819150596}
   togglePrefab: {fileID: 7849061835523977804, guid: 1fb6b4e520b013142b92e55346c2ddbb, type: 3}
   startCharacterButton: {fileID: 1022521385}
   persistentDataManager: {fileID: 2030511835}
-  stageScreen: {fileID: 1145093848}
-  stageToggleGroup: {fileID: 1112552532}
-  startStageButton: {fileID: 299122659}
 --- !u!114 &819150600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3101,8 +3096,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 819150599}
-        m_TargetAssemblyTypeName: MenuService, Assembly-CSharp
-        m_MethodName: DisplayStageMenu
+        m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
+        m_MethodName: SelectCharacter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 819150596}
+        m_TargetAssemblyTypeName: StageSelection, Assembly-CSharp
+        m_MethodName: DisplayStageSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5755,6 +5762,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chosenCharacter: {fileID: 0}
+  charactersUnlocked:
+  - {fileID: 11400000, guid: cab2d4b9bd307ff4b84505d37f65f9e2, type: 2}
+  - {fileID: 11400000, guid: bdb6f1d7d14aa7845831012e841da131, type: 2}
+  stagesUnlocked:
+  - Stage1
+  - Stage2
   coins: 100
 --- !u!4 &2030511836
 Transform:

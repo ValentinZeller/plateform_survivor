@@ -6,13 +6,14 @@ using TMPro;
 
 public class CharacterSelection : MonoBehaviour
 {
-    public List<StatObject> characters;
+    private List<StatObject> characters;
     [SerializeField] ToggleGroup characterToggleGroup;
     [SerializeField] GameObject togglePrefab;
     [SerializeField] Button startCharacterButton;
     [SerializeField] PersistentDataManager persistentDataManager;
     void Start()
     {
+        characters = persistentDataManager.charactersUnlocked;
         foreach(StatObject character in characters)
         {
             GameObject instance = Instantiate(togglePrefab, characterToggleGroup.transform);

@@ -34,7 +34,12 @@ public class PlayerStat : MonoBehaviour, IDamageable
                 percent = currentUpgrade.percentEffect;
             }
             baseStats.Add(StatObject.Keys()[i], stat[i]);
-            currentStats.Add(StatObject.Keys()[i], baseStats[StatObject.Keys()[i]] + baseStats[StatObject.Keys()[i]] * percent * persistentDataManager.statsUpgrade[StatObject.Keys()[i]] );
+            float bonusStats = 0;
+            if (persistentDataManager != null)
+            {
+                bonusStats = baseStats[StatObject.Keys()[i]] * percent * persistentDataManager.statsUpgrade[StatObject.Keys()[i]];
+            }
+            currentStats.Add(StatObject.Keys()[i], baseStats[StatObject.Keys()[i]] + bonusStats);
         }
 
         EventManager.AddListener("add_passive", _OnAddPassive);
@@ -58,7 +63,7 @@ public class PlayerStat : MonoBehaviour, IDamageable
         currentStats["Health"]--;
         if (currentStats["Health"] <= 0)
         {
-            SceneManager.LoadScene(0);
+            EventManager.Trigger("death");
         }
     }
 }

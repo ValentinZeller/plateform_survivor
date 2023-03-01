@@ -32,7 +32,7 @@ public class Dash : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (Input.GetButtonDown("Fire3") && canDash)
         {
             StartCoroutine(DashAction());
         }
