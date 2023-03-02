@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1991054529647472641}
   - component: {fileID: 1991054529647472654}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: EnemyTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5660378, g: 0.14097543, b: 0.14097543, a: 1}
+  m_Color: {r: 0.23584908, g: 0.10123711, b: 0.10123711, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8011a937ab91ca4798e87459a92ea83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: 1a9ff0bb9c088de4a9765252fa6e60c3, type: 2}
+  enemy: {fileID: 11400000, guid: b5fdae7806c73184bb95e1d41f6413dd, type: 2}
   rb: {fileID: 1991054529647472654}
   coin: {fileID: 3161103411688693661, guid: 05955e70e024eec4a8e0322b5b79b3a3, type: 3}
   groundCheck: {fileID: 0}

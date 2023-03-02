@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour, IDamageable
 {
     [SerializeField] EnemyStatObject enemy;
-    private Dictionary<string, float> stats;
+    private Dictionary<string, float> stats = new();
 
     private float horizontal;
     private float vertical;
@@ -19,13 +19,14 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player").transform;
+        horizontal = player.position.x - transform.position.x;
+        vertical = player.position.y - transform.position.y;
+
         for (int i = 0; i < EnemyStatObject.Keys().Count; i++ )
         {
             stats.Add(EnemyStatObject.Keys()[i], enemy[i]);
         }
-        player = GameObject.FindWithTag("Player").transform;
-        horizontal = player.position.x - transform.position.x;
-        vertical = player.position.y - transform.position.y;
     }
 
     // Update is called once per frame

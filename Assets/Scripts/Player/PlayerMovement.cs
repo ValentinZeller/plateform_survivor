@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
     private bool isFacingRight = true;
+    private bool canDamage = true;
 
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
@@ -67,10 +68,9 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter = 0f;
         }
 
-        if(OnEnemy())
+        if(canDamage)
         {
-            Physics2D.OverlapCircle(groundCheck.position, 0.2f, enemyLayer).gameObject.GetComponent<EnemyBehavior>().Damage(stat.currentStats["Strength"]);
-            rb.velocity = new Vector2(rb.velocity.x, bounceForce);
+            StartCoroutine(CanDamageEnemy());
         }
 
         Flip();
@@ -88,9 +88,18 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * stat.currentStats["Speed"], rb.velocity.y);
     }
 
-    private bool OnEnemy()
+    private IEnumerator CanDamageEnemy()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, enemyLayer);
+        Collider2D collider2D = Physics2D.OverlapCircle(groundCheck.position, 0.2f, enemyLayer);
+        if (collider2D)
+        {
+            canDamage = false;
+            rb.velocity = new Vector2(rb.velocity.x, bounceForce);
+            collider2D.gameObject.GetComponent<EnemyBehavior>().Damage(stat.currentStats["Strength"]);
+            yield return new WaitForSeconds(0.2f);
+            canDamage = true;
+        }
+        yield return null;
     }
 
     public bool IsGrounded()
