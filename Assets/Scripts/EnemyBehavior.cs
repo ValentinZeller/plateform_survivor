@@ -7,7 +7,7 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
     [SerializeField] EnemyStatObject enemy;
     private Dictionary<string, float> stats = new();
 
-    bool canMove = true;
+    private bool canMove = true;
     private float horizontal;
     private float vertical;
     private bool isFacingRight = true;
@@ -75,7 +75,7 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
         rb.velocity = new Vector2(rb.velocity.x, stats["JumpForce"]);
     }
 
-    public bool IsGrounded()
+    private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
@@ -104,7 +104,7 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
         }
     }
 
-    public void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -116,7 +116,7 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
         }
     }
 
-    public void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {

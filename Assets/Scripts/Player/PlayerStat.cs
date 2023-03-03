@@ -11,6 +11,7 @@ public class PlayerStat : MonoBehaviour, IDamageable
     public Dictionary<string, float> currentStats = new();
 
     private PersistentDataManager persistentDataManager;
+    private int currentCoins = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class PlayerStat : MonoBehaviour, IDamageable
         }
 
         EventManager.AddListener("add_passive", _OnAddPassive);
+        EventManager.AddListener("got_coin", _GotCoin);
     }
 
     // Update is called once per frame
@@ -56,8 +58,18 @@ public class PlayerStat : MonoBehaviour, IDamageable
         currentStats[itemName] = currentStats[itemName] + currentStats[itemName] * currentAbility.percent * UnlockService.AbilitiesUnlocked[false][itemName];
     }
 
+    private void _GotCoin()
+    {
+        currentCoins++;
+        if (persistentDataManager != null)
+        {
+            persistentDataManager.coins++;
+        }
+    }
+
     public void Damage(float damage)
     {
+        currentStats["Health"]--;
         if (currentStats["Health"] <= 0)
         {
             EventManager.Trigger("death");
