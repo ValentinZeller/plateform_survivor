@@ -58,7 +58,6 @@ public class PlayerStat : MonoBehaviour, IDamageable
 
     public void Damage(float damage)
     {
-        currentStats["Health"]--;
         if (currentStats["Health"] <= 0)
         {
             EventManager.Trigger("death");

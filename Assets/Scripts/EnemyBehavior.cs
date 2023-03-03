@@ -7,6 +7,7 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
     [SerializeField] EnemyStatObject enemy;
     private Dictionary<string, float> stats = new();
 
+    bool canMove = true;
     private float horizontal;
     private float vertical;
     private bool isFacingRight = true;
@@ -49,14 +50,23 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
-        if (rb.isKinematic)
+        if (canMove)
         {
-            rb.velocity = new Vector2(horizontal * stats["Speed"], vertical * stats["Speed"]);
-        } else
-        {
-            rb.velocity = new Vector2(horizontal * stats["Speed"], rb.velocity.y);
+            if (rb.isKinematic)
+            {
+                rb.velocity = new Vector2(horizontal * stats["Speed"], vertical * stats["Speed"]);
+            }
+            else
+            {
+                rb.velocity = new Vector2(horizontal * stats["Speed"], rb.velocity.y);
+            }
         }
         
+    }
+
+    public void SetMove(bool newState)
+    {
+        canMove = newState;
     }
 
     private IEnumerator Jump()
@@ -88,6 +98,9 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
         {
             Instantiate(coin, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+        } else
+        {
+
         }
     }
 
@@ -95,6 +108,10 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.tag == "Player")
         {
+            if (collision.gameObject.GetComponent<Dash>().enabled && collision.gameObject.GetComponent<Dash>().GetDashing())
+            {
+                return;
+            }
             collision.gameObject.GetComponent<IDamageable>().Damage(stats["Strength"]);
         }
     }

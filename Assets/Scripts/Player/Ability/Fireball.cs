@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    private float fireCooldown = 1f;
+    private float fireCooldown = 1.5f;
     private bool canFire = true;
     private Vector2 offset = new Vector2(1f, 0.5f);
     private Vector2 velocity = new Vector2(10, -10);
@@ -17,7 +17,7 @@ public class Fireball : MonoBehaviour
 
     void Update()
     {
-        if (canFire && Input.GetButtonDown("Fire1"))
+        if (canFire)
         {
             GameObject instance = Instantiate(fireProjectile, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
             instance.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * transform.localScale.x, velocity.y);

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tank
   m_EditorClassIdentifier: 
   speed: 5
-  strength: 1
+  strength: 0.5
   health: 3
   jumpForce: 0
   jumpCooldown: 0

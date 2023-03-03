@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c612aed58ecfeb247bd2554d79382479, type: 3}
   m_Name: WaveTank
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1991054529647472655, guid: 243549df5cb5474489c2df7afd38a7ab, type: 3}
+  enemy: {fileID: 1991054529647472655, guid: e6a4e102bc95fa041aaf06b18db5e535, type: 3}
   count: 5
   waitTime: 10

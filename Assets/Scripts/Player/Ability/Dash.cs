@@ -9,6 +9,7 @@ public class Dash : MonoBehaviour
     private float dashForce = 24f;
     private float dashTime = 0.2f;
     private float dashCooldown = 1f;
+    private float knockback = 1.5f;
 
     private TrailRenderer tr;
     private Rigidbody2D rb;
@@ -63,7 +64,24 @@ public class Dash : MonoBehaviour
             if (isDashing)
             {
                 collision.gameObject.GetComponent<IDamageable>().Damage(stat.currentStats["Strength"]);
+                if (collision.gameObject == null)
+                {
+                    return;
+                }
+                Rigidbody2D enemyRb = collision.gameObject.GetComponent<Rigidbody2D>();
+                EnemyBehavior enemyBehavior = collision.gameObject.GetComponent<EnemyBehavior>();
+                enemyBehavior.SetMove(false);
+
+                Vector2 direction = new Vector2(collision.transform.position.x - transform.position.x, 0);
+                enemyRb.AddForce(direction * knockback);
+                StartCoroutine(ResetKnockback(enemyBehavior));
             }
         }
+    }
+
+    private IEnumerator ResetKnockback(EnemyBehavior enemyBehavior)
+    {
+        yield return new WaitForSeconds(0.8f);
+        enemyBehavior.SetMove(true);
     }
 }
