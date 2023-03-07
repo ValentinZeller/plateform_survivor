@@ -110,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canDamage = false;
             rb.velocity = new Vector2(rb.velocity.x, bounceForce);
+            EventManager.Trigger("bounce_enemy");
             collider2D.gameObject.GetComponent<EnemyBehavior>().Damage(stat.currentStats["Strength"]);
             yield return new WaitForSeconds(0.2f);
             canDamage = true;

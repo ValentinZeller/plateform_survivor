@@ -41,8 +41,8 @@ public class PlayerStat : MonoBehaviour, IDamageable
             currentStats.Add(StatObject.Keys()[i], baseStats[StatObject.Keys()[i]] + bonusStats);
         }
 
-        EventManager.AddListener("add_passive", _OnAddPassive);
-        EventManager.AddListener("got_coin", _GotCoin);
+        EventManager.AddListener("add_passive", OnAddPassive);
+        EventManager.AddListener("got_coin", GotCoin);
     }
 
     // Update is called once per frame
@@ -51,14 +51,14 @@ public class PlayerStat : MonoBehaviour, IDamageable
         
     }
 
-    private void _OnAddPassive(object data)
+    private void OnAddPassive(object data)
     {
         string itemName = (string)data;
         AbilityObject currentAbility = Resources.Load<AbilityObject>("CustomData/Abilities/" + itemName);
         currentStats[itemName] = currentStats[itemName] + currentStats[itemName] * currentAbility.percent * UnlockService.AbilitiesUnlocked[false][itemName];
     }
 
-    private void _GotCoin()
+    private void GotCoin()
     {
         currentCoins++;
         if (persistentDataManager != null)

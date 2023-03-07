@@ -107,7 +107,7 @@ public class UnlockService : MonoBehaviour
             _instance._abilitiesUnlocked[isActive][itemName]++;
             if (isActive)
             {
-                EventManager.Trigger("add_"+itemName, _instance._abilitiesUnlocked[isActive][itemName]);
+                EventManager.Trigger("add_"+itemName.ToLower(), _instance._abilitiesUnlocked[isActive][itemName]);
             } else
             {
                 EventManager.Trigger("add_passive", itemName);

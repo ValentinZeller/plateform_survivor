@@ -297,9 +297,13 @@ MonoBehaviour:
   jumpBufferTimeCounter: 0
   rb: {fileID: 445672726343304997}
   groundCheck: {fileID: 445672725981961142}
+  headCheck: {fileID: 2141860089639761061}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  blockLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

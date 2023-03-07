@@ -58,7 +58,11 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
             }
             else
             {
-                rb.velocity = new Vector2(horizontal * stats["Speed"], rb.velocity.y);
+                if (IsGrounded())
+                {
+                    rb.velocity = new Vector2(horizontal * stats["Speed"], rb.velocity.y);
+                }
+                
             }
         }
         
@@ -108,7 +112,8 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (collision.gameObject.GetComponent<Dash>().enabled && collision.gameObject.GetComponent<Dash>().GetDashing())
+            Dash dash = collision.gameObject.GetComponent<Dash>();
+            if (dash.enabled && dash.GetDashing())
             {
                 return;
             }
