@@ -3512,14 +3512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 172095827750966010, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
-      propertyPath: item
-      value: 
-      objectReference: {fileID: 3161103411688693661, guid: 05955e70e024eec4a8e0322b5b79b3a3, type: 3}
-    - target: {fileID: 172095827750966010, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
-      propertyPath: coins
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3343086915993055053, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
       propertyPath: m_Name
       value: Block
@@ -3530,7 +3522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6613260192724550599, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.1126
+      value: -25.07
       objectReference: {fileID: 0}
     - target: {fileID: 6613260192724550599, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
       propertyPath: m_LocalPosition.y

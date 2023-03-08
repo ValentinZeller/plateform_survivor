@@ -6,7 +6,7 @@ public class Dash : MonoBehaviour
 {
     private bool canDash = true;
     private bool isDashing = false;
-    private float dashForce = 24f;
+    private float dashForce = 20f;
     private float dashTime = 0.2f;
     private float dashCooldown = 1f;
     private float knockback = 1.5f;
@@ -19,6 +19,7 @@ public class Dash : MonoBehaviour
         tr = GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
         stat= GetComponent<PlayerStat>();
+        EventManager.AddListener("add_dash", OnAddDash);
     }
 
     public bool GetDashing()
@@ -83,5 +84,36 @@ public class Dash : MonoBehaviour
     {
         yield return new WaitForSeconds(0.8f);
         enemyBehavior.SetMove(true);
+    }
+
+    private void OnAddDash(object data)
+    {
+        int level = (int)data;
+        switch (level)
+        {
+            case 2:
+                dashForce += dashForce * 5 / 100;
+                break;
+            case 3:
+                dashCooldown -= 0.125f;
+                break;
+            case 4:
+                dashTime -= 0.1f;
+                break;
+            case 5:
+                dashCooldown -= 0.125f;
+                knockback += 0.25f;
+                break;
+            case 6:
+                dashCooldown -= 0.125f;
+                break;
+            case 7:
+                dashForce += dashForce * 5 / 100;
+                knockback += 0.25f;
+                break;
+            case 8:
+                dashCooldown -= 0.125f;
+                break;
+        }
     }
 }

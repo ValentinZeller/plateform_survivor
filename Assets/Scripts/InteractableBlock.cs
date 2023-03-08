@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class InteractableBlock : MonoBehaviour, IDamageable
 {
+    private bool isEmpty = false;
     [SerializeField] private bool isDestroyable;
     [SerializeField] private int coins = 1;
+    private int currentCoins;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] GameObject item;
     void Start()
     {
-        
+        currentCoins = coins;
+        EventManager.AddListener("reload_block", Reload);
     }
 
     
     void Update()
     {
         
+    }
+
+    public void Reload()
+    {
+        isEmpty = false;
+        coins = currentCoins;
+        sprite.color = new Color(1, 0.92f, 0);
     }
 
     public bool IsDestroyable()
@@ -31,18 +41,21 @@ public class InteractableBlock : MonoBehaviour, IDamageable
             Destroy(gameObject);
         } 
         
-        if (coins > 0)
+        if (currentCoins > 0)
         {
-            coins--;
-            EventManager.Trigger("got_coin");
-        } else if (coins == 0)
-        {
-            sprite.color = new Color(0.48f,0.35f,0.22f);
+            currentCoins--;
+            EventManager.Trigger("got_coin",1);
         }
 
-        if (coins <= 0 && item != null)
+        if (item != null && !isEmpty)
         {
             Instantiate(item, new Vector2(transform.position.x, transform.position.y + 1.5f), Quaternion.identity);
+            isEmpty = true;
+        }
+
+        if (isEmpty || coins == 0)
+        {
+            sprite.color = new Color(0.48f, 0.35f, 0.22f);
         }
     }
 }

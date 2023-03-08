@@ -11,7 +11,7 @@ public class PlayerLevel : MonoBehaviour
 
     void Start()
     {
-        
+        EventManager.AddListener("got_xp", LevelUp);
     }
 
     // Update is called once per frame
@@ -19,18 +19,10 @@ public class PlayerLevel : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("XP"))
-        {
-            xp++;
-            Destroy(collision.gameObject);
-            LevelUp();
-        }
-    }
 
-    private void LevelUp()
+    private void LevelUp(object data)
     {
+        xp += (float)data;
         if (xp >= xpNeeded)
         {
             xp = 0;

@@ -12,6 +12,7 @@ public class PlayerStat : MonoBehaviour, IDamageable
 
     private PersistentDataManager persistentDataManager;
     private int currentCoins = 0;
+    private float health;
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +42,10 @@ public class PlayerStat : MonoBehaviour, IDamageable
             currentStats.Add(StatObject.Keys()[i], baseStats[StatObject.Keys()[i]] + bonusStats);
         }
 
+        health = currentStats["Health"];
         EventManager.AddListener("add_passive", OnAddPassive);
         EventManager.AddListener("got_coin", GotCoin);
+        EventManager.AddListener("regen_health", RegenHealth);
     }
 
     // Update is called once per frame
@@ -58,19 +61,34 @@ public class PlayerStat : MonoBehaviour, IDamageable
         currentStats[itemName] = currentStats[itemName] + currentStats[itemName] * currentAbility.percent * UnlockService.AbilitiesUnlocked[false][itemName];
     }
 
-    private void GotCoin()
+    public float GetHealth()
     {
-        currentCoins++;
+        return health;
+    }
+
+    private void GotCoin(object data)
+    {
+        currentCoins += (int)data;
         if (persistentDataManager != null)
         {
             persistentDataManager.coins++;
         }
     }
 
+    private void RegenHealth(object data)
+    {
+        float regen = (float)data;
+        health += regen;
+        if (health > currentStats["Health"])
+        {
+            health = currentStats["Health"];
+        }
+    }
+
     public void Damage(float damage)
     {
-        currentStats["Health"]--;
-        if (currentStats["Health"] <= 0)
+        health--;
+        if (health <= 0)
         {
             EventManager.Trigger("death");
         }

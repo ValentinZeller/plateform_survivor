@@ -17,6 +17,6 @@ public class PlayerHUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerHP.text = stat.currentStats["Health"].ToString();
+        playerHP.text = stat.GetHealth().ToString();
     }
 }
