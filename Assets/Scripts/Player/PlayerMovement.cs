@@ -18,9 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private Transform headCheck;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask blockLayer;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private PlayerStat stat;
@@ -75,8 +73,6 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(CanDamageEnemy());
         }
 
-        CollisionBlock();
-
         Flip();
     }
 
@@ -90,17 +86,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         rb.velocity = new Vector2(horizontal * stat.currentStats["Speed"], rb.velocity.y);
-    }
-
-    private void CollisionBlock()
-    {
-        Collider2D block = Physics2D.OverlapCircle(headCheck.position, 0.2f, blockLayer);
-        if (block == null)
-        {
-            return;
-        }
-        InteractableBlock Iblock = block.GetComponent<InteractableBlock>();
-        Iblock.Damage(1);
     }
 
     private IEnumerator CanDamageEnemy()

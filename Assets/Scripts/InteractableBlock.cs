@@ -6,7 +6,7 @@ public class InteractableBlock : MonoBehaviour, IDamageable
 {
     private bool isEmpty = false;
     [SerializeField] private bool isDestroyable;
-    [SerializeField] private int coins = 1;
+    [SerializeField] private int coins;
     private int currentCoins;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] GameObject item;
@@ -20,6 +20,16 @@ public class InteractableBlock : MonoBehaviour, IDamageable
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        float deltaX = transform.position.x - collision.GetContact(0).point.x;
+        float deltaY = transform.position.y - collision.GetContact(0).point.y;
+        if (deltaY > 0 && deltaX < 0.7 && deltaX > -0.7)
+        {
+            Damage(1);
+        }
     }
 
     public void Reload()
@@ -53,7 +63,7 @@ public class InteractableBlock : MonoBehaviour, IDamageable
             isEmpty = true;
         }
 
-        if (isEmpty || coins == 0)
+        if (isEmpty || currentCoins == 0)
         {
             sprite.color = new Color(0.48f, 0.35f, 0.22f);
         }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6109667205789145063}
   - component: {fileID: 7775012015992391868}
   - component: {fileID: 172095827750966010}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,6 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroyable: 0
-  coins: 0
+  coins: 5
   sprite: {fileID: 6109667205789145063}
-  item: {fileID: 3161103411688693661, guid: 74662b6763fdcfe418743a0f6b5720e1, type: 3}
+  item: {fileID: 0}
