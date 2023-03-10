@@ -9,10 +9,9 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
 
     private bool canMove = true;
     private float horizontal;
-    private float vertical;
     private bool isFacingRight = true;
     [SerializeField] private Rigidbody2D rb;
-    private Transform player;
+
     [SerializeField] GameObject coin;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
@@ -20,9 +19,7 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
-        horizontal = player.position.x - transform.position.x;
-        vertical = player.position.y - transform.position.y;
+        horizontal = 0.5f;
 
         for (int i = 0; i < EnemyStatObject.Keys().Count; i++ )
         {
@@ -33,8 +30,6 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        vertical = Mathf.Clamp(player.position.y - transform.position.y, -0.5f, 0.5f);
-        horizontal = Mathf.Clamp(player.position.x - transform.position.x, -0.5f, 0.5f);
         Flip();
 
         if (stats["JumpForce"] > 0 && IsGrounded())
@@ -54,15 +49,11 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
         {
             if (rb.isKinematic)
             {
-                rb.velocity = new Vector2(horizontal * stats["Speed"], vertical * stats["Speed"]);
+                rb.velocity = new Vector2(horizontal * stats["Speed"], 0);
             }
-            else
+            else if (IsGrounded())
             {
-                if (IsGrounded())
-                {
-                    rb.velocity = new Vector2(horizontal * stats["Speed"], rb.velocity.y);
-                }
-                
+                rb.velocity = new Vector2(horizontal * stats["Speed"], 0);
             }
         }
         
@@ -121,11 +112,12 @@ public class EnemyBehavior : MonoBehaviour, IDamageable
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            collision.gameObject.GetComponent<IDamageable>().Damage(stats["Strength"]);
+            horizontal = -horizontal;
         }
     }
 }

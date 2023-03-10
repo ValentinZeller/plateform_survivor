@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1991054529647472642}
   - component: {fileID: 1991054529647472643}
-  - component: {fileID: 1991054529647472640}
   - component: {fileID: 1991054529647472641}
   - component: {fileID: 1991054529647472654}
+  - component: {fileID: -2101902374202390675}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -87,25 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1991054529647472640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991054529647472655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8011a937ab91ca4798e87459a92ea83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: c1820eaff3063744cb9439d08535cf9e, type: 2}
-  rb: {fileID: 1991054529647472654}
-  coin: {fileID: 3161103411688693661, guid: 05955e70e024eec4a8e0322b5b79b3a3, type: 3}
-  groundCheck: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!61 &1991054529647472641
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,3 +134,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-2101902374202390675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991054529647472655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ac82d8834544144b8acb1bbd2d4ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 11400000, guid: c1820eaff3063744cb9439d08535cf9e, type: 2}
+  rb: {fileID: 1991054529647472654}

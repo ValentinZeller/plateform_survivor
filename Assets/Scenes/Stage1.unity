@@ -150,7 +150,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27313953}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28aac4b8452cc764fa23826032e3e1f4, type: 3}
   m_Name: 
@@ -1321,7 +1321,7 @@ GameObject:
   - component: {fileID: 776476581}
   - component: {fileID: 776476583}
   - component: {fileID: 776476582}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2113,7 +2113,7 @@ GameObject:
   - component: {fileID: 1161328863}
   - component: {fileID: 1161328865}
   - component: {fileID: 1161328864}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
