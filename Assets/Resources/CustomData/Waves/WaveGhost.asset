@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c612aed58ecfeb247bd2554d79382479, type: 3}
   m_Name: WaveGhost
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1991054529647472655, guid: 36afee8b4a3fa034594be5b30adc794f, type: 3}
-  count: 5
-  waitTime: 10
+  enemy:
+  - {fileID: 1991054529647472655, guid: 36afee8b4a3fa034594be5b30adc794f, type: 3}
+  minCount: 5
+  spawnRate: 10000
+  isBossWave: 0

@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c612aed58ecfeb247bd2554d79382479, type: 3}
   m_Name: Wave2
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1991054529647472655, guid: 243549df5cb5474489c2df7afd38a7ab, type: 3}
-  count: 10
-  waitTime: 10
+  enemy:
+  - {fileID: 1991054529647472655, guid: 243549df5cb5474489c2df7afd38a7ab, type: 3}
+  - {fileID: 1991054529647472655, guid: f3757e851f83127459679712a1d847c9, type: 3}
+  minCount: 10
+  spawnRate: 1
+  isBossWave: 0

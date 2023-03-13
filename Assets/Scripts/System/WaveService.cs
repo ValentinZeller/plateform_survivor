@@ -6,8 +6,10 @@ public class WaveService : MonoBehaviour
 {
     //private float spawnCooldown = 5f;
     private int waveIndex = 0;
-    private float waveDuration = 30f; //second
+    private float waveDuration = 60f; //second
     private float waveDurationCounter = 0f;
+    private float maxEnemies = 20;
+    private float currentEnemies = 0;
 
     private float minX = -35;
     private float maxX = 31;
@@ -37,34 +39,43 @@ public class WaveService : MonoBehaviour
         }
     }
 
-    private IEnumerator Spawn()
+    private Vector3 GenerateRandomSpawn()
     {
-        List<Vector3> spawns = new();
-        for (int i = 0; i < waves[waveIndex].count; i++)
+        Vector3 randomSpawn = new();
+        do
         {
             float randomSpawnX = Random.Range(minX, maxX);
             float randomSpawnY = Random.Range(minY, maxY);
+            randomSpawn = new Vector3(randomSpawnX, randomSpawnY, 0);
+        } while (Physics.OverlapSphere(randomSpawn, 2).Length > 0);
 
-            Vector3 randomSpawn = new Vector3(randomSpawnX, randomSpawnY, 0);
-            if (Physics.OverlapSphere(randomSpawn, 2).Length > 0)
+        return randomSpawn;
+    }
+
+    private IEnumerator Spawn()
+    {
+        if (currentEnemies < maxEnemies && !waves[waveIndex].isBossWave) { 
+            List<Vector3> spawns = new();
+
+            int spawnCount = (currentEnemies < waves[waveIndex].minCount) ? waves[waveIndex].minCount : waves[waveIndex].enemy.Count;
+            for (int i = 0; i < spawnCount; i++)
             {
-                do
-                {
-                    randomSpawnX = Random.Range(minX, maxX);
-                    randomSpawnY = Random.Range(minY, maxY);
-                    randomSpawn = new Vector3(randomSpawnX, randomSpawnY, 0);
-                } while (Physics.OverlapSphere(randomSpawn, 2).Length > 0);
+                spawns.Add(GenerateRandomSpawn());
             }
-
-            spawns.Add(randomSpawn);
-        }
  
-        for (int i = 0; i < spawns.Count; i++)
-        {
-            Instantiate(waves[waveIndex].enemy, spawns[i], Quaternion.identity);
+            for (int i = 0; i < spawns.Count; i++)
+            {
+                Instantiate(waves[waveIndex].enemy[i % waves[waveIndex].enemy.Count], spawns[i], Quaternion.identity, transform);
+            }
+            
         }
-        
-        yield return new WaitForSeconds(waves[waveIndex].waitTime);
+
+        if (waves[waveIndex].isBossWave)
+        {
+            Instantiate(waves[waveIndex].enemy[0], GenerateRandomSpawn(), Quaternion.identity, transform);
+        }
+
+        yield return new WaitForSeconds(waves[waveIndex].spawnRate);
         StartCoroutine("Spawn");
     }
 }

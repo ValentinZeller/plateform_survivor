@@ -230,6 +230,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 921657909}
     m_Modifications:
+    - target: {fileID: 172095827750966010, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 3161103411688693661, guid: 74662b6763fdcfe418743a0f6b5720e1, type: 3}
+    - target: {fileID: 172095827750966010, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
+      propertyPath: coins
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3343086915993055053, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
       propertyPath: m_Name
       value: BlockM1
@@ -549,7 +557,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -573,7 +581,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9, y: 14.1, z: -10}
+  m_LocalPosition: {x: -0, y: 4.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -587,11 +595,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bd71b0f270c6794f86ca5113bd67d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minX: -20
+  maxX: 16.5
+  minY: 4.5
+  maxY: 23.5
   player: {fileID: 202363570}
 --- !u!1 &527819646
 GameObject:
@@ -3966,6 +3978,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 921657909}
     m_Modifications:
+    - target: {fileID: 172095827750966010, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 3161103411688693661, guid: 74662b6763fdcfe418743a0f6b5720e1, type: 3}
+    - target: {fileID: 172095827750966010, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
+      propertyPath: coins
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3343086915993055053, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
       propertyPath: m_Name
       value: BlockL0

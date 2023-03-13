@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c612aed58ecfeb247bd2554d79382479, type: 3}
   m_Name: WaveJumpy
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1991054529647472655, guid: f433ab3d49fed2042886d412cdbddf0d, type: 3}
-  count: 5
-  waitTime: 10
+  enemy:
+  - {fileID: 1991054529647472655, guid: f433ab3d49fed2042886d412cdbddf0d, type: 3}
+  minCount: 5
+  spawnRate: 1
+  isBossWave: 0

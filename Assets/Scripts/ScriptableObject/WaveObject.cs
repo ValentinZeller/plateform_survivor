@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Wave", menuName = "CustomData/Wave", order = 2)]
 public class WaveObject : ScriptableObject
 {
-    public GameObject enemy;
-    public int count;
-    public float waitTime;
+    public List<GameObject> enemy;
+    public int minCount;
+    public float spawnRate;
+    public bool isBossWave;
 }
