@@ -1,12 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Wave", menuName = "CustomData/Wave", order = 2)]
-public class WaveObject : ScriptableObject
+namespace ScriptableObject
 {
-    public List<GameObject> enemy;
-    public int minCount;
-    public float spawnRate;
-    public bool isBossWave;
+    [CreateAssetMenu(fileName = "New Wave", menuName = "CustomData/Wave", order = 2)]
+    public class WaveObject : UnityEngine.ScriptableObject
+    {
+        public List<GameObject> enemy;
+        public int minCount;
+        public float spawnRate;
+        public bool isBossWave;
+    }
 }

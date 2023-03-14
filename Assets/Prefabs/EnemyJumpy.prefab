@@ -100,18 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8011a937ab91ca4798e87459a92ea83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: cccfe71a24003884ab4015150eb23821, type: 2}
-  speed: 8
-  strength: 1
   rb: {fileID: 1991054529647472654}
-  coin: {fileID: 3161103411688693661, guid: 05955e70e024eec4a8e0322b5b79b3a3, type: 3}
-  jumpCooldown: 0.5
-  jumpForce: 6
-  canJump: 1
+  xpObject: {fileID: 3161103411688693661, guid: 05955e70e024eec4a8e0322b5b79b3a3, type: 3}
   groundCheck: {fileID: 7453441565363282716}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  enemy: {fileID: 11400000, guid: cccfe71a24003884ab4015150eb23821, type: 2}
 --- !u!61 &1991054529647472641
 BoxCollider2D:
   m_ObjectHideFlags: 0

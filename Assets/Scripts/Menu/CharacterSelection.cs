@@ -1,41 +1,38 @@
-using System.Collections;
 using System.Collections.Generic;
+using ScriptableObject;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class CharacterSelection : MonoBehaviour
+namespace PlateformSurvivor.Menu
 {
-    private List<StatObject> characters;
-    [SerializeField] ToggleGroup characterToggleGroup;
-    [SerializeField] GameObject togglePrefab;
-    [SerializeField] Button startCharacterButton;
-    [SerializeField] PersistentDataManager persistentDataManager;
-    void Start()
+    public class CharacterSelection : MonoBehaviour
     {
-        characters = persistentDataManager.charactersUnlocked;
-        foreach(StatObject character in characters)
+        [SerializeField] private ToggleGroup characterToggleGroup;
+        [SerializeField] private GameObject togglePrefab;
+        [SerializeField] private Button startCharacterButton;
+        [SerializeField] private PersistentDataManager persistentDataManager;
+        
+        private List<StatObject> characters;
+        private void Start()
         {
-            GameObject instance = Instantiate(togglePrefab, characterToggleGroup.transform);
-            instance.name = character.name;
-            instance.GetComponentInChildren<Text>().text = character.name;
-            instance.GetComponent<Toggle>().group = characterToggleGroup;
-        };
-    }
+            characters = persistentDataManager.charactersUnlocked;
+            foreach(StatObject character in characters)
+            {
+                GameObject instance = Instantiate(togglePrefab, characterToggleGroup.transform);
+                instance.name = character.name;
+                instance.GetComponentInChildren<Text>().text = character.name;
+                instance.GetComponent<Toggle>().group = characterToggleGroup;
+            }
+        }
 
-    public void SelectCharacter()
-    {
-        persistentDataManager.chosenCharacter = characters.Find(stat => stat.name == characterToggleGroup.GetFirstActiveToggle().name);
-    }
+        public void SelectCharacter()
+        {
+            persistentDataManager.chosenCharacter = characters.Find(stat => stat.name == characterToggleGroup.GetFirstActiveToggle().name);
+        }
 
-    private void Update()
-    {
-        if (characterToggleGroup.AnyTogglesOn())
+        private void Update()
         {
-            startCharacterButton.interactable = true;
-        } else
-        {
-            startCharacterButton.interactable = false;
+            startCharacterButton.interactable = characterToggleGroup.AnyTogglesOn();
         }
     }
 }

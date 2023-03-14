@@ -1,51 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
+using PlateformSurvivor.Service;
 using UnityEngine;
 
-public class FireballBehavior : MonoBehaviour
+namespace PlateformSurvivor.Player.Ability
 {
-    private float lifespan = 1.5f;
-    private Vector2 velocity;
-    private float strength = 1;
-    [SerializeField] private Rigidbody2D rb;
-    void Start()
+    public class FireballBehavior : MonoBehaviour
     {
-        Destroy(this.gameObject, lifespan);
-        velocity = rb.velocity;
-    }
+        [SerializeField] private Rigidbody2D rb;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (rb.velocity.y < velocity.y)
+        private const float Lifespan = 1.5f;
+        private Vector2 velocity;
+        private float strength = 1;
+
+        private void Start()
         {
-            rb.velocity = velocity;
+            Destroy(this.gameObject, Lifespan);
+            velocity = rb.velocity;
         }
-    }
-
-    public void SetStrength(float newValue)
-    {
-        strength = newValue;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        rb.velocity = new Vector2(velocity.x, -velocity.y);
-
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        
+        private void Update()
         {
-            collision.gameObject.GetComponent<IDamageable>().Damage(strength);
-            Explode();
+            if (rb.velocity.y < velocity.y)
+            {
+                rb.velocity = velocity;
+            }
         }
-
-        if (collision.contacts[0].normal.x != 0)
+        
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            Explode();
-        }
-    }
+            rb.velocity = new Vector2(velocity.x, -velocity.y);
 
-    private void Explode()
-    {
-        Destroy(this.gameObject);
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                collision.gameObject.GetComponent<IDamageable>().Damage(strength);
+                Explode();
+            }
+
+            if (collision.contacts[0].normal.x != 0)
+            {
+                Explode();
+            }
+        }
+
+        private void Explode()
+        {
+            Destroy(this.gameObject);
+        }
+        
+        public void SetStrength(float newValue)
+        {
+            strength = newValue;
+        }
     }
 }

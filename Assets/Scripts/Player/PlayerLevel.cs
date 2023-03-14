@@ -1,35 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using PlateformSurvivor.Service;
 using UnityEngine;
 
-public class PlayerLevel : MonoBehaviour
+namespace PlateformSurvivor.Player
 {
-    private float xp = 0f;
-    private float xpNeeded = 2f;
-    private float lvl = 1;
-    // Start is called before the first frame update
-
-    void Start()
+    public class PlayerLevel : MonoBehaviour
     {
-        EventManager.AddListener("got_xp", LevelUp);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void LevelUp(object data)
-    {
-        xp += (float)data;
-        if (xp >= xpNeeded)
+        private float xp;
+        private float xpNeeded = 2f;
+        private float lvl = 1;
+        private void Start()
         {
+            EventManager.AddListener("got_xp", LevelUp);
+        }
+
+        private void LevelUp(object data)
+        {
+            xp += (float)data;
+            if (!(xp >= xpNeeded)) return;
+            
             xp = 0;
             xpNeeded += 1f;
             lvl++;
             EventManager.Trigger("level_up");
         }
-    }
 
+    }
 }

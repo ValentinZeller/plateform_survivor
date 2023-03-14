@@ -1,34 +1,30 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using ScriptableObject;
 using UnityEngine;
 
-public class PersistentDataManager : MonoBehaviour
+namespace PlateformSurvivor.Menu
 {
-    [HideInInspector] public StatObject chosenCharacter;
-    public Dictionary<string, int> statsUpgrade = new();
-    public List<StatObject> charactersUnlocked;
-    public List<string> stagesUnlocked;
-    public int coins = 100;
-
-    private void Awake()
+    public class PersistentDataManager : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
-        for (int i = 0; i < StatObject.Keys().Count; i++)
-        {
-            statsUpgrade.Add(StatObject.Keys()[i], 0);
-        }
-    }
+        [HideInInspector] public StatObject chosenCharacter;
+        public readonly Dictionary<string, int> statsUpgrade = new();
+        public List<StatObject> charactersUnlocked;
+        public List<string> stagesUnlocked;
+        public int coins = 100;
 
-    public bool HasUpgraded()
-    {
-        foreach (KeyValuePair<string, int> pair in statsUpgrade)
+        private void Awake()
         {
-            if (pair.Value > 0)
+            DontDestroyOnLoad(gameObject);
+            for (int i = 0; i < StatObject.Keys().Count; i++)
             {
-                return true;
+                statsUpgrade.Add(StatObject.Keys()[i], 0);
             }
         }
 
-        return false;
+        public bool HasUpgraded()
+        {
+            return statsUpgrade.Any(pair => pair.Value > 0);
+        }
     }
 }

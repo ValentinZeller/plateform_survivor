@@ -1,27 +1,30 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Enemy Stat", menuName = "CustomData/EnemyStat", order = 2)]
-public class EnemyStatObject : ScriptableObject
+namespace ScriptableObject
 {
-    public float speed;
-    public float strength;
-    public float health;
-    public float jumpForce;
-    public float jumpCooldown;
-
-    public float this[int key]
+    [CreateAssetMenu(fileName = "New Enemy Stat", menuName = "CustomData/EnemyStat", order = 2)]
+    public class EnemyStatObject : UnityEngine.ScriptableObject
     {
-        get
+        public float speed;
+        public float strength;
+        public float health;
+        public float jumpForce;
+        public float jumpCooldown;
+        public float xpDrop;
+
+        public float this[int key]
         {
-            float[] propArray = new float[5] { speed, strength, health, jumpForce, jumpCooldown };
-            return propArray[key];
+            get
+            {
+                float[] propArray = { speed, strength, health, jumpForce, jumpCooldown, xpDrop };
+                return propArray[key];
+            }
         }
-    }
 
-    public static List<string> Keys()
-    {
-        return new List<string>() { "Speed", "Strength", "Health", "JumpForce", "JumpCooldown" };
+        public static List<string> Keys()
+        {
+            return new List<string>() { "Speed", "Strength", "Health", "JumpForce", "JumpCooldown", "XpDrop"};
+        }
     }
 }

@@ -1,121 +1,126 @@
 using System.Collections;
-using System.Collections.Generic;
+using PlateformSurvivor.Enemy;
+using PlateformSurvivor.Player.Ability;
+using PlateformSurvivor.Service;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+namespace PlateformSurvivor.Player
 {
-    private float horizontal;
-    private bool isFacingRight = true;
-    private bool canDamage = true;
-
-    private float coyoteTime = 0.2f;
-    private float coyoteTimeCounter;
-
-    [HideInInspector] public float jumpBufferTime = 0.2f;
-    [HideInInspector] public float jumpBufferTimeCounter;
-
-    private float bounceForce = 6f;
-
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private TrailRenderer tr;
-    [SerializeField] private PlayerStat stat;
-    [SerializeField] private Dash dash;
-
-    void Start()
+    public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField] private Rigidbody2D rb;
+        [SerializeField] private Transform groundCheck;
+        [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private LayerMask enemyLayer;
+        [SerializeField] private PlayerStat stat;
+        [SerializeField] private Dash dash;
         
-    }
-    void Update()
-    {
-        if (dash.enabled)
+        private const float BounceForce = 6f;
+        private const float CoyoteTime = 0.2f;
+        private const float JumpBufferTime = 0.2f;
+        
+        private float horizontal;
+        private bool isFacingRight = true;
+        private bool canDamage = true;
+        private float coyoteTimeCounter;
+        private float jumpBufferTimeCounter;
+
+        private void Update()
         {
-            if (dash.GetDashing())
+            if (dash.enabled)
             {
-                return;
-            }
-        }
-
-        horizontal = Input.GetAxis("Horizontal");
-
-        if (IsGrounded())
-        {
-            coyoteTimeCounter = coyoteTime;
-        } else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpBufferTimeCounter = jumpBufferTime;
-            if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, stat.currentStats["JumpForce"]);
-                jumpBufferTimeCounter = 0f;
+                if (dash.GetDashing())
+                {
+                    return;
+                }
             }
 
-        } else
-        {
-            jumpBufferTimeCounter -= Time.deltaTime;
-        }
+            horizontal = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-            coyoteTimeCounter = 0f;
-        }
-
-        if(canDamage)
-        {
-            StartCoroutine(CanDamageEnemy());
-        }
-
-        Flip();
-    }
-
-    private void FixedUpdate()
-    {
-        if (dash.enabled)
-        {
-            if (dash.GetDashing())
+            if (IsGrounded())
             {
-                return;
+                coyoteTimeCounter = CoyoteTime;
+            } else
+            {
+                coyoteTimeCounter -= Time.deltaTime;
+            }
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                jumpBufferTimeCounter = JumpBufferTime;
+                if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, stat.currentStats["JumpForce"]);
+                    jumpBufferTimeCounter = 0f;
+                }
+
+            } else
+            {
+                jumpBufferTimeCounter -= Time.deltaTime;
+            }
+
+            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+            {
+                Vector2 velocity = rb.velocity;
+                velocity = new Vector2(velocity.x, velocity.y * 0.5f);
+                rb.velocity = velocity;
+                coyoteTimeCounter = 0f;
+            }
+
+            if(canDamage)
+            {
+                StartCoroutine(CanDamageEnemy());
+            }
+
+            Flip();
+        }
+
+        private void FixedUpdate()
+        {
+            if (dash.enabled)
+            {
+                if (dash.GetDashing())
+                {
+                    return;
+                }
+            }
+            rb.velocity = new Vector2(horizontal * stat.currentStats["Speed"], rb.velocity.y);
+        }
+
+        private IEnumerator CanDamageEnemy()
+        {
+            Collider2D enemyCollider2D = Physics2D.OverlapCircle(groundCheck.position, 0.5f, enemyLayer);
+            if (enemyCollider2D)
+            {
+                canDamage = false;
+                rb.velocity = new Vector2(rb.velocity.x, BounceForce);
+                EventManager.Trigger("bounce_enemy");
+                enemyCollider2D.gameObject.GetComponent<EnemyBehavior>().Damage(stat.currentStats["Strength"]);
+                yield return new WaitForSeconds(0.2f);
+                canDamage = true;
+            }
+            yield return null;
+        }
+
+        private void Flip()
+        {
+            if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1;
+                transform.localScale = localScale;
             }
         }
-        rb.velocity = new Vector2(horizontal * stat.currentStats["Speed"], rb.velocity.y);
-    }
-
-    private IEnumerator CanDamageEnemy()
-    {
-        Collider2D collider2D = Physics2D.OverlapCircle(groundCheck.position, 0.2f, enemyLayer);
-        if (collider2D)
+        
+        public bool IsGrounded()
         {
-            canDamage = false;
-            rb.velocity = new Vector2(rb.velocity.x, bounceForce);
-            EventManager.Trigger("bounce_enemy");
-            collider2D.gameObject.GetComponent<EnemyBehavior>().Damage(stat.currentStats["Strength"]);
-            yield return new WaitForSeconds(0.2f);
-            canDamage = true;
+            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
         }
-        yield return null;
-    }
 
-    public bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-    }
-
-    private void Flip()
-    {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        public void SetJumpBufferTimeCounter(float value)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1;
-            transform.localScale = localScale;
+            jumpBufferTimeCounter = value;
         }
     }
 }

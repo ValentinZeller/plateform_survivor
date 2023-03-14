@@ -1,60 +1,62 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StageSelection : MonoBehaviour
+namespace PlateformSurvivor.Menu
 {
-    private List<string> stages;
-    [SerializeField] GameObject stageScreen;
-    [SerializeField] ToggleGroup stageToggleGroup;
-    [SerializeField] GameObject togglePrefab;
-    [SerializeField] Button startStageButton;
-    [SerializeField] PersistentDataManager persistentDataManager;
-
-    private void Start()
+    public class StageSelection : MonoBehaviour
     {
-        stages = persistentDataManager.stagesUnlocked;
-
-        foreach (string stage in stages)
+        [SerializeField] private GameObject stageScreen;
+        [SerializeField] private ToggleGroup stageToggleGroup;
+        [SerializeField] private GameObject togglePrefab;
+        [SerializeField] private Button startStageButton;
+        [SerializeField] private PersistentDataManager persistentDataManager;
+        
+        private List<string> stages;
+        private void Start()
         {
-            GameObject instance = Instantiate(togglePrefab, stageToggleGroup.transform);
-            instance.name = stage;
-            instance.GetComponentInChildren<Text>().text = stage;
-            instance.GetComponent<Toggle>().group = stageToggleGroup;
+            stages = persistentDataManager.stagesUnlocked;
+
+            foreach (string stage in stages)
+            {
+                GameObject instance = Instantiate(togglePrefab, stageToggleGroup.transform);
+                instance.name = stage;
+                instance.GetComponentInChildren<Text>().text = stage;
+                instance.GetComponent<Toggle>().group = stageToggleGroup;
+            }
         }
-    }
 
-    private void Update()
-    {
-        if (stageToggleGroup.AnyTogglesOn())
+        private void Update()
         {
-            startStageButton.interactable = true;
-        } else
-        {
-            startStageButton.interactable = false;
+            if (stageToggleGroup.AnyTogglesOn())
+            {
+                startStageButton.interactable = true;
+            } else
+            {
+                startStageButton.interactable = false;
+            }
         }
-    }
 
-    private void LoadStage(string stageName)
-    {
-        SceneManager.LoadScene(stageName);
-    }
-
-    public void DisplayStageSelection()
-    {
-        if (stages.Count < 2)
+        private static void LoadStage(string stageName)
         {
-            LoadStage(stages[0]);
-        } else
-        {
-            stageScreen.SetActive(true);
+            SceneManager.LoadScene(stageName);
         }
-    }
 
-    public void StartGame()
-    {
-        LoadStage(stageToggleGroup.GetFirstActiveToggle().name);
+        public void DisplayStageSelection()
+        {
+            if (stages.Count < 2)
+            {
+                LoadStage(stages[0]);
+            } else
+            {
+                stageScreen.SetActive(true);
+            }
+        }
+
+        public void StartGame()
+        {
+            LoadStage(stageToggleGroup.GetFirstActiveToggle().name);
+        }
     }
 }

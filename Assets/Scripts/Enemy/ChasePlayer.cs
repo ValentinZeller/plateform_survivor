@@ -1,59 +1,66 @@
-using System.Collections;
 using System.Collections.Generic;
+using PlateformSurvivor.Service;
+using ScriptableObject;
 using UnityEngine;
 
-public class ChasePlayer : MonoBehaviour
+namespace PlateformSurvivor.Enemy
 {
-    [SerializeField] EnemyStatObject enemy;
-    private Dictionary<string, float> stats = new();
-
-    private float horizontal;
-    private float vertical;
-    private bool isFacingRight = true;
-    [SerializeField] private Rigidbody2D rb;
-    private Transform player;
-    // Start is called before the first frame update
-    void Start()
+    public class ChasePlayer : MonoBehaviour
     {
-        player = GameObject.FindWithTag("Player").transform;
-        horizontal = player.position.x - transform.position.x;
-        vertical = player.position.y - transform.position.y;
+        [SerializeField] EnemyStatObject enemy;
+        [SerializeField] private Rigidbody2D rb;
+        
+        private readonly Dictionary<string, float> stats = new();
+        private float horizontal;
+        private float vertical;
+        private bool isFacingRight = true;
+        private Transform player;
 
-        for (int i = 0; i < EnemyStatObject.Keys().Count; i++)
+        private void Start()
         {
-            stats.Add(EnemyStatObject.Keys()[i], enemy[i]);
+            player = GameObject.FindWithTag("Player").transform;
+            Vector3 playerPosition = player.position;
+            Vector3 position = transform.position;
+            horizontal = playerPosition.x - position.x;
+            vertical = playerPosition.y - position.y;
+
+            for (int i = 0; i < EnemyStatObject.Keys().Count; i++)
+            {
+                stats.Add(EnemyStatObject.Keys()[i], enemy[i]);
+            }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        vertical = Mathf.Clamp(player.position.y - transform.position.y, -0.5f, 0.5f);
-        horizontal = Mathf.Clamp(player.position.x - transform.position.x, -0.5f, 0.5f);
-        Flip();
-    }
-
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector2(horizontal * stats["Speed"], vertical * stats["Speed"]);
-    }
-
-    private void Flip()
-    {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        
+        private void Update()
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1;
-            transform.localScale = localScale;
+            Vector3 playerPosition = player.position;
+            Vector3 position = transform.position;
+            vertical = Mathf.Clamp(playerPosition.y - position.y, -0.5f, 0.5f);
+            horizontal = Mathf.Clamp(playerPosition.x - position.x, -0.5f, 0.5f);
+            Flip();
         }
-    }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        private void FixedUpdate()
         {
-            collision.gameObject.GetComponent<IDamageable>().Damage(stats["Strength"]);
+            rb.velocity = new Vector2(horizontal * stats["Speed"], vertical * stats["Speed"]);
+        }
+
+        private void Flip()
+        {
+            if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1;
+                transform.localScale = localScale;
+            }
+        }
+
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                collision.gameObject.GetComponent<IDamageable>().Damage(stats["Strength"]);
+            }
         }
     }
 }

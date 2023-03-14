@@ -100,13 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8011a937ab91ca4798e87459a92ea83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: 1a9ff0bb9c088de4a9765252fa6e60c3, type: 2}
   rb: {fileID: 1991054529647472654}
-  coin: {fileID: 3161103411688693661, guid: 05955e70e024eec4a8e0322b5b79b3a3, type: 3}
+  xpObject: {fileID: 3161103411688693661, guid: 05955e70e024eec4a8e0322b5b79b3a3, type: 3}
   groundCheck: {fileID: 7094859487888524907}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  enemy: {fileID: 11400000, guid: 1a9ff0bb9c088de4a9765252fa6e60c3, type: 2}
 --- !u!61 &1991054529647472641
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,22 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 
-public class PlayerHUD : MonoBehaviour
+namespace PlateformSurvivor.Player
 {
-    [SerializeField] TextMeshProUGUI playerHP;
-    [SerializeField] PlayerStat stat;
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerHUD : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private TextMeshProUGUI playerHP;
+        [SerializeField] private PlayerStat stat;
 
-    // Update is called once per frame
-    void Update()
-    {
-        playerHP.text = stat.GetHealth().ToString();
+        private void Update()
+        {
+            playerHP.text = stat.GetHealth().ToString();
+        }
     }
 }
