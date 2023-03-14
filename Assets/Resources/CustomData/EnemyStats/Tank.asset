@@ -17,3 +17,4 @@ MonoBehaviour:
   health: 3
   jumpForce: 0
   jumpCooldown: 0
+  xpDrop: 3

@@ -27,13 +27,7 @@ namespace PlateformSurvivor.Player
 
         private void Update()
         {
-            if (dash.enabled)
-            {
-                if (dash.GetDashing())
-                {
-                    return;
-                }
-            }
+            if (dash.enabled && dash.GetDashing()) return;
 
             horizontal = Input.GetAxis("Horizontal");
 
@@ -89,7 +83,7 @@ namespace PlateformSurvivor.Player
 
         private IEnumerator CanDamageEnemy()
         {
-            Collider2D enemyCollider2D = Physics2D.OverlapCircle(groundCheck.position, 0.5f, enemyLayer);
+            Collider2D enemyCollider2D = Physics2D.OverlapCircle(groundCheck.position, 0.4f, enemyLayer);
             if (enemyCollider2D)
             {
                 canDamage = false;

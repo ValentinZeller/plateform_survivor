@@ -10,6 +10,7 @@ namespace PlateformSurvivor.Player.Ability
         
         private float fireCooldown = 1.5f;
         private bool canFire = true;
+        private bool bothSide = false;
         private readonly Vector2 offset = new(1f, 0.5f);
         private Vector2 velocity = new(10, -10);
         private float fireStrength;
@@ -25,11 +26,20 @@ namespace PlateformSurvivor.Player.Ability
         {
             if (canFire)
             {
-                GameObject instance = Instantiate(fireProjectile, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
-                instance.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * transform.localScale.x, velocity.y);
-                instance.GetComponent<FireballBehavior>().SetStrength(stat.currentStats["Strength"] + fireStrength);
+                SpawnFireball(transform.localScale.x);
+                if (bothSide)
+                {
+                    SpawnFireball(- transform.localScale.x);
+                }
                 StartCoroutine(FireAction());
             }
+        }
+
+        private void SpawnFireball(float direction)
+        {
+            GameObject instance = Instantiate(fireProjectile, (Vector2)transform.position + offset * direction, Quaternion.identity);
+            instance.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * direction, velocity.y);
+            instance.GetComponent<FireballBehavior>().SetStrength(stat.currentStats["Strength"] + fireStrength);
         }
 
         private IEnumerator FireAction()
@@ -48,6 +58,7 @@ namespace PlateformSurvivor.Player.Ability
                     fireCooldown -= 0.125f;
                     break;
                 case 3:
+                    bothSide = true;
                     velocity.x += velocity.x + 0.05f;
                     break;
                 case 4:

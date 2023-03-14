@@ -27,13 +27,7 @@ namespace PlateformSurvivor.Player.Ability
         
         void Update()
         {
-            if (dash.enabled)
-            {
-                if (dash.GetDashing())
-                {
-                    return;
-                }
-            }
+            if (dash.enabled && dash.GetDashing()) return;
 
             if (playerMovement.IsGrounded() && !Input.GetButton("Jump"))
             {

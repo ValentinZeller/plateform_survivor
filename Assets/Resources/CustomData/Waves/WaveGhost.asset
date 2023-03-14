@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
   - {fileID: 1991054529647472655, guid: 36afee8b4a3fa034594be5b30adc794f, type: 3}
-  minCount: 5
-  spawnRate: 10000
+  minCount: 1
+  spawnRate: 1
   isBossWave: 0

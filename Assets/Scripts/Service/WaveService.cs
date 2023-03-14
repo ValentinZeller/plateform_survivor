@@ -33,9 +33,10 @@ namespace PlateformSurvivor.Service
             {
                 waveDurationCounter = 0f;
                 waveIndex++;
-                if (waveIndex > waves.Count)
+                EventManager.Trigger("reload_block");
+                if (waveIndex >= waves.Count - 1)
                 {
-                    waveIndex = waves.Count;
+                    waveIndex = waves.Count - 1;
                 }
             }
 

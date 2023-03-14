@@ -17,8 +17,8 @@ namespace PlateformSurvivor.Player
         private Dictionary<string, float> baseStats = new();
         
         public Dictionary<string, float> currentStats = new();
-        
-        void Start()
+
+        private void Start()
         {
             if (FindObjectOfType<PersistentDataManager>())
             {

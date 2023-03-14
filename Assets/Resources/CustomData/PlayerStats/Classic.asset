@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Classic
   m_EditorClassIdentifier: 
   startAbility: 1
-  speed: 6
-  jumpForce: 14
+  speed: 7
+  jumpForce: 12
   strength: 1
   health: 100

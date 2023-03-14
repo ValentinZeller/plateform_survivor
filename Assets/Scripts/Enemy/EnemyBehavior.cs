@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using PlateformSurvivor.InteractiveObject;
 using PlateformSurvivor.Player.Ability;
@@ -20,6 +19,7 @@ namespace PlateformSurvivor.Enemy
         private bool canMove = true;
         private float horizontal;
         private bool isFacingRight = true;
+        private float jumpTimeCounter;
 
         private void Start()
         {
@@ -34,17 +34,11 @@ namespace PlateformSurvivor.Enemy
         private void Update()
         {
             Flip();
-
-            if (stats["JumpForce"] > 0 && IsGrounded())
+            jumpTimeCounter += Time.deltaTime;
+            if (stats["JumpForce"] > 0 && IsGrounded() && jumpTimeCounter >= stats["JumpCooldown"])
             {
-                StartCoroutine(Jump());
-            }
-
-            if (rb.velocity.y > 0f)
-            {
-                Vector2 velocity = rb.velocity;
-                velocity = new Vector2(velocity.x, velocity.y * 0.5f);
-                rb.velocity = velocity;
+                rb.velocity = new Vector2(rb.velocity.x, stats["JumpForce"]);
+                jumpTimeCounter = 0;
             }
         }
 
@@ -54,22 +48,16 @@ namespace PlateformSurvivor.Enemy
             {
                 if (rb.isKinematic)
                 {
-                    rb.velocity = new Vector2(horizontal * stats["Speed"], 0);
+                    rb.velocity = new Vector2(horizontal * stats["Speed"], rb.velocity.y);
                 }
                 else if (IsGrounded())
                 {
-                    rb.velocity = new Vector2(horizontal * stats["Speed"], 0);
+                    rb.velocity = new Vector2(horizontal * stats["Speed"], rb.velocity.y);
                 }
             }
         
         }
-
-        private IEnumerator Jump()
-        {
-            yield return new WaitForSeconds(stats["JumpCooldown"]);
-            rb.velocity = new Vector2(rb.velocity.x, stats["JumpForce"]);
-        }
-
+        
         private bool IsGrounded()
         {
             return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
@@ -102,7 +90,7 @@ namespace PlateformSurvivor.Enemy
         private void OnCollisionEnter2D(Collision2D collision)
         {
 
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 horizontal = -horizontal;
             }

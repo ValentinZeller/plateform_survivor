@@ -15,5 +15,6 @@ MonoBehaviour:
   speed: 8
   strength: 1
   health: 0.5
-  jumpForce: 6
-  jumpCooldown: 0.5
+  jumpForce: 10
+  jumpCooldown: 3
+  xpDrop: 3

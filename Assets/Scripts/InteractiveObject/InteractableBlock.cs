@@ -10,7 +10,9 @@ namespace PlateformSurvivor.InteractiveObject
         [SerializeField] private int coins;
         [SerializeField] private SpriteRenderer sprite;
         [SerializeField] private GameObject item;
-        
+
+        private const float LeftOffset = -0.71f;
+        private const float RightOffset = 0.71f;
         private int currentCoins;
         private bool isEmpty;
 
@@ -25,7 +27,7 @@ namespace PlateformSurvivor.InteractiveObject
             Vector3 position = transform.position;
             float deltaX = position.x - collision.GetContact(0).point.x;
             float deltaY = position.y - collision.GetContact(0).point.y;
-            if (deltaY > 0 && deltaX < 0.7 && deltaX > -0.7)
+            if (deltaY > 0 && deltaX < RightOffset && deltaX > LeftOffset && collision.gameObject.CompareTag("Player"))
             {
                 Damage(1);
             }

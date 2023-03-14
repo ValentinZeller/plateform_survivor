@@ -11,7 +11,7 @@ namespace PlateformSurvivor.Menu
         public readonly Dictionary<string, int> statsUpgrade = new();
         public List<StatObject> charactersUnlocked;
         public List<string> stagesUnlocked;
-        public int coins = 100;
+        public int coins;
 
         private void Awake()
         {
