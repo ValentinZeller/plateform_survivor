@@ -24,5 +24,20 @@ namespace PlateformSurvivor.Player
             EventManager.Trigger("level_up");
         }
 
+        public float GetXp()
+        {
+            return xp;
+        }
+
+        public float GetXpNeeded()
+        {
+            return xpNeeded;
+        }
+
+        public float GetLvl()
+        {
+            return lvl;
+        }
+
     }
 }

@@ -2136,8 +2136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d5e583090c82e4ea840d23f4fbc580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeObjects:
-  - {fileID: 11400000, guid: f757624742362da489d883e495dc65a0, type: 2}
   refundButton: {fileID: 643240231}
   buyButton: {fileID: 714858018}
   buyToggleGroup: {fileID: 2051838994}
@@ -2145,6 +2143,8 @@ MonoBehaviour:
   priceText: {fileID: 794112570}
   rankText: {fileID: 1605660841}
   persistentDataManager: {fileID: 2030511835}
+  upgradeObjects:
+  - {fileID: 11400000, guid: f757624742362da489d883e495dc65a0, type: 2}
 --- !u!1 &857203215
 GameObject:
   m_ObjectHideFlags: 0
@@ -5768,7 +5768,7 @@ MonoBehaviour:
   stagesUnlocked:
   - Stage1
   - Stage2
-  coins: 100
+  coins: 0
 --- !u!4 &2030511836
 Transform:
   m_ObjectHideFlags: 0
