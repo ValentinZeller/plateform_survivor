@@ -13,7 +13,7 @@ namespace PlateformSurvivor.Save
                 saveable.PopulateSaveData(sd);
             }
 
-            if (FileManager.WriteToFile("SaveData01.dat", sd.ToJson()))
+            if (FileManager.WriteToFile("playerdata.json", sd.ToJson()))
             {
                 Debug.Log("Save successful");
             }
@@ -21,7 +21,7 @@ namespace PlateformSurvivor.Save
     
         public static void LoadJsonData(IEnumerable<ISaveable> saveables)
         {
-            if (FileManager.LoadFromFile("SaveData01.dat", out var json))
+            if (FileManager.LoadFromFile("playerdata.json", out var json))
             {
                 SaveData sd = new SaveData();
                 sd.LoadFromJson(json);
