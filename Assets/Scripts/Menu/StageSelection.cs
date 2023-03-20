@@ -13,10 +13,16 @@ namespace PlateformSurvivor.Menu
         [SerializeField] private Button startStageButton;
         [SerializeField] private PersistentDataManager persistentDataManager;
         
-        private List<string> stages;
+        private List<string> stages = new();
         private void Start()
         {
-            stages = persistentDataManager.stagesUnlocked;
+            foreach (var stage in persistentDataManager.stagesUnlocked)
+            {
+                if (stage.Value)
+                {
+                    stages.Add(stage.Key);
+                }   
+            }
 
             foreach (string stage in stages)
             {

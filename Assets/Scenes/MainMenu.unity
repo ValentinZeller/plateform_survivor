@@ -2138,6 +2138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refundButton: {fileID: 643240231}
   buyButton: {fileID: 714858018}
+  togglePrefab: {fileID: 7849061835523977804, guid: 1fb6b4e520b013142b92e55346c2ddbb, type: 3}
   buyToggleGroup: {fileID: 2051838994}
   coinText: {fileID: 2103449363}
   priceText: {fileID: 794112570}
@@ -3548,8 +3549,8 @@ RectTransform:
   m_Father: {fileID: 1957312321}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.30405656}
-  m_AnchorMax: {x: 1, y: 0.9999993}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3961,7 +3962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1338836424
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4620,10 +4621,10 @@ RectTransform:
   m_Father: {fileID: 2051838992}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -40}
-  m_SizeDelta: {x: 100, y: 60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1505949197
 MonoBehaviour:
@@ -4721,9 +4722,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1542981032
 MonoBehaviour:
@@ -5762,12 +5763,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chosenCharacter: {fileID: 0}
-  charactersUnlocked:
-  - {fileID: 11400000, guid: cab2d4b9bd307ff4b84505d37f65f9e2, type: 2}
-  - {fileID: 11400000, guid: bdb6f1d7d14aa7845831012e841da131, type: 2}
-  stagesUnlocked:
-  - Stage1
-  - Stage2
   coins: 0
 --- !u!4 &2030511836
 Transform:

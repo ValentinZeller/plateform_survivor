@@ -12,10 +12,17 @@ namespace PlateformSurvivor.Menu
         [SerializeField] private Button startCharacterButton;
         [SerializeField] private PersistentDataManager persistentDataManager;
         
-        private List<StatObject> characters;
+        private List<StatObject> characters = new();
         private void Start()
         {
-            characters = persistentDataManager.charactersUnlocked;
+            foreach (var character in persistentDataManager.charactersUnlocked)
+            {
+                if (character.Value)
+                {
+                    characters.Add(Resources.Load<StatObject>("CustomData/PlayerStats/"+character.Key));
+                }
+            }
+
             foreach(StatObject character in characters)
             {
                 GameObject instance = Instantiate(togglePrefab, characterToggleGroup.transform);

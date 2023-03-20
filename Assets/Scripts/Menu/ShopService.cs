@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using ScriptableObject;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ namespace PlateformSurvivor.Menu
     {
         [SerializeField] private Button refundButton;
         [SerializeField] private Button buyButton;
+        [SerializeField] private GameObject togglePrefab;
         [SerializeField] private ToggleGroup buyToggleGroup;
         [SerializeField] private TextMeshProUGUI coinText;
         [SerializeField] private TextMeshProUGUI priceText;
@@ -21,6 +23,16 @@ namespace PlateformSurvivor.Menu
         private void Start()
         {
             coinText.text = persistentDataManager.coins.ToString();
+            
+            foreach (var upgrade in persistentDataManager.statsUpgrade)
+            {
+                GameObject instance = Instantiate(togglePrefab, buyToggleGroup.transform);
+                instance.name = upgrade.Key;
+                instance.GetComponentInChildren<Text>().text = upgrade.Key;
+                instance.GetComponent<Toggle>().group = buyToggleGroup;
+                instance.GetComponent<Toggle>().onValueChanged.AddListener(delegate { ActiveBuy(); });
+                upgradeObjects.Add(Resources.Load<UpgradeObject>("CustomData/Upgrades/" + upgrade.Key));
+            }
         }
         private void Update()
         {
@@ -32,7 +44,8 @@ namespace PlateformSurvivor.Menu
             string upgradeSelected = buyToggleGroup.GetFirstActiveToggle().name;
             int currentLevel = persistentDataManager.statsUpgrade[upgradeSelected];
             int maxLevel = upgradeObjects.Find(upgradeObject => upgradeObject.upgradeName == upgradeSelected).maxLevel;
-            return currentLevel < maxLevel ;
+            int maxPrice = upgradeObjects.Find(upgradeObject => upgradeObject.upgradeName == upgradeSelected).basePrice;
+            return currentLevel < maxLevel && persistentDataManager.coins > maxPrice ;
         }
 
         private void BuyPassiveUpgrade(string upgradeName)
