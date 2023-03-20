@@ -10,9 +10,11 @@ namespace PlateformSurvivor.Menu
     public class PersistentDataManager : MonoBehaviour
     {
         [HideInInspector] public StatObject chosenCharacter;
-        public readonly Dictionary<string, int> statsUpgrade = new(){{"Health",0}};
+        public Dictionary<string, int> statsUpgrade = new(){{"Health",0},{"Speed",0},{"JumpForce",0},{"Strength",0}};
         public Dictionary<string, bool> charactersUnlocked = new(){{"Classic",true},{"Speedy",true}};
         public Dictionary<string, bool> stagesUnlocked = new(){{"Stage1",true},{"Stage2",true}};
+        public List<string> activeAbilitiesUnlocked = new() { "Dash", "DoubleJump", "Fireball"};
+        public List<string> passiveAbilitiesUnlocked = new() { "Speed", "JumpForce"};
         public int coins;
         private List<PlayerData> data = new(){new PlayerData()};
 
@@ -22,22 +24,7 @@ namespace PlateformSurvivor.Menu
         {
             if (savePersistentData)
             {
-                SaveDataManager.LoadJsonData(data);
-                coins = data[0].coins;
-                foreach (var stage in data[0].stagesUnlocked)
-                {
-                    stagesUnlocked[stage] = true;
-                }
-
-                foreach (var character in data[0].charactersUnlocked)
-                {
-                    charactersUnlocked[character] = true;
-                }
-
-                foreach (var upgrade in data[0].passiveBought)
-                {
-                    statsUpgrade[upgrade.passive] = upgrade.level;
-                }
+                LoadPersistentData();
             }
             else
             {
@@ -51,35 +38,40 @@ namespace PlateformSurvivor.Menu
         {
             if (savePersistentData)
             {
-                data.Clear();
-                PlayerData playerData = new();
-                data.Add(playerData);
-
-                data[0].coins = coins;
-            
-                foreach (var upgrade in statsUpgrade)
-                {
-                    data[0].passiveBought.Add(new PassiveBought(upgrade.Key, upgrade.Value));
-                }
-
-                foreach (var character in charactersUnlocked)
-                {
-                    if (character.Value)
-                    {
-                        data[0].charactersUnlocked.Add(character.Key);
-                    }
-                }
-            
-                foreach (var stage in stagesUnlocked)
-                {
-                    if (stage.Value)
-                    {
-                        data[0].stagesUnlocked.Add(stage.Key);
-                    }
-                }
-            
-                SaveDataManager.SaveJsonData(data);
+                SavePersistentData();
             }
+        }
+
+        private void LoadPersistentData()
+        {
+            SaveDataManager.LoadJsonData(data);
+            coins = data[0].coins;
+            stagesUnlocked = data[0].stagesUnlocked.ToDictionary(s => s, s=>  true);
+            charactersUnlocked = data[0].charactersUnlocked.ToDictionary(c => c, c=>  true);
+            statsUpgrade = data[0].passiveBought.ToDictionary(p => p.passive, p=>p.level);
+            ManageListData(data[0].activeAbilitiesUnlocked, activeAbilitiesUnlocked );
+            ManageListData(data[0].passiveAbilitiesUnlocked, passiveAbilitiesUnlocked);
+        }
+
+        private void SavePersistentData()
+        {
+            data.Clear();
+            PlayerData playerData = new();
+            data.Add(playerData);
+
+            data[0].coins = coins;
+            data[0].passiveBought = statsUpgrade.Select(p => new PassiveBought(p.Key, p.Value)).ToList();
+            data[0].charactersUnlocked = charactersUnlocked.Where(c => c.Value).Select(c => c.Key).ToList();
+            data[0].stagesUnlocked = stagesUnlocked.Where(s => s.Value).Select(s => s.Key).ToList();
+            ManageListData(activeAbilitiesUnlocked, data[0].activeAbilitiesUnlocked);
+            ManageListData(passiveAbilitiesUnlocked, data[0].passiveAbilitiesUnlocked);
+
+            SaveDataManager.SaveJsonData(data);
+        }
+
+        private void ManageListData(List<string> listInput, List<string> listOutput)
+        {
+            listOutput = listInput.Where(i => !listOutput.Contains(i)).ToList();
         }
 
         public bool HasUpgraded()

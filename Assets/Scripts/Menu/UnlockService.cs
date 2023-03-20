@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using PlateformSurvivor.Service;
 using ScriptableObject;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PlateformSurvivor.Service
+namespace PlateformSurvivor.Menu
 {
     public class UnlockService : MonoBehaviour
     {
@@ -16,19 +17,20 @@ namespace PlateformSurvivor.Service
         private const float MaxActive = 6;
         private const float MaxPassive = 6;
 
+        private PersistentDataManager persistentDataManager;
         private static UnlockService Instance { get; set; }
 
         // Stores unlocked ability : [Active | Passive][Ability Name] : level
-        private Dictionary<bool, Dictionary<string, int>> abilitiesUnlocked = new();
+        private Dictionary<bool, Dictionary<string, int>> abilitiesUnlocked = new(){{true,new()},{false, new()}};
         
         public static Dictionary<bool, Dictionary<string, int>> AbilitiesUnlocked { get { return Instance.abilitiesUnlocked; } }
         
         private void Awake()
         {
             Instance = this;
+            PersistentInit();
+
             EventManager.AddListener("level_up", _OnLevelUp);
-            Instance.abilitiesUnlocked.Add(true, new());
-            Instance.abilitiesUnlocked.Add(false, new());
         }
         private void OnDestroy()
         {
@@ -36,6 +38,24 @@ namespace PlateformSurvivor.Service
             Instance = null;
         }
 
+        private void PersistentInit()
+        {
+            persistentDataManager = FindObjectOfType<PersistentDataManager>();
+            if (persistentDataManager != null)
+            {
+                Instance.activeAbilities.Clear();
+                Instance.passiveAbilities.Clear();
+                foreach (var active in persistentDataManager.activeAbilitiesUnlocked)
+                {
+                    Instance.activeAbilities.Add(Resources.Load<AbilityObject>("CustomData/Abilities/" + active));
+                }
+
+                foreach (var passive in persistentDataManager.passiveAbilitiesUnlocked)
+                {
+                    Instance.passiveAbilities.Add(Resources.Load<AbilityObject>("CustomData/Abilities/" + passive));
+                }
+            }
+        }
 
         private static void _OnLevelUp()
         {

@@ -24,7 +24,8 @@ namespace PlateformSurvivor.Save
         public List<string> stagesUnlocked = new();
         public List<string> charactersUnlocked = new();
         public List<string> charactersBought = new();
-        public List<string> abilitiesUnlocked = new();
+        public List<string> activeAbilitiesUnlocked = new();
+        public List<string> passiveAbilitiesUnlocked = new();
         public List<string> achievementsUnlocked = new();
         public List<PassiveBought> passiveBought = new();
 
@@ -37,7 +38,8 @@ namespace PlateformSurvivor.Save
             saveData.playerData.coins = coins;
             saveData.playerData.stagesUnlocked = stagesUnlocked;
             saveData.playerData.charactersUnlocked = charactersUnlocked;
-            saveData.playerData.abilitiesUnlocked = abilitiesUnlocked;
+            saveData.playerData.activeAbilitiesUnlocked = activeAbilitiesUnlocked;
+            saveData.playerData.passiveAbilitiesUnlocked = passiveAbilitiesUnlocked;
             saveData.playerData.achievementsUnlocked = achievementsUnlocked;
             saveData.playerData.charactersBought = charactersBought;
             saveData.playerData.passiveBought = passiveBought;
@@ -48,7 +50,8 @@ namespace PlateformSurvivor.Save
             coins = saveData.playerData.coins;
             stagesUnlocked = saveData.playerData.stagesUnlocked;
             charactersUnlocked = saveData.playerData.charactersUnlocked;
-            abilitiesUnlocked = saveData.playerData.abilitiesUnlocked;
+            activeAbilitiesUnlocked = saveData.playerData.activeAbilitiesUnlocked;
+            passiveAbilitiesUnlocked = saveData.playerData.passiveAbilitiesUnlocked;
             achievementsUnlocked = saveData.playerData.achievementsUnlocked;
             charactersBought = saveData.playerData.charactersBought;
             passiveBought = saveData.playerData.passiveBought;

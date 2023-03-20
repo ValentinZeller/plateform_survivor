@@ -18,7 +18,7 @@ namespace PlateformSurvivor.Menu
         [SerializeField] private TextMeshProUGUI rankText;
         [SerializeField] private PersistentDataManager persistentDataManager;
         
-        public List<UpgradeObject> upgradeObjects;
+        private List<UpgradeObject> upgradeObjects = new();
         
         private void Start()
         {
