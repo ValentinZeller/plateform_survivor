@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PlateformSurvivor.Save;
 using ScriptableObject;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PlateformSurvivor.Menu
@@ -12,7 +13,7 @@ namespace PlateformSurvivor.Menu
         [HideInInspector] public StatObject chosenCharacter;
         public Dictionary<string, int> statsUpgrade = new(){{"Health",0},{"Speed",0},{"JumpForce",0},{"Strength",0}};
         public Dictionary<string, bool> charactersUnlocked = new(){{"Classic",true},{"Speedy",true}};
-        public Dictionary<string, bool> stagesUnlocked = new(){{"Stage1",true},{"Stage2",true}};
+        public Dictionary<string, bool> stagesUnlocked = new(){{"Stage1",true},{"Stage2",false}};
         public List<string> activeAbilitiesUnlocked = new() { "Dash", "DoubleJump", "Fireball"};
         public List<string> passiveAbilitiesUnlocked = new() { "Speed", "JumpForce"};
         public int coins;
@@ -25,9 +26,6 @@ namespace PlateformSurvivor.Menu
             if (savePersistentData)
             {
                 LoadPersistentData();
-            }
-            else
-            {
                 coins = 100; 
             }
 
@@ -46,6 +44,7 @@ namespace PlateformSurvivor.Menu
         {
             SaveDataManager.LoadJsonData(data);
             coins = data[0].coins;
+            if (data[0].stagesUnlocked.Count == 0){ return; }
             stagesUnlocked = data[0].stagesUnlocked.ToDictionary(s => s, s=>  true);
             charactersUnlocked = data[0].charactersUnlocked.ToDictionary(c => c, c=>  true);
             statsUpgrade = data[0].passiveBought.ToDictionary(p => p.passive, p=>p.level);

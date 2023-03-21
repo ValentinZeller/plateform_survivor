@@ -19,7 +19,7 @@ namespace PlateformSurvivor
                 EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo ();
             }
 
-            if (state == PlayModeStateChange.EnteredPlayMode) {
+            if (state == PlayModeStateChange.EnteredPlayMode && SceneManager.GetActiveScene().buildIndex != 0) {
                 SceneManager.LoadScene (0);
             }
         }
