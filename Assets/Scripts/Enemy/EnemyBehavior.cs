@@ -92,13 +92,23 @@ namespace PlateformSurvivor.Enemy
 
             if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-                horizontal = -horizontal;
+                InverseDirection();
             }
+        }
+
+        public void InverseDirection()
+        {
+            horizontal = -horizontal;
         }
         
         public void SetMove(bool newState)
         {
             canMove = newState;
+        }
+
+        public float GetDirection()
+        {
+            return horizontal;
         }
         
         public void Damage(float damage)

@@ -13,7 +13,7 @@ namespace PlateformSurvivor.Player.Ability
 
         private void Start()
         {
-            Destroy(this.gameObject, Lifespan);
+            Destroy(gameObject, Lifespan);
             velocity = rb.velocity;
         }
         
@@ -43,7 +43,7 @@ namespace PlateformSurvivor.Player.Ability
 
         private void Explode()
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         
         public void SetStrength(float newValue)
