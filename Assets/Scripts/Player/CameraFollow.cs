@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 
 namespace PlateformSurvivor.Player
 {
@@ -16,17 +18,27 @@ namespace PlateformSurvivor.Player
 
             if (player.position.x < minX || player.position.x > maxX)
             {
-                newPos.x = transform.position.x;
+                newPos.x = AdjustPosition(player.position.x, maxX, minX);
             }
 
             if (player.position.y < minY || player.position.y > maxY)
             {
-                newPos.y = transform.position.y;
+                newPos.y = AdjustPosition(player.position.y, maxY, minY);
             }
 
             newPos.z = transform.position.z;
 
             transform.SetPositionAndRotation(newPos, transform.rotation);
+        }
+
+        private float AdjustPosition(float pos, float max, float min)
+        {
+            if (pos > max)
+            {
+                return max;
+            }
+
+            return min;
         }
     }
 }

@@ -90,7 +90,7 @@ namespace PlateformSurvivor.Enemy
         private void OnCollisionEnter2D(Collision2D collision)
         {
 
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
                 horizontal = -horizontal;
             }
