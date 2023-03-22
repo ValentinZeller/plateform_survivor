@@ -25,7 +25,6 @@ namespace PlateformSurvivor.Player
                 persistentDataManager = FindObjectOfType<PersistentDataManager>();
                 stat = persistentDataManager.chosenCharacter;
             }
-
             UnlockService.AddAbility(Enum.GetName(typeof(ActiveAbility), stat.startAbility));
 
             InitStat();

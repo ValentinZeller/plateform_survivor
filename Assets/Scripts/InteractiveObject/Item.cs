@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PlateformSurvivor.InteractiveObject
 {
-    public enum ItemType { Health, Xp, Coin };
+    public enum ItemType { Health, Xp, Coin, Chest };
 
     public class Item : MonoBehaviour
     {
@@ -23,6 +23,9 @@ namespace PlateformSurvivor.InteractiveObject
                         break;
                     case ItemType.Coin:
                         EventManager.Trigger("got_coin", value);
+                        break;
+                    case ItemType.Chest:
+                        EventManager.Trigger("got_chest");
                         break;
 
                 }

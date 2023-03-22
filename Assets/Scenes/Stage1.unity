@@ -1272,7 +1272,7 @@ Transform:
   - {fileID: 1161328863}
   - {fileID: 790014205}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &873252755
 GameObject:
@@ -2738,6 +2738,14 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 445672726343305008, guid: 51607d6d3b89c61498445cb72016f552, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 445672726343305011, guid: 51607d6d3b89c61498445cb72016f552, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 445672726343305016, guid: 51607d6d3b89c61498445cb72016f552, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2953,7 +2961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4859434553221729845, guid: 63938ee016e3d8745a61dc927b0b88df, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4859434553221729845, guid: 63938ee016e3d8745a61dc927b0b88df, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3096,6 +3104,34 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 202363570}
+    - target: {fileID: 5542679776827994821, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: waves.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542679776827994821, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: waves.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 19066c5c773ed6d4fb1a1ca3451eede9, type: 2}
+    - target: {fileID: 5542679776827994821, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: waves.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 68ce78dddd13afe41aa339fc8a11e74f, type: 2}
+    - target: {fileID: 5542679776827994821, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: waves.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ef4f526791b21a04783b64ffc16295c8, type: 2}
+    - target: {fileID: 5542679776827994821, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: waves.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8581cd45e53c4344599a8793af688ff1, type: 2}
+    - target: {fileID: 5542679776827994821, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: waves.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: d713d8ca620c76a4fa115b2a84582e07, type: 2}
+    - target: {fileID: 5542679776827994821, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: waves.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: bc999c4b54879f3489ec712e898140b0, type: 2}
     - target: {fileID: 5542679776827994822, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
       propertyPath: m_Name
       value: StageManager

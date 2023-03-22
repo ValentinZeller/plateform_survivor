@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c612aed58ecfeb247bd2554d79382479, type: 3}
+  m_Name: WaveBoss
+  m_EditorClassIdentifier: 
+  enemy:
+  - {fileID: 543361541964970067, guid: 69ae7c37858ec9d45bca6a08e0a8b9fd, type: 3}
+  minCount: 1
+  spawnRate: 60
+  isBossWave: 1

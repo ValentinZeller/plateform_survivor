@@ -17,6 +17,7 @@ namespace PlateformSurvivor.Menu
         private const float MaxActive = 6;
         private const float MaxPassive = 6;
 
+        private List<string> abilitiesMaxLevel = new();
         private PersistentDataManager persistentDataManager;
         private static UnlockService Instance { get; set; }
 
@@ -31,10 +32,11 @@ namespace PlateformSurvivor.Menu
             PersistentInit();
 
             EventManager.AddListener("level_up", _OnLevelUp);
+            EventManager.AddListener("got_chest", OnChest);
         }
         private void OnDestroy()
         {
-            abilitiesUnlocked = null;
+            Instance.abilitiesUnlocked = null;
             Instance = null;
         }
 
@@ -98,7 +100,7 @@ namespace PlateformSurvivor.Menu
                     string randomUnlock = randomAbilities[i].abilityName;
                     bool randomActive = randomAbilities[i].isActive;
 
-                    Instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { UnlockItem(randomUnlock, randomActive); });
+                    Instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { UpgradeOnClick(randomUnlock, randomActive); });
                 
                     string randomUnlocktext = randomAbilities[i].abilityDisplayName;
                     // Increment level value
@@ -113,7 +115,7 @@ namespace PlateformSurvivor.Menu
             Time.timeScale = canDisplay ? 0f : 1f;
         }
 
-        private static void UnlockItem(string itemName, bool isActive)
+        private static void UpgradeOnClick(string itemName, bool isActive)
         {
             for (int i = 0; i < Instance.canvas.transform.childCount; i++)
             {
@@ -121,6 +123,17 @@ namespace PlateformSurvivor.Menu
             }
 
             AbilityObject abilityObject = Instance.GetAbilityListByActive(isActive).Find(abilityObject => abilityObject.name == itemName);
+            UnlockAbility(abilityObject);
+
+            DisplayUpgrade(false);
+            // Recall the level method if there are multiple levels to manage
+            EventManager.Trigger("got_xp", 0f);
+        }
+
+        private static void UnlockAbility(AbilityObject abilityObject)
+        {
+            string itemName = abilityObject.abilityName;
+            bool isActive = abilityObject.isActive;
             int maxLevel = abilityObject.maxLevel;
 
             if (Instance.abilitiesUnlocked[isActive].ContainsKey(itemName) && Instance.abilitiesUnlocked[isActive][itemName] <= maxLevel)
@@ -136,6 +149,7 @@ namespace PlateformSurvivor.Menu
                 if (Instance.abilitiesUnlocked[isActive][itemName] == maxLevel)
                 {
                     Instance.GetAbilityListByActive(isActive).Remove(abilityObject);
+                    Instance.abilitiesMaxLevel.Add(itemName);
                 }
             } else if (!Instance.abilitiesUnlocked[isActive].ContainsKey(itemName))
             {
@@ -148,8 +162,20 @@ namespace PlateformSurvivor.Menu
                     EventManager.Trigger("add_passive", itemName);
                 }
             }
+        }
+        
+        private static void OnChest()
+        {
+            int luck = 2; // WIP
+            List<AbilityObject> abilities = new();
+            abilities.AddRange(Instance.activeAbilities);
+            abilities.AddRange(Instance.passiveAbilities);
 
-            DisplayUpgrade(false);
+            for (int i = 0; i < luck; i++)
+            {
+                AbilityObject random = abilities[i];
+                UnlockAbility(random);
+            }
         }
 
         public static void AddAbility(string itemName)

@@ -16,12 +16,14 @@ namespace PlateformSurvivor.Player
         private void LevelUp(object data)
         {
             xp += (float)data;
-            if (!(xp >= xpNeeded)) return;
             
-            xp = 0;
-            xpNeeded += 1f;
-            lvl++;
-            EventManager.Trigger("level_up");
+            if (xp >= xpNeeded)
+            {
+                xp -= xpNeeded;
+                xpNeeded += 1f;
+                lvl++;
+                EventManager.Trigger("level_up");
+            }
         }
 
         public float GetXp()
