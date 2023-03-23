@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using PlateformSurvivor.Service;
 using ScriptableObject;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace PlateformSurvivor.Menu
 {
@@ -18,6 +21,7 @@ namespace PlateformSurvivor.Menu
         private const float MaxPassive = 6;
 
         private List<string> abilitiesMaxLevel = new();
+        private List<string> evolutionReady = new();
         private PersistentDataManager persistentDataManager;
         private static UnlockService Instance { get; set; }
 
@@ -124,6 +128,7 @@ namespace PlateformSurvivor.Menu
 
             AbilityObject abilityObject = Instance.GetAbilityListByActive(isActive).Find(abilityObject => abilityObject.name == itemName);
             UnlockAbility(abilityObject);
+            CheckEvolution(abilityObject);
 
             DisplayUpgrade(false);
             // Recall the level method if there are multiple levels to manage
@@ -167,16 +172,86 @@ namespace PlateformSurvivor.Menu
         private static void OnChest()
         {
             int luck = 2; // WIP
-            List<AbilityObject> abilities = new();
-            abilities.AddRange(Instance.activeAbilities);
-            abilities.AddRange(Instance.passiveAbilities);
+            List<string> abilitiesName = Instance.abilitiesUnlocked[true].Keys.ToList();
+            abilitiesName.AddRange(Instance.abilitiesUnlocked[false].Keys.ToList());
 
+            List<AbilityObject> randomPicked = new();
+            
             for (int i = 0; i < luck; i++)
             {
-                AbilityObject random = abilities[i];
-                UnlockAbility(random);
+                if (Instance.evolutionReady.Count > 0)
+                {
+                    EventManager.Trigger("evolution_" + Instance.evolutionReady[0]);
+                    Instance.abilitiesUnlocked[true].Remove(Instance.evolutionReady[0]);
+                    Instance.evolutionReady.RemoveAt(0);
+                }
+                else
+                {
+                    string randomName = abilitiesName[Random.Range(0, abilitiesName.Count)];
+                    while (Instance.abilitiesMaxLevel.Contains(randomName))
+                    {
+                        randomName = abilitiesName[Random.Range(0, abilitiesName.Count)];
+                    }
+
+                    AbilityObject random = Instance.GetAbilityListByName(randomName).Find(a => a.abilityName == randomName);
+                    UnlockAbility(random);
+                    randomPicked.Add(random);
+                }
+
+            }
+
+            foreach (var ability in randomPicked)
+            {
+                CheckEvolution(ability);
             }
         }
+
+        private static void CheckEvolution(AbilityObject ability)
+        {
+            if (ability.isActive)
+            {
+                if (CheckAbilityInContainer(ability.evolution.active, Instance.abilitiesMaxLevel))
+                {
+                    return;
+                }
+
+                if (ability.evolution.maxPassive)
+                {
+                    if (CheckAbilityInContainer(ability.evolution.passive, Instance.abilitiesMaxLevel))
+                    {
+                        return;
+                    }
+                }
+                else if (CheckAbilityInContainer(ability.evolution.passive, Instance.abilitiesUnlocked[false].Keys.ToList()))
+                {
+                    return;
+                }
+
+                foreach (var active in ability.evolution.active)
+                {
+                    Instance.abilitiesMaxLevel.Remove(active.abilityName);
+                }
+                Instance.evolutionReady.Add(ability.abilityName);
+            }
+            else
+            {
+                CheckEvolution(ability.evolution.active[0]);
+            }
+        }
+
+        private static bool CheckAbilityInContainer(List<AbilityObject> abilityList, List<string> abilityContainer)
+        {
+            foreach (var ability in abilityList)
+            {
+                if (!abilityContainer.Contains(ability.abilityName))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        
 
         public static void AddAbility(string itemName)
         {
@@ -185,6 +260,16 @@ namespace PlateformSurvivor.Menu
             }
             Behaviour ability = Instance.player.GetComponent(itemName) as Behaviour;
             if (ability != null) ability.enabled = true;
+        }
+
+        private List<AbilityObject> GetAbilityListByName(string nameAbility)
+        {
+            if (activeAbilities.Select(a => a.abilityName).Contains(nameAbility))
+            {
+                return activeAbilities;
+            }
+
+            return passiveAbilities;
         }
 
         private List<AbilityObject> GetAbilityListByActive(bool isActive)

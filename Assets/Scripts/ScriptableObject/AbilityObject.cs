@@ -11,5 +11,6 @@ namespace ScriptableObject
         public bool isActive;
         public int maxLevel;
         public float percent;
+        public EvolutionObject evolution;
     }
 }
