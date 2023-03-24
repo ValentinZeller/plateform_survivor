@@ -17,3 +17,5 @@ MonoBehaviour:
   abilityDescription: 
   isActive: 1
   maxLevel: 8
+  percent: 0
+  evolution: {fileID: 11400000, guid: 70eda91cb2489064eb3f2881dd0ecdb8, type: 2}

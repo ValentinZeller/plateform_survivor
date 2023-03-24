@@ -171,9 +171,9 @@ namespace PlateformSurvivor.Menu
         
         private static void OnChest()
         {
-            int luck = 2; // WIP
-            List<string> abilitiesName = Instance.abilitiesUnlocked[true].Keys.ToList();
-            abilitiesName.AddRange(Instance.abilitiesUnlocked[false].Keys.ToList());
+            int luck = 1; // WIP
+            List<string> abilitiesName = Instance.abilitiesUnlocked[true].Where(a => Instance.activeAbilities.Any(p => p.abilityName == a.Key)).Select(a => a.Key).ToList();
+            abilitiesName.AddRange(Instance.abilitiesUnlocked[false].Where(a => Instance.passiveAbilities.Any(p => p.abilityName == a.Key)).Select(a => a.Key).ToList());
 
             List<AbilityObject> randomPicked = new();
             
@@ -181,8 +181,8 @@ namespace PlateformSurvivor.Menu
             {
                 if (Instance.evolutionReady.Count > 0)
                 {
-                    EventManager.Trigger("evolution_" + Instance.evolutionReady[0]);
-                    Instance.abilitiesUnlocked[true].Remove(Instance.evolutionReady[0]);
+                    EventManager.Trigger("evolution_" + Instance.evolutionReady[0].ToLower());
+                    Instance.abilitiesUnlocked[true][Instance.evolutionReady[0]]++;
                     Instance.evolutionReady.RemoveAt(0);
                 }
                 else
@@ -208,50 +208,38 @@ namespace PlateformSurvivor.Menu
 
         private static void CheckEvolution(AbilityObject ability)
         {
+            if (ability.evolution == null) return;
             if (ability.isActive)
             {
-                if (CheckAbilityInContainer(ability.evolution.active, Instance.abilitiesMaxLevel))
+                if (!Instance.abilitiesMaxLevel.Contains(ability.evolution.active.abilityName))
                 {
                     return;
                 }
 
                 if (ability.evolution.maxPassive)
                 {
-                    if (CheckAbilityInContainer(ability.evolution.passive, Instance.abilitiesMaxLevel))
+                    if (!Instance.abilitiesMaxLevel.Contains(ability.evolution.passive.abilityName))
                     {
                         return;
                     }
                 }
-                else if (CheckAbilityInContainer(ability.evolution.passive, Instance.abilitiesUnlocked[false].Keys.ToList()))
+                else if (!Instance.abilitiesUnlocked[false].ContainsKey(ability.evolution.passive.abilityName))
                 {
                     return;
                 }
-
-                foreach (var active in ability.evolution.active)
+                
+                Instance.abilitiesMaxLevel.Remove(ability.abilityName);
+                if (ability.evolution.maxPassive)
                 {
-                    Instance.abilitiesMaxLevel.Remove(active.abilityName);
+                    Instance.abilitiesMaxLevel.Remove(ability.evolution.passive.abilityName);
                 }
                 Instance.evolutionReady.Add(ability.abilityName);
             }
             else
             {
-                CheckEvolution(ability.evolution.active[0]);
+                CheckEvolution(ability.evolution.active);
             }
         }
-
-        private static bool CheckAbilityInContainer(List<AbilityObject> abilityList, List<string> abilityContainer)
-        {
-            foreach (var ability in abilityList)
-            {
-                if (!abilityContainer.Contains(ability.abilityName))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-        
 
         public static void AddAbility(string itemName)
         {

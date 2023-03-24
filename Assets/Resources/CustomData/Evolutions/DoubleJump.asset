@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993733d06eeb45c89c02bb7136633bcb, type: 3}
   m_Name: DoubleJump
   m_EditorClassIdentifier: 
-  active:
-  - {fileID: 11400000, guid: b4ee4f2a0bbe2984b9dd3a9b58c85ee9, type: 2}
-  passive:
-  - {fileID: 11400000, guid: 2f6fa4b152ad7444a8244ad34d4fa086, type: 2}
+  active: {fileID: 11400000, guid: b4ee4f2a0bbe2984b9dd3a9b58c85ee9, type: 2}
+  passive: {fileID: 11400000, guid: 2f6fa4b152ad7444a8244ad34d4fa086, type: 2}
   maxPassive: 0
