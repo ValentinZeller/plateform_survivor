@@ -16,7 +16,7 @@ namespace PlateformSurvivor.InteractiveObject
                 switch(type)
                 {
                     case ItemType.Health:
-                        EventManager.Trigger("regen_health", value);
+                        EventManager.Trigger("got_health", value);
                         break;
                     case ItemType.Xp:
                         EventManager.Trigger("got_xp", value);

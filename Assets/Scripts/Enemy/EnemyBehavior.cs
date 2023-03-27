@@ -118,6 +118,7 @@ namespace PlateformSurvivor.Enemy
             {
                 GameObject xpInstance = Instantiate(xpObject, transform.position, Quaternion.identity);
                 xpInstance.GetComponent<Item>().value = enemy.xpDrop;
+                EventManager.Trigger("enemy_killed");
                 Destroy(gameObject);
             }
         }

@@ -14,7 +14,13 @@ namespace PlateformSurvivor.Player
         private PersistentDataManager persistentDataManager;
         private int currentCoins;
         private float health;
+        private int enemiesKilled;
+        private int healthPicked;
+        private int chestPicked;
         private Dictionary<string, float> baseStats = new();
+
+        private const int ENEMY_ACHIEVEMENT = 15;
+        private const int HEALTH_ACHIEVEMENT = 3;
         
         public Dictionary<string, float> currentStats = new();
 
@@ -33,6 +39,9 @@ namespace PlateformSurvivor.Player
             EventManager.AddListener("add_passive", OnAddPassive);
             EventManager.AddListener("got_coin", GotCoin);
             EventManager.AddListener("regen_health", RegenHealth);
+            EventManager.AddListener("enemy_killed", OnKill);
+            EventManager.AddListener("got_health", HealthPicked);
+            EventManager.AddListener("got_chest", ChestPicked);
         }
 
         private void InitStat()
@@ -70,6 +79,32 @@ namespace PlateformSurvivor.Player
             {
                 persistentDataManager.coins++;
             }
+        }
+
+        private void OnKill()
+        {
+            enemiesKilled++;
+            if (!persistentDataManager.HasAchievementUnlocked("Killer1") && enemiesKilled > ENEMY_ACHIEVEMENT)
+            {
+                persistentDataManager.UnlockAchievement(AchievementKey.Killer1);
+            }
+        }
+
+        private void HealthPicked(object data)
+        {
+            healthPicked++;
+            if (!persistentDataManager.HasAchievementUnlocked("Healing") && healthPicked > HEALTH_ACHIEVEMENT)
+            {
+                persistentDataManager.UnlockAchievement(AchievementKey.Healing);
+            }
+
+            float regen = (float)data;
+            RegenHealth(regen);
+        }
+
+        private void ChestPicked()
+        {
+            chestPicked++;
         }
 
         private void RegenHealth(object data)
