@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdae390d5324acf47aa826e99e59a936, type: 3}
   m_Name: Strength
   m_EditorClassIdentifier: 
-  abilityName: Speed
-  abilityDisplayName: Speed
+  abilityName: Strength
+  abilityDisplayName: Strength
   abilityDescription: 
   isActive: 0
   maxLevel: 5
   percent: 0.05
+  evolution: {fileID: 0}
