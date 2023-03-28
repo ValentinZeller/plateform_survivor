@@ -16,6 +16,7 @@ namespace PlateformSurvivor.Menu
         [HideInInspector] public StatObject chosenCharacter;
         public Dictionary<string, int> statsUpgrade = new(){{"Health",0},{"Speed",0},{"JumpForce",0},{"Strength",0}};
         public Dictionary<string, bool> charactersUnlocked = new(){{"Classic",true},{"Speedy",true}};
+        public List<string> charactersBought = new();
         public Dictionary<string, bool> stagesUnlocked = new(){{"Stage1",true},{"Stage2",false}};
         public Dictionary<string, bool> achievementsUnlocked = new(){{"Healing", false},{"Killer1",false}};
         public List<string> activeAbilitiesUnlocked = new() { "Dash", "DoubleJump", "Fireball"};
@@ -30,7 +31,7 @@ namespace PlateformSurvivor.Menu
             if (savePersistentData)
             {
                 LoadPersistentData();
-                coins = 0;
+                coins = 100; //for testing
             }
 
             DontDestroyOnLoad(gameObject);
@@ -56,6 +57,7 @@ namespace PlateformSurvivor.Menu
             achievementsUnlocked.Where(a => data[0].achievementsUnlocked.Contains(a.Key)).ToDictionary(a => a.Key, a => true);
             ManageListData(data[0].activeAbilitiesUnlocked, activeAbilitiesUnlocked );
             ManageListData(data[0].passiveAbilitiesUnlocked, passiveAbilitiesUnlocked);
+            ManageListData(data[0].charactersBought, charactersBought);
         }
 
         private void SavePersistentData()
@@ -71,13 +73,14 @@ namespace PlateformSurvivor.Menu
             data[0].achievementsUnlocked = achievementsUnlocked.Where(a => a.Value).Select(a => a.Key).ToList();
             ManageListData(activeAbilitiesUnlocked, data[0].activeAbilitiesUnlocked);
             ManageListData(passiveAbilitiesUnlocked, data[0].passiveAbilitiesUnlocked);
+            ManageListData(charactersBought, data[0].charactersBought);
 
             SaveDataManager.SaveJsonData(data);
         }
 
         private void ManageListData(List<string> listInput, List<string> listOutput)
         {
-            listOutput = listInput.Where(i => !listOutput.Contains(i)).ToList();
+            listOutput.AddRange(listInput.Where(i => !listOutput.Contains(i)).ToList());
         }
 
         public bool HasAchievementUnlocked(string achName)

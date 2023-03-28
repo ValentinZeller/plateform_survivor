@@ -17,3 +17,4 @@ MonoBehaviour:
   jumpForce: 9
   strength: 1
   health: 100
+  price: 5
