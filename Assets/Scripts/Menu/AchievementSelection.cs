@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,13 +24,10 @@ namespace PlateformSurvivor.Menu
                 {
                     achievementList.Add(ach.Key);
                 }
-            }
-
-            foreach (var ach in achievementList)
-            {
+                
                 GameObject instance = Instantiate(togglePrefab, achievementToggleGroup.transform);
-                instance.name = ach;
-                instance.GetComponentInChildren<Text>().text = ach;
+                instance.name = ach.Key;
+                instance.GetComponentInChildren<Text>().text = ach.Key;
                 instance.GetComponent<Toggle>().group = achievementToggleGroup;
                 instance.GetComponent<Toggle>().onValueChanged.AddListener(delegate { UpdateDesc(); });
             }
@@ -39,6 +37,10 @@ namespace PlateformSurvivor.Menu
         {
             string achievement = achievementToggleGroup.GetFirstActiveToggle().name;
             descriptionText.text = achievement;
+            if (achievementList.Contains(achievement))
+            {
+                descriptionText.text += "Unlocked";
+            }
         }
     }
 }

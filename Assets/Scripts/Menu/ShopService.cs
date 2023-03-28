@@ -64,20 +64,24 @@ namespace PlateformSurvivor.Menu
         public void ActiveBuy()
         {
             buyButton.onClick.RemoveAllListeners();
-            if (buyToggleGroup.AnyTogglesOn() && CanBuy())
+            buyButton.interactable = false;
+            
+            if (buyToggleGroup.AnyTogglesOn())
             {
                 string upgradeSelected = buyToggleGroup.GetFirstActiveToggle().name;
                 UpgradeObject upgradeObject = upgradeObjects.Find(upgradeObject => upgradeObject.upgradeName == upgradeSelected);
                 priceText.text = upgradeObject.basePrice.ToString();
                 rankText.text = persistentDataManager.statsUpgrade[upgradeSelected] + "/" + upgradeObject.maxLevel;
-                buyButton.onClick.AddListener(delegate { BuyPassiveUpgrade(buyToggleGroup.GetFirstActiveToggle().name); });
-                buyButton.interactable = true;
+                if (CanBuy())
+                {
+                    buyButton.onClick.AddListener(delegate { BuyPassiveUpgrade(buyToggleGroup.GetFirstActiveToggle().name); });
+                    buyButton.interactable = true;
+                }
             }
             else
             {
                 rankText.text = "";
                 priceText.text = "";
-                buyButton.interactable = false;
             }
         }
 

@@ -30,6 +30,7 @@ namespace PlateformSurvivor.Menu
             if (savePersistentData)
             {
                 LoadPersistentData();
+                coins = 0;
             }
 
             DontDestroyOnLoad(gameObject);
@@ -48,10 +49,11 @@ namespace PlateformSurvivor.Menu
             SaveDataManager.LoadJsonData(data);
             coins = data[0].coins;
             if (data[0].stagesUnlocked.Count == 0){ return; }
-            stagesUnlocked = data[0].stagesUnlocked.ToDictionary(s => s, s=>  true);
-            charactersUnlocked = data[0].charactersUnlocked.ToDictionary(c => c, c=>  true);
-            statsUpgrade = data[0].passiveBought.ToDictionary(p => p.passive, p=>p.level);
-            achievementsUnlocked = data[0].achievementsUnlocked.ToDictionary(a => a, a => true);
+            stagesUnlocked.Where(s => data[0].stagesUnlocked.Contains(s.Key)).ToDictionary(s => s.Key, s => true);
+            charactersUnlocked.Where(c => data[0].charactersUnlocked.Contains(c.Key)).ToDictionary(c => c.Key, c => true);
+            statsUpgrade.Where(s => data[0].passiveBought.Count(p => p.passive == s.Key) > 0)
+                .ToDictionary(s => s.Key, s => data[0].passiveBought.Where(p => p.passive == s.Key).Select(p => p.level));
+            achievementsUnlocked.Where(a => data[0].achievementsUnlocked.Contains(a.Key)).ToDictionary(a => a.Key, a => true);
             ManageListData(data[0].activeAbilitiesUnlocked, activeAbilitiesUnlocked );
             ManageListData(data[0].passiveAbilitiesUnlocked, passiveAbilitiesUnlocked);
         }
