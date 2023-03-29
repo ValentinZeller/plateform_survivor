@@ -13,12 +13,12 @@ namespace PlateformSurvivor.Menu
     
     public class PersistentDataManager : MonoBehaviour
     {
-        [HideInInspector] public StatObject chosenCharacter;
+        [HideInInspector] public CharacterObject chosenCharacter;
         public Dictionary<string, int> statsUpgrade = new(){{"Health",0},{"Speed",0},{"JumpForce",0},{"Strength",0}};
-        public Dictionary<string, bool> charactersUnlocked = new(){{"Classic",true},{"Speedy",true}};
+        public List<string> charactersUnlocked = new(){"Classic","Speedy"};
         public List<string> charactersBought = new();
-        public Dictionary<string, bool> stagesUnlocked = new(){{"Stage1",true},{"Stage2",false}};
-        public Dictionary<string, bool> achievementsUnlocked = new(){{"Healing", false},{"Killer1",false}};
+        public List<string> stagesUnlocked = new(){"Stage1"};
+        public List<string> achievementsUnlocked = new();
         public List<string> activeAbilitiesUnlocked = new() { "Dash", "DoubleJump", "Fireball"};
         public List<string> passiveAbilitiesUnlocked = new() { "Speed", "JumpForce"};
         public int coins;
@@ -50,11 +50,13 @@ namespace PlateformSurvivor.Menu
             SaveDataManager.LoadJsonData(data);
             coins = data[0].coins;
             if (data[0].stagesUnlocked.Count == 0){ return; }
-            stagesUnlocked.Where(s => data[0].stagesUnlocked.Contains(s.Key)).ToDictionary(s => s.Key, s => true);
-            charactersUnlocked.Where(c => data[0].charactersUnlocked.Contains(c.Key)).ToDictionary(c => c.Key, c => true);
+            
             statsUpgrade.Where(s => data[0].passiveBought.Count(p => p.passive == s.Key) > 0)
                 .ToDictionary(s => s.Key, s => data[0].passiveBought.Where(p => p.passive == s.Key).Select(p => p.level));
-            achievementsUnlocked.Where(a => data[0].achievementsUnlocked.Contains(a.Key)).ToDictionary(a => a.Key, a => true);
+            
+            ManageListData(data[0].charactersUnlocked, charactersUnlocked);
+            ManageListData(data[0].stagesUnlocked, stagesUnlocked);
+            ManageListData(data[0].achievementsUnlocked, achievementsUnlocked);
             ManageListData(data[0].activeAbilitiesUnlocked, activeAbilitiesUnlocked );
             ManageListData(data[0].passiveAbilitiesUnlocked, passiveAbilitiesUnlocked);
             ManageListData(data[0].charactersBought, charactersBought);
@@ -68,9 +70,10 @@ namespace PlateformSurvivor.Menu
 
             data[0].coins = coins;
             data[0].passiveBought = statsUpgrade.Select(p => new PassiveBought(p.Key, p.Value)).ToList();
-            data[0].charactersUnlocked = charactersUnlocked.Where(c => c.Value).Select(c => c.Key).ToList();
-            data[0].stagesUnlocked = stagesUnlocked.Where(s => s.Value).Select(s => s.Key).ToList();
-            data[0].achievementsUnlocked = achievementsUnlocked.Where(a => a.Value).Select(a => a.Key).ToList();
+
+            ManageListData(charactersUnlocked, data[0].charactersUnlocked);
+            ManageListData(stagesUnlocked, data[0].stagesUnlocked);
+            ManageListData(achievementsUnlocked, data[0].achievementsUnlocked);
             ManageListData(activeAbilitiesUnlocked, data[0].activeAbilitiesUnlocked);
             ManageListData(passiveAbilitiesUnlocked, data[0].passiveAbilitiesUnlocked);
             ManageListData(charactersBought, data[0].charactersBought);
@@ -85,7 +88,7 @@ namespace PlateformSurvivor.Menu
 
         public bool HasAchievementUnlocked(string achName)
         {
-            return achievementsUnlocked.ContainsKey(achName) && achievementsUnlocked[achName];
+            return achievementsUnlocked.Contains(achName);
         }
 
         public void UnlockAchievement(AchievementKey key)
@@ -100,8 +103,7 @@ namespace PlateformSurvivor.Menu
                     break;
             }
 
-            achievementsUnlocked[key.ToString()] = true;
-            Debug.Log(key.ToString());
+            achievementsUnlocked.Add(key.ToString());
         }
 
         public bool HasUpgraded()

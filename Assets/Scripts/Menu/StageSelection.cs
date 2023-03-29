@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using ScriptableObject;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,37 +14,36 @@ namespace PlateformSurvivor.Menu
         [SerializeField] private ToggleGroup stageToggleGroup;
         [SerializeField] private GameObject togglePrefab;
         [SerializeField] private Button startStageButton;
+        [SerializeField] private TextMeshProUGUI descText;
         [SerializeField] private PersistentDataManager persistentDataManager;
         
-        private List<string> stages = new();
+        private List<StageObject> stages = new();
         private void Start()
         {
-            foreach (var stage in persistentDataManager.stagesUnlocked)
-            {
-                if (stage.Value)
-                {
-                    stages.Add(stage.Key);
-                }   
-            }
+            stages = Resources.LoadAll<StageObject>("CustomData/Stages").ToList();
+            stages.Sort(CompareOrder);
 
-            foreach (string stage in stages)
+            foreach (StageObject stage in stages)
             {
-                GameObject instance = Instantiate(togglePrefab, stageToggleGroup.transform);
-                instance.name = stage;
-                instance.GetComponentInChildren<Text>().text = stage;
-                instance.GetComponent<Toggle>().group = stageToggleGroup;
+                if (persistentDataManager.stagesUnlocked.Contains(stage.name))
+                {
+                    GameObject instance = Instantiate(togglePrefab, stageToggleGroup.transform);
+                    instance.name = stage.name;
+                    instance.GetComponentInChildren<Text>().text = stage.displayName;
+                    instance.GetComponent<Toggle>().group = stageToggleGroup;
+                    instance.GetComponent<Toggle>().onValueChanged.AddListener(delegate { SelectStage(); });   
+                }
             }
         }
 
-        private void Update()
+        private int CompareOrder(StageObject s1, StageObject s2)
         {
-            if (stageToggleGroup.AnyTogglesOn())
+            if (s1.displayOrder < s2.displayOrder)
             {
-                startStageButton.interactable = true;
-            } else
-            {
-                startStageButton.interactable = false;
+                return -1;
             }
+
+            return 1;
         }
 
         private static void LoadStage(string stageName)
@@ -53,10 +55,23 @@ namespace PlateformSurvivor.Menu
         {
             if (stages.Count < 2)
             {
-                LoadStage(stages[0]);
+                LoadStage(stages[0].name);
             } else
             {
                 stageScreen.SetActive(true);
+            }
+        }
+
+        public void SelectStage()
+        {
+            startStageButton.interactable = false;
+            descText.text = "";
+            if (stageToggleGroup.AnyTogglesOn())
+            {
+                string stageName = stageToggleGroup.GetFirstActiveToggle().name;
+                StageObject stageObject = stages.Find(s => s.name == stageName);
+                descText.text = stageObject.description;
+                startStageButton.interactable = true;
             }
         }
 

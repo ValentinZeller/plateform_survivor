@@ -65,6 +65,8 @@ namespace PlateformSurvivor.Menu
         {
             buyButton.onClick.RemoveAllListeners();
             buyButton.interactable = false;
+            rankText.text = "";
+            priceText.text = "";
             
             if (buyToggleGroup.AnyTogglesOn())
             {
@@ -77,11 +79,6 @@ namespace PlateformSurvivor.Menu
                     buyButton.onClick.AddListener(delegate { BuyPassiveUpgrade(buyToggleGroup.GetFirstActiveToggle().name); });
                     buyButton.interactable = true;
                 }
-            }
-            else
-            {
-                rankText.text = "";
-                priceText.text = "";
             }
         }
 

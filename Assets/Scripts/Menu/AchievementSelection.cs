@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ScriptableObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,30 +15,39 @@ namespace PlateformSurvivor.Menu
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private PersistentDataManager persistentDataManager;
 
-        private List<string> achievementList = new();
+        private List<AchievementObject> achievements = new();
 
         private void Start()
         {
-            foreach (var ach in persistentDataManager.achievementsUnlocked)
+            achievements = Resources.LoadAll<AchievementObject>("CustomData/Achievements").ToList();
+            achievements.Sort(CompareOrder);
+
+            foreach (var achievement in achievements)
             {
-                if (ach.Value)
-                {
-                    achievementList.Add(ach.Key);
-                }
-                
                 GameObject instance = Instantiate(togglePrefab, achievementToggleGroup.transform);
-                instance.name = ach.Key;
-                instance.GetComponentInChildren<Text>().text = ach.Key;
+                instance.name = achievement.name;
+                instance.GetComponentInChildren<Text>().text = achievement.displayName;
                 instance.GetComponent<Toggle>().group = achievementToggleGroup;
                 instance.GetComponent<Toggle>().onValueChanged.AddListener(delegate { UpdateDesc(); });
             }
+        }
+        
+        private int CompareOrder(AchievementObject a1, AchievementObject a2)
+        {
+            if (a1.displayOrder < a2.displayOrder)
+            {
+                return -1;
+            }
+
+            return 1;
         }
 
         private void UpdateDesc()
         {
             string achievement = achievementToggleGroup.GetFirstActiveToggle().name;
-            descriptionText.text = achievement;
-            if (achievementList.Contains(achievement))
+            AchievementObject achievementObject = achievements.Find(a => a.name == achievement);
+            descriptionText.text = achievementObject.description;
+            if (persistentDataManager.achievementsUnlocked.Contains(achievementObject.name))
             {
                 descriptionText.text += "Unlocked";
             }

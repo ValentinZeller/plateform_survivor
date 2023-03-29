@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9458bc05ac8e46489701c9067e37d0f, type: 3}
-  m_Name: Speedy
+  m_Script: {fileID: 11500000, guid: a38d127544e84038bec4346acd4be602, type: 3}
+  m_Name: Stage2
   m_EditorClassIdentifier: 
-  startAbility: 0
-  speed: 10
-  jumpForce: 9
-  strength: 1
-  health: 100
-  price: 5
+  displayName: Desert
+  description: Dangerous desert
+  displayOrder: 0

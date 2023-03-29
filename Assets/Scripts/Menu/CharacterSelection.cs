@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ScriptableObject;
 using TMPro;
 using UnityEngine;
@@ -17,26 +18,24 @@ namespace PlateformSurvivor.Menu
         [SerializeField] private TextMeshProUGUI coinText;
         [SerializeField] private PersistentDataManager persistentDataManager;
         
-        private List<StatObject> characters = new();
+        private List<CharacterObject> characters = new();
         private void Start()
         {
             coinText.text = persistentDataManager.coins.ToString();
-            
-            foreach (var character in persistentDataManager.charactersUnlocked)
-            {
-                if (character.Value)
-                {
-                    characters.Add(Resources.Load<StatObject>("CustomData/PlayerStats/"+character.Key));
-                }
-            }
 
-            foreach(StatObject character in characters)
+            characters = Resources.LoadAll<CharacterObject>("CustomData/Characters/").ToList();
+            characters.Sort(CompareOrder);
+            
+            foreach(CharacterObject character in characters)
             {
-                GameObject instance = Instantiate(togglePrefab, characterToggleGroup.transform);
-                instance.name = character.name;
-                instance.GetComponentInChildren<Text>().text = character.name;
-                instance.GetComponent<Toggle>().group = characterToggleGroup;
-                instance.GetComponent<Toggle>().onValueChanged.AddListener(delegate { SelectCharacter(); });
+                if (persistentDataManager.charactersUnlocked.Contains(character.name))
+                {
+                    GameObject instance = Instantiate(togglePrefab, characterToggleGroup.transform);
+                    instance.name = character.name;
+                    instance.GetComponentInChildren<Text>().text = character.displayName;
+                    instance.GetComponent<Toggle>().group = characterToggleGroup;
+                    instance.GetComponent<Toggle>().onValueChanged.AddListener(delegate { SelectCharacter(); });   
+                }
             }
         }
         
@@ -45,14 +44,24 @@ namespace PlateformSurvivor.Menu
             coinText.text = persistentDataManager.coins.ToString();
         }
 
-        private void BuyCharacter(StatObject character)
+        private int CompareOrder(CharacterObject c1, CharacterObject c2)
         {
-            persistentDataManager.coins -= (int)character.price;
+            if (c1.displayOrder < c2.displayOrder)
+            {
+                return -1;
+            }
+
+            return 1;
+        }
+
+        private void BuyCharacter(CharacterObject character)
+        {
+            persistentDataManager.coins -= character.price;
             persistentDataManager.charactersBought.Add(character.name);
             SelectCharacter();
         }
 
-        private bool CanBuy(StatObject character) 
+        private bool CanBuy(CharacterObject character) 
         {
             if (character.price < persistentDataManager.coins)
             {
@@ -67,12 +76,14 @@ namespace PlateformSurvivor.Menu
             buyButton.interactable = false;
             buyButton.onClick.RemoveAllListeners();
             buyButton.gameObject.SetActive(false);
+            descText.text = "";
+            priceText.text = "";
 
             if (characterToggleGroup.AnyTogglesOn())
             {
                 string nameSelected = characterToggleGroup.GetFirstActiveToggle().name;
-                StatObject characterObject = characters.Find(c => c.name == nameSelected);
-                descText.text = nameSelected;
+                CharacterObject characterObject = characters.Find(c => c.name == nameSelected);
+                descText.text = characterObject.description;
                 priceText.text = characterObject.price.ToString();
                 
                 if (characterObject.price == 0 || persistentDataManager.charactersBought.Contains(nameSelected))
@@ -92,11 +103,6 @@ namespace PlateformSurvivor.Menu
                 {
                     buyButton.gameObject.SetActive(true);
                 }
-            }
-            else
-            {
-                descText.text = "";
-                priceText.text = "";
             }
         }
     }

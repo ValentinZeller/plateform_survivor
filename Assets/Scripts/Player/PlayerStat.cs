@@ -4,12 +4,13 @@ using PlateformSurvivor.Menu;
 using PlateformSurvivor.Service;
 using ScriptableObject;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PlateformSurvivor.Player
 {
     public class PlayerStat : MonoBehaviour, IDamageable
     {
-        [SerializeField] private StatObject stat;
+        [FormerlySerializedAs("stat")] [SerializeField] private CharacterObject character;
 
         private PersistentDataManager persistentDataManager;
         private int currentCoins;
@@ -29,9 +30,9 @@ namespace PlateformSurvivor.Player
             if (FindObjectOfType<PersistentDataManager>())
             {
                 persistentDataManager = FindObjectOfType<PersistentDataManager>();
-                stat = persistentDataManager.chosenCharacter;
+                character = persistentDataManager.chosenCharacter;
             }
-            UnlockService.AddAbility(Enum.GetName(typeof(ActiveAbility), stat.startAbility));
+            UnlockService.AddAbility(Enum.GetName(typeof(ActiveAbility), character.startAbility));
 
             InitStat();
 
@@ -46,21 +47,21 @@ namespace PlateformSurvivor.Player
 
         private void InitStat()
         {
-            for (int i = 0; i < StatObject.Keys().Count; i++ )
+            for (int i = 0; i < CharacterObject.Keys().Count; i++ )
             {
                 float percent = 0;
-                UpgradeObject currentUpgrade = Resources.Load<UpgradeObject>("CustomData/Upgrades/" + StatObject.Keys()[i]);
+                UpgradeObject currentUpgrade = Resources.Load<UpgradeObject>("CustomData/Upgrades/" + CharacterObject.Keys()[i]);
                 if (currentUpgrade != null)
                 {
                     percent = currentUpgrade.percentEffect;
                 }
-                baseStats.Add(StatObject.Keys()[i], stat[i]);
+                baseStats.Add(CharacterObject.Keys()[i], character[i]);
                 float bonusStats = 0;
                 if (persistentDataManager != null)
                 {
-                    bonusStats = baseStats[StatObject.Keys()[i]] * percent * persistentDataManager.statsUpgrade[StatObject.Keys()[i]];
+                    bonusStats = baseStats[CharacterObject.Keys()[i]] * percent * persistentDataManager.statsUpgrade[CharacterObject.Keys()[i]];
                 }
-                currentStats.Add(StatObject.Keys()[i], baseStats[StatObject.Keys()[i]] + bonusStats);
+                currentStats.Add(CharacterObject.Keys()[i], baseStats[CharacterObject.Keys()[i]] + bonusStats);
             }
         }
 

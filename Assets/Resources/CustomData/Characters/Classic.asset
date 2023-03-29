@@ -17,3 +17,7 @@ MonoBehaviour:
   jumpForce: 12
   strength: 1
   health: 100
+  price: 0
+  displayName: Classic
+  displayOrder: 0
+  description: Jump high

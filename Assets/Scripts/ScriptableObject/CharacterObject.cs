@@ -5,15 +5,18 @@ namespace ScriptableObject
 {
     public enum ActiveAbility { Dash, DoubleJump, Fireball }
 
-    [CreateAssetMenu(fileName = "New Stat", menuName = "CustomData/Stat", order = 2)]
-    public class StatObject : UnityEngine.ScriptableObject
+    [CreateAssetMenu(fileName = "New Character", menuName = "CustomData/Character", order = 2)]
+    public class CharacterObject : UnityEngine.ScriptableObject
     {
         public ActiveAbility startAbility;
         public float speed;
         public float jumpForce;
         public float strength;
         public float health;
-        public float price;
+        public int price;
+        public string displayName;
+        public int displayOrder;
+        public string description;
 
         public float this[int key]
         {
