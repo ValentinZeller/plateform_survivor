@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Desert
   description: Dangerous desert
-  displayOrder: 0
+  displayOrder: 1

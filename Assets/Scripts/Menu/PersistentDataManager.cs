@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace PlateformSurvivor.Menu
 {
-    public enum AchievementKey {Healing, Killer1};
+    public enum AchievementKey {Healing, Killer1, SurviveStage1};
     
     public class PersistentDataManager : MonoBehaviour
     {
@@ -100,6 +100,9 @@ namespace PlateformSurvivor.Menu
                     break;
                 case AchievementKey.Killer1:
                     passiveAbilitiesUnlocked.Add("Strength");
+                    break;
+                case AchievementKey.SurviveStage1:
+                    stagesUnlocked.Add("Stage2");
                     break;
             }
 

@@ -29,15 +29,11 @@ namespace PlateformSurvivor.Service
         void Update()
         {
             waveDurationCounter += Time.deltaTime;
-            if (waveDurationCounter >= WaveDuration)
+            if (waveDurationCounter >= WaveDuration && waveIndex < waves.Count)
             {
                 waveDurationCounter = 0f;
                 waveIndex++;
                 EventManager.Trigger("reload_block");
-                if (waveIndex >= waves.Count - 1)
-                {
-                    waveIndex = waves.Count - 1;
-                }
             }
 
             currentEnemies = transform.childCount;

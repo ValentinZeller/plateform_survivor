@@ -10,6 +10,7 @@ namespace PlateformSurvivor.Player
         [SerializeField] private TextMeshProUGUI playerLvl;
         [SerializeField] private TextMeshProUGUI playerXp;
         [SerializeField] private TextMeshProUGUI playerXpNeeded;
+        [SerializeField] private TextMeshProUGUI timer;
         
         [SerializeField] private PlayerStat stat;
         [SerializeField] private PlayerLevel level;
@@ -21,6 +22,20 @@ namespace PlateformSurvivor.Player
             playerLvl.text = level.GetLvl().ToString();
             playerXp.text = level.GetXp().ToString();
             playerXpNeeded.text = level.GetXpNeeded().ToString();
+            timer.text = DisplayTime();
+        }
+
+        private string DisplayTime()
+        {
+            string text = "0 : 00";
+            string minute = Mathf.FloorToInt(stat.GetTime() / 60).ToString();
+            string second = Mathf.FloorToInt(stat.GetTime() % 60).ToString();
+            if (second.Length == 1)
+            {
+                second = "0" + second;
+            }
+            text = minute + " : " + second;
+            return text;
         }
     }
 }

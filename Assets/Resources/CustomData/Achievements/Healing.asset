@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3041b26f7f4682a1620121f4ad5029, type: 3}
   m_Name: Healing
   m_EditorClassIdentifier: 
-  displayName: 
+  displayName: Healing
   description: Get 3 healing objects
   displayOrder: 0

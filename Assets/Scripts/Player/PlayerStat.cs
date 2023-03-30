@@ -18,10 +18,12 @@ namespace PlateformSurvivor.Player
         private int enemiesKilled;
         private int healthPicked;
         private int chestPicked;
+        private float timeCount;
         private Dictionary<string, float> baseStats = new();
 
-        private const int ENEMY_ACHIEVEMENT = 15;
-        private const int HEALTH_ACHIEVEMENT = 3;
+        private const int EnemyAchievement = 15;
+        private const int HealthAchievement = 3;
+        private const int SurviveAchievement = 300;
         
         public Dictionary<string, float> currentStats = new();
 
@@ -65,6 +67,15 @@ namespace PlateformSurvivor.Player
             }
         }
 
+        private void Update()
+        {
+            timeCount += Time.deltaTime;
+            if (timeCount > SurviveAchievement)
+            {
+                persistentDataManager.UnlockAchievement(AchievementKey.SurviveStage1);
+            }
+        }
+
         private void OnAddPassive(object data)
         {
             string itemName = (string)data;
@@ -85,7 +96,7 @@ namespace PlateformSurvivor.Player
         private void OnKill()
         {
             enemiesKilled++;
-            if (!persistentDataManager.HasAchievementUnlocked("Killer1") && enemiesKilled > ENEMY_ACHIEVEMENT)
+            if (!persistentDataManager.HasAchievementUnlocked("Killer1") && enemiesKilled > EnemyAchievement)
             {
                 persistentDataManager.UnlockAchievement(AchievementKey.Killer1);
             }
@@ -94,7 +105,7 @@ namespace PlateformSurvivor.Player
         private void HealthPicked(object data)
         {
             healthPicked++;
-            if (!persistentDataManager.HasAchievementUnlocked("Healing") && healthPicked > HEALTH_ACHIEVEMENT)
+            if (!persistentDataManager.HasAchievementUnlocked("Healing") && healthPicked > HealthAchievement)
             {
                 persistentDataManager.UnlockAchievement(AchievementKey.Healing);
             }
@@ -126,6 +137,11 @@ namespace PlateformSurvivor.Player
         public int GetCoins()
         {
             return currentCoins;
+        }
+
+        public float GetTime()
+        {
+            return timeCount;
         }
 
         public void Damage(float damage)
