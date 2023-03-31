@@ -14,6 +14,7 @@ namespace PlateformSurvivor.Menu
     public class PersistentDataManager : MonoBehaviour
     {
         [HideInInspector] public CharacterObject chosenCharacter;
+        public StageObject chosenStage;
         public Dictionary<string, int> statsUpgrade = new(){{"Health",0},{"Speed",0},{"JumpForce",0},{"Strength",0}};
         public List<string> charactersUnlocked = new(){"Classic","Speedy"};
         public List<string> charactersBought = new();

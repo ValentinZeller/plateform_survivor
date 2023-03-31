@@ -72,7 +72,11 @@ namespace PlateformSurvivor.Player
             timeCount += Time.deltaTime;
             if (timeCount > SurviveAchievement)
             {
-                persistentDataManager.UnlockAchievement(AchievementKey.SurviveStage1);
+                if (persistentDataManager != null && persistentDataManager.chosenStage.name == "Stage1" && !persistentDataManager.HasAchievementUnlocked("SurviveStage1"))
+                {
+                    persistentDataManager.UnlockAchievement(AchievementKey.SurviveStage1);
+                }
+                
             }
         }
 
@@ -96,7 +100,7 @@ namespace PlateformSurvivor.Player
         private void OnKill()
         {
             enemiesKilled++;
-            if (!persistentDataManager.HasAchievementUnlocked("Killer1") && enemiesKilled > EnemyAchievement)
+            if (persistentDataManager != null && !persistentDataManager.HasAchievementUnlocked("Killer1") && enemiesKilled > EnemyAchievement)
             {
                 persistentDataManager.UnlockAchievement(AchievementKey.Killer1);
             }
@@ -105,7 +109,7 @@ namespace PlateformSurvivor.Player
         private void HealthPicked(object data)
         {
             healthPicked++;
-            if (!persistentDataManager.HasAchievementUnlocked("Healing") && healthPicked > HealthAchievement)
+            if (persistentDataManager != null && !persistentDataManager.HasAchievementUnlocked("Healing") && healthPicked > HealthAchievement)
             {
                 persistentDataManager.UnlockAchievement(AchievementKey.Healing);
             }

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScriptableObject
@@ -9,5 +9,7 @@ namespace ScriptableObject
         public string displayName;
         public string description;
         public int displayOrder;
+        public List<WaveObject> waves;
+        public int waveDurationSecond;
     }
 }

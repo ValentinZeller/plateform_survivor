@@ -15,3 +15,9 @@ MonoBehaviour:
   displayName: Desert
   description: Dangerous desert
   displayOrder: 1
+  waves:
+  - {fileID: 11400000, guid: 68ce78dddd13afe41aa339fc8a11e74f, type: 2}
+  - {fileID: 11400000, guid: d713d8ca620c76a4fa115b2a84582e07, type: 2}
+  - {fileID: 11400000, guid: 19066c5c773ed6d4fb1a1ca3451eede9, type: 2}
+  - {fileID: 11400000, guid: bc999c4b54879f3489ec712e898140b0, type: 2}
+  waveDurationSecond: 60

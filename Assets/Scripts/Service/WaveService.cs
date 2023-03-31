@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PlateformSurvivor.Menu;
 using ScriptableObject;
 using UnityEngine;
 
@@ -9,7 +10,6 @@ namespace PlateformSurvivor.Service
     {
         [SerializeField] List<WaveObject> waves;
         [SerializeField] private Transform player;
-        private const float WaveDuration = 60f; //second
         private const float MaxEnemies = 20;
         
         private const float MinX = -35;
@@ -17,19 +17,27 @@ namespace PlateformSurvivor.Service
         private const float MinY = -4;
         private const float MaxY = 30;
         
+        private float waveDuration = 60f; //second
         private int waveIndex;
         private float waveDurationCounter;
         private float currentEnemies;
 
+        private PersistentDataManager persistentDataManager;
         void Start()
         {
+            if (FindObjectOfType<PersistentDataManager>())
+            {
+                persistentDataManager = FindObjectOfType<PersistentDataManager>();
+                waves = persistentDataManager.chosenStage.waves;
+                waveDuration = persistentDataManager.chosenStage.waveDurationSecond;
+            }
             StartCoroutine(nameof(Spawn));
         }
         
         void Update()
         {
             waveDurationCounter += Time.deltaTime;
-            if (waveDurationCounter >= WaveDuration && waveIndex < waves.Count)
+            if (waveDurationCounter >= waveDuration && waveIndex < waves.Count)
             {
                 waveDurationCounter = 0f;
                 waveIndex++;

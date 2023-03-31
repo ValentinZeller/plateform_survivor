@@ -15,4 +15,12 @@ MonoBehaviour:
   displayName: Plain
   description: Peaceful plain
   displayOrder: 0
-  timeToSurvive: 0
+  waves:
+  - {fileID: 11400000, guid: 68ce78dddd13afe41aa339fc8a11e74f, type: 2}
+  - {fileID: 11400000, guid: ef4f526791b21a04783b64ffc16295c8, type: 2}
+  - {fileID: 11400000, guid: 8581cd45e53c4344599a8793af688ff1, type: 2}
+  - {fileID: 11400000, guid: 19066c5c773ed6d4fb1a1ca3451eede9, type: 2}
+  - {fileID: 11400000, guid: 52cc82e7c2b73254f98fd5a6f74d0fec, type: 2}
+  - {fileID: 11400000, guid: d713d8ca620c76a4fa115b2a84582e07, type: 2}
+  - {fileID: 11400000, guid: bc999c4b54879f3489ec712e898140b0, type: 2}
+  waveDurationSecond: 60

@@ -46,8 +46,10 @@ namespace PlateformSurvivor.Menu
             return 1;
         }
 
-        private static void LoadStage(string stageName)
+        private void LoadStage(string stageName)
         {
+            StageObject stageObject = stages.Find(s => s.name == stageName);
+            persistentDataManager.chosenStage = stageObject;
             SceneManager.LoadScene(stageName);
         }
 
