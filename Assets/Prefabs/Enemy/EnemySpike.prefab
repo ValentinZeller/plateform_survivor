@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2203988136979598972}
   - component: {fileID: 2203988136979598973}
   - component: {fileID: 2203988136979598974}
-  - component: {fileID: 2203988136979598975}
   - component: {fileID: 2203988136979598960}
+  - component: {fileID: 7089533745193959971}
   m_Layer: 7
   m_Name: EnemySpike
   m_TagString: Untagged
@@ -108,32 +108,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   enemy: {fileID: 11400000, guid: 1a9ff0bb9c088de4a9765252fa6e60c3, type: 2}
---- !u!61 &2203988136979598975
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2203988136979598961}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 44250f56fd2e03e429833bfcdcfeeada, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &2203988136979598960
 Rigidbody2D:
   serializedVersion: 4
@@ -155,6 +129,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!70 &7089533745193959971
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203988136979598961}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 44250f56fd2e03e429833bfcdcfeeada, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0
 --- !u!1 &5009900485741343404
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 7411918496250281845}
   - component: {fileID: 7411918496250281844}
   - component: {fileID: 7411918496250281847}
-  - component: {fileID: 7411918496250281846}
   - component: {fileID: 7411918496250281849}
   - component: {fileID: 6938165420254999500}
+  - component: {fileID: 3139170667361246534}
   m_Layer: 7
   m_Name: EnemyShoot
   m_TagString: Untagged
@@ -139,32 +139,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   enemy: {fileID: 11400000, guid: b4e674ed97f67b54daca42fda7815aef, type: 2}
---- !u!61 &7411918496250281846
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7411918496250281848}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 44250f56fd2e03e429833bfcdcfeeada, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &7411918496250281849
 Rigidbody2D:
   serializedVersion: 4
@@ -200,3 +174,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 565951376494894236, guid: bdea0386861265d4cb659ae886930b39, type: 3}
   behavior: {fileID: 7411918496250281847}
+--- !u!70 &3139170667361246534
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7411918496250281848}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 44250f56fd2e03e429833bfcdcfeeada, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0

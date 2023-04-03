@@ -55,7 +55,7 @@ namespace PlateformSurvivor.Menu
 
         public void DisplayStageSelection()
         {
-            if (stages.Count < 2)
+            if (persistentDataManager.stagesUnlocked.Count < 2)
             {
                 LoadStage(stages[0].name);
             } else
@@ -64,7 +64,7 @@ namespace PlateformSurvivor.Menu
             }
         }
 
-        public void SelectStage()
+        private void SelectStage()
         {
             startStageButton.interactable = false;
             descText.text = "";

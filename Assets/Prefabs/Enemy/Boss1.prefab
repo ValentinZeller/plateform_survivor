@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 543361541964970078}
   - component: {fileID: 543361541964970079}
-  - component: {fileID: 543361541964970076}
-  - component: {fileID: 543361541964970077}
+  - component: {fileID: 8792389247639473618}
   - component: {fileID: 543361541964970066}
+  - component: {fileID: 543361541964970076}
   - component: {fileID: 80876068931220711}
   - component: {fileID: -1687512746755331745}
   - component: {fileID: 8752563770142644981}
@@ -92,27 +92,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &543361541964970076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 543361541964970067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8011a937ab91ca4798e87459a92ea83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 543361541964970066}
-  xpObject: {fileID: 3161103411688693661, guid: 05955e70e024eec4a8e0322b5b79b3a3, type: 3}
-  groundCheck: {fileID: 9105659314384145975}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  enemy: {fileID: 11400000, guid: 8dc642fa68728204b965497925ca32ac, type: 2}
---- !u!61 &543361541964970077
-BoxCollider2D:
+--- !u!70 &8792389247639473618
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -125,18 +106,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Direction: 0
 --- !u!50 &543361541964970066
 Rigidbody2D:
   serializedVersion: 4
@@ -158,6 +129,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &543361541964970076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543361541964970067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8011a937ab91ca4798e87459a92ea83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 543361541964970066}
+  xpObject: {fileID: 3161103411688693661, guid: 05955e70e024eec4a8e0322b5b79b3a3, type: 3}
+  groundCheck: {fileID: 9105659314384145975}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  enemy: {fileID: 11400000, guid: 8dc642fa68728204b965497925ca32ac, type: 2}
 --- !u!114 &80876068931220711
 MonoBehaviour:
   m_ObjectHideFlags: 0
