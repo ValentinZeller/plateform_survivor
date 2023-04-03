@@ -10,7 +10,7 @@ namespace PlateformSurvivor.Service
     {
         [SerializeField] List<WaveObject> waves;
         [SerializeField] private Transform player;
-        private const float MaxEnemies = 20;
+        private const float MaxEnemies = 40;
         
         private const float MinX = -35;
         private const float MaxX = 31;

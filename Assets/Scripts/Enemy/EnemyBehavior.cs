@@ -90,7 +90,12 @@ namespace PlateformSurvivor.Enemy
         private void OnCollisionEnter2D(Collision2D collision)
         {
 
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            {
+                InverseDirection();
+            }
+
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && Random.value > 0.5)
             {
                 InverseDirection();
             }

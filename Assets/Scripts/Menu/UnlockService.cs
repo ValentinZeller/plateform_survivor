@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PlateformSurvivor.Player;
 using PlateformSurvivor.Service;
 using ScriptableObject;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace PlateformSurvivor.Menu
 
         [SerializeField] private List<AbilityObject> activeAbilities;
         [SerializeField] private List<AbilityObject> passiveAbilities;
+
+        [SerializeField] private float timeBeforeEvolve = 120;
 
         private const float MaxActive = 6;
         private const float MaxPassive = 6;
@@ -179,7 +182,7 @@ namespace PlateformSurvivor.Menu
             
             for (int i = 0; i < luck; i++)
             {
-                if (Instance.evolutionReady.Count > 0)
+                if (Instance.evolutionReady.Count > 0 && Instance.player.GetComponent<PlayerStat>().GetTime() > Instance.timeBeforeEvolve)
                 {
                     EventManager.Trigger("evolution_" + Instance.evolutionReady[0].ToLower());
                     Instance.abilitiesUnlocked[true][Instance.evolutionReady[0]]++;
