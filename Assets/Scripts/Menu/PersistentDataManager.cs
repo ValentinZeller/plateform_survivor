@@ -48,6 +48,7 @@ namespace PlateformSurvivor.Menu
 
         private void LoadPersistentData()
         {
+            GamePreferencesManager.LoadPrefs();
             SaveDataManager.LoadJsonData(data);
             coins = data[0].coins;
             if (data[0].stagesUnlocked.Count == 0){ return; }
@@ -80,6 +81,7 @@ namespace PlateformSurvivor.Menu
             ManageListData(charactersBought, data[0].charactersBought);
 
             SaveDataManager.SaveJsonData(data);
+            GamePreferencesManager.SavePrefs();
         }
 
         private void ManageListData(List<string> listInput, List<string> listOutput)

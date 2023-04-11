@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 445672726343305011}
   - component: {fileID: 445672726343305010}
   - component: {fileID: 445672726343305008}
+  - component: {fileID: 1954122696014001683}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -167,7 +168,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 44250f56fd2e03e429833bfcdcfeeada, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -292,8 +293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4571e9f8647c3ab4d99d8911331db06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpBufferTime: 0.2
-  jumpBufferTimeCounter: 0
   rb: {fileID: 445672726343304997}
   groundCheck: {fileID: 445672725981961142}
   groundLayer:
@@ -302,7 +301,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  tr: {fileID: 445672726343305023}
   stat: {fileID: 445672726343305021}
   dash: {fileID: 445672726343305011}
 --- !u!114 &445672726343305020
@@ -329,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43eb510a5d278844589ce1b5512fbee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 11400000, guid: cab2d4b9bd307ff4b84505d37f65f9e2, type: 2}
+  character: {fileID: 11400000, guid: cab2d4b9bd307ff4b84505d37f65f9e2, type: 2}
 --- !u!114 &445672726343305011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,3 +365,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireProjectile: {fileID: 1747353814447383292, guid: b9516333301091b468deda2134337d99, type: 3}
+--- !u!114 &1954122696014001683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445672726343304996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 16391b237545eeb44ba7995cffd3dbd3, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bd93a5d5-6894-493d-88df-77908713ce1c
+    m_ActionName: Player/Jump[/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

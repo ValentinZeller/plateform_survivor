@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace PlateformSurvivor.Save
 {
-
     [Serializable]
     public class PassiveBought
     {

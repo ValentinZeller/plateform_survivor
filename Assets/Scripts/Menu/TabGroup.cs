@@ -18,6 +18,11 @@ namespace PlateformSurvivor.Menu
         private void Start()
         {
             ResetTabs();
+            if (selectedTab != null)
+            {
+                selectedTab.background.color = tabActive;
+            }
+            
         }
 
         public void Subscribe(TabButton button)

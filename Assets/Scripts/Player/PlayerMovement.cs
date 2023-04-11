@@ -3,6 +3,7 @@ using PlateformSurvivor.Enemy;
 using PlateformSurvivor.Player.Ability;
 using PlateformSurvivor.Service;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace PlateformSurvivor.Player
 {
@@ -14,6 +15,7 @@ namespace PlateformSurvivor.Player
         [SerializeField] private LayerMask enemyLayer;
         [SerializeField] private PlayerStat stat;
         [SerializeField] private Dash dash;
+        [SerializeField] private PlayerInput playerInput;
         
         private const float BounceForce = 6f;
         private const float CoyoteTime = 0.2f;
@@ -24,6 +26,11 @@ namespace PlateformSurvivor.Player
         private bool canDamage = true;
         private float coyoteTimeCounter;
         private float jumpBufferTimeCounter;
+
+        private void OnEnable()
+        {
+            Debug.Log(playerInput.actions);
+        }
 
         private void Update()
         {
@@ -39,7 +46,9 @@ namespace PlateformSurvivor.Player
                 coyoteTimeCounter -= Time.deltaTime;
             }
 
-            if (Input.GetButtonDown("Jump"))
+            jumpBufferTimeCounter -= Time.deltaTime;
+
+/*            if (Input.GetButtonDown("Jump"))
             {
                 jumpBufferTimeCounter = JumpBufferTime;
                 if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
@@ -51,15 +60,15 @@ namespace PlateformSurvivor.Player
             } else
             {
                 jumpBufferTimeCounter -= Time.deltaTime;
-            }
+            }*/
 
-            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+/*            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
             {
                 Vector2 velocity = rb.velocity;
                 velocity = new Vector2(velocity.x, velocity.y * 0.5f);
                 rb.velocity = velocity;
                 coyoteTimeCounter = 0f;
-            }
+            }*/
 
             if(canDamage)
             {
@@ -67,6 +76,25 @@ namespace PlateformSurvivor.Player
             }
 
             Flip();
+        }
+
+        public void Jump(InputAction.CallbackContext ctx)
+        {
+            if (!ctx.started) { return; }
+
+            jumpBufferTimeCounter = JumpBufferTime;
+            if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, stat.currentStats["JumpForce"]);
+                jumpBufferTimeCounter = 0f;
+            }
+            if (rb.velocity.y > 0f)
+            {
+                Vector2 velocity = rb.velocity;
+                velocity = new Vector2(velocity.x, velocity.y * 0.5f);
+                rb.velocity = velocity;
+                coyoteTimeCounter = 0f;
+            }
         }
 
         private void FixedUpdate()

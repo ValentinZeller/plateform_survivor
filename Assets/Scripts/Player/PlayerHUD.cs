@@ -5,6 +5,7 @@ namespace PlateformSurvivor.Player
 {
     public class PlayerHUD : MonoBehaviour
     {
+        [SerializeField] private GameObject setting;
         [SerializeField] private TextMeshProUGUI playerHP;
         [SerializeField] private TextMeshProUGUI playerCoin;
         [SerializeField] private TextMeshProUGUI playerLvl;
@@ -23,6 +24,13 @@ namespace PlateformSurvivor.Player
             playerXp.text = level.GetXp().ToString();
             playerXpNeeded.text = level.GetXpNeeded().ToString();
             timer.text = DisplayTime();
+
+  /*          if (Input.GetButtonDown("Cancel"))
+            {
+                Time.timeScale = !setting.activeSelf ? 0f : 1f;
+                setting.SetActive(!setting.activeSelf);
+                
+            }*/
         }
 
         private string DisplayTime()
