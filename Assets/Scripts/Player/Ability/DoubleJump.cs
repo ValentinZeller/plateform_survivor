@@ -1,5 +1,6 @@
 using PlateformSurvivor.Service;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace PlateformSurvivor.Player.Ability
 {
@@ -38,7 +39,7 @@ namespace PlateformSurvivor.Player.Ability
                 currentAmount = maxAmount;
             }
 
-            if (Input.GetButtonDown("Jump") && !playerMovement.IsGrounded())
+/*            if (Input.GetButtonDown("Jump") && !playerMovement.IsGrounded())
             {
                 if (currentAmount > 0)
                 {
@@ -47,7 +48,7 @@ namespace PlateformSurvivor.Player.Ability
                     playerMovement.SetJumpBufferTimeCounter(0);
                 }
 
-            }
+            }*/
 
         }
 
@@ -96,6 +97,19 @@ namespace PlateformSurvivor.Player.Ability
         private void OnEvolution()
         {
             isEvolved = true;
+        }
+
+        public void DoubleJumpMove(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed && !playerMovement.IsGrounded())
+            {
+                if (currentAmount > 0)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, doubleJumpForce + stat.currentStats["JumpForce"] * 2 / 100);
+                    currentAmount--;
+                    playerMovement.SetJumpBufferTimeCounter(0);
+                }
+            }
         }
     }
 }

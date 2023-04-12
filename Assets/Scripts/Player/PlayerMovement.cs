@@ -36,7 +36,7 @@ namespace PlateformSurvivor.Player
         {
             if (dash.enabled && dash.GetDashing()) return;
 
-            horizontal = Input.GetAxis("Horizontal");
+            //horizontal = Input.GetAxis("Horizontal");
 
             if (IsGrounded())
             {
@@ -46,7 +46,7 @@ namespace PlateformSurvivor.Player
                 coyoteTimeCounter -= Time.deltaTime;
             }
 
-            jumpBufferTimeCounter -= Time.deltaTime;
+            //jumpBufferTimeCounter -= Time.deltaTime;
 
 /*            if (Input.GetButtonDown("Jump"))
             {
@@ -76,25 +76,6 @@ namespace PlateformSurvivor.Player
             }
 
             Flip();
-        }
-
-        public void Jump(InputAction.CallbackContext ctx)
-        {
-            if (!ctx.started) { return; }
-
-            jumpBufferTimeCounter = JumpBufferTime;
-            if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, stat.currentStats["JumpForce"]);
-                jumpBufferTimeCounter = 0f;
-            }
-            if (rb.velocity.y > 0f)
-            {
-                Vector2 velocity = rb.velocity;
-                velocity = new Vector2(velocity.x, velocity.y * 0.5f);
-                rb.velocity = velocity;
-                coyoteTimeCounter = 0f;
-            }
         }
 
         private void FixedUpdate()
@@ -143,6 +124,33 @@ namespace PlateformSurvivor.Player
         public void SetJumpBufferTimeCounter(float value)
         {
             jumpBufferTimeCounter = value;
+        }
+
+        public void Jump(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed && IsGrounded())
+            {
+                jumpBufferTimeCounter = JumpBufferTime;
+                if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, stat.currentStats["JumpForce"]);
+                    jumpBufferTimeCounter = 0f;
+                }
+            }
+
+
+            if (ctx.canceled && rb.velocity.y > 0f)
+            {
+                Vector2 velocity = rb.velocity;
+                velocity = new Vector2(velocity.x, velocity.y * 0.5f);
+                rb.velocity = velocity;
+                coyoteTimeCounter = 0f;
+            }
+        }
+
+        public void Move(InputAction.CallbackContext ctx)
+        {
+            horizontal = ctx.ReadValue<Vector2>().x;
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using PlateformSurvivor.Enemy;
 using PlateformSurvivor.Service;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace PlateformSurvivor.Player.Ability
 {
@@ -33,10 +34,10 @@ namespace PlateformSurvivor.Player.Ability
                 return;
             }
 
-            if (Input.GetButtonDown("Fire3") && canDash)
+            /*if (Input.GetButtonDown("Fire3") && canDash)
             {
                 StartCoroutine(DashAction());
-            }
+            }*/
 
         }
 
@@ -119,6 +120,14 @@ namespace PlateformSurvivor.Player.Ability
         public bool GetDashing()
         {
             return isDashing;
+        }
+
+        public void DashMove(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed && canDash)
+            {
+                StartCoroutine(DashAction());
+            }
         }
     }
 }
