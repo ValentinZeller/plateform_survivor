@@ -14,15 +14,28 @@ namespace PlateformSurvivor.Assets.Scripts.Menu
         [SerializeField] private GameObject waitingForInputObject;
 
         private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
+
+        private void UpdateUI()
+        {
+            int bindingIndex = jumpAction.action.GetBindingIndexForControl(jumpAction.action.controls[0]);
+
+            bindingDisplayText.text = InputControlPath.ToHumanReadableString(
+                jumpAction.action.bindings[bindingIndex].effectivePath,
+                InputControlPath.HumanReadableStringOptions.OmitDevice);
+        }
         private void RebindComplete()
         {
+            UpdateUI();
+
             rebindingOperation.Dispose();
+            jumpAction.action.Enable();
 
             startRebindObject.SetActive(true);
             waitingForInputObject.SetActive(false);
         }
         public void StartRebinding()
         {
+            jumpAction.action.Disable();
             startRebindObject.SetActive(false);
             waitingForInputObject.SetActive(true);
 

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace PlateformSurvivor.Player
 {
@@ -24,13 +25,6 @@ namespace PlateformSurvivor.Player
             playerXp.text = level.GetXp().ToString();
             playerXpNeeded.text = level.GetXpNeeded().ToString();
             timer.text = DisplayTime();
-
-  /*          if (Input.GetButtonDown("Cancel"))
-            {
-                Time.timeScale = !setting.activeSelf ? 0f : 1f;
-                setting.SetActive(!setting.activeSelf);
-                
-            }*/
         }
 
         private string DisplayTime()
@@ -44,6 +38,15 @@ namespace PlateformSurvivor.Player
             }
             text = minute + " : " + second;
             return text;
+        }
+
+        public void OpenSetting(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+            {
+                Time.timeScale = !setting.activeSelf ? 0f : 1f;
+                setting.SetActive(!setting.activeSelf);
+            }
         }
     }
 }

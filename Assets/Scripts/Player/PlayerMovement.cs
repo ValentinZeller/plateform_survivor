@@ -27,11 +27,6 @@ namespace PlateformSurvivor.Player
         private float coyoteTimeCounter;
         private float jumpBufferTimeCounter;
 
-        private void OnEnable()
-        {
-            Debug.Log(playerInput.actions);
-        }
-
         private void Update()
         {
             if (dash.enabled && dash.GetDashing()) return;
