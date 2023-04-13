@@ -15,6 +15,15 @@ namespace PlateformSurvivor.Assets.Scripts.Menu
 
         private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
 
+        private void Start()
+        {
+            string rebinds = PlayerPrefs.GetString("rebinds", string.Empty);
+            if (string.IsNullOrEmpty(rebinds)) { return; }
+
+            playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+
+            UpdateUI();
+        }
         private void UpdateUI()
         {
             int bindingIndex = jumpAction.action.GetBindingIndexForControl(jumpAction.action.controls[0]);
@@ -44,6 +53,11 @@ namespace PlateformSurvivor.Assets.Scripts.Menu
                 .OnMatchWaitForAnother(0.1f)
                 .OnComplete(operation => RebindComplete())
                 .Start();
+        }
+        public void Save()
+        {
+            string rebinds = playerInput.actions.SaveBindingOverridesAsJson();
+            PlayerPrefs.SetString("rebinds", rebinds);
         }
 
     }

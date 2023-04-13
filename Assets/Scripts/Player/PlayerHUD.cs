@@ -39,7 +39,11 @@ namespace PlateformSurvivor.Player
             text = minute + " : " + second;
             return text;
         }
-
+        public void OpenSetting()
+        {
+            Time.timeScale = !setting.activeSelf ? 0f : 1f;
+            setting.SetActive(!setting.activeSelf);
+        }
         public void OpenSetting(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
