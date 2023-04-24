@@ -38,18 +38,6 @@ namespace PlateformSurvivor.Player.Ability
             {
                 currentAmount = maxAmount;
             }
-
-/*            if (Input.GetButtonDown("Jump") && !playerMovement.IsGrounded())
-            {
-                if (currentAmount > 0)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, doubleJumpForce + stat.currentStats["JumpForce"] * 2/100);
-                    currentAmount--;
-                    playerMovement.SetJumpBufferTimeCounter(0);
-                }
-
-            }*/
-
         }
 
         private void OnBounce()

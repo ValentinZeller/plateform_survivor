@@ -7,7 +7,7 @@ namespace PlateformSurvivor.Assets.Scripts.Menu
 {
     public class RebindingDisplay : MonoBehaviour
     {
-        [SerializeField] private InputActionReference jumpAction;
+        [SerializeField] private InputActionReference inputAction;
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private TextMeshProUGUI bindingDisplayText;
         [SerializeField] private GameObject startRebindObject;
@@ -22,36 +22,37 @@ namespace PlateformSurvivor.Assets.Scripts.Menu
 
             playerInput.actions.LoadBindingOverridesFromJson(rebinds);
 
-            UpdateUI();
+            UpdateUI(0);
         }
-        private void UpdateUI()
+        private void UpdateUI(int targetBinding)
         {
-            int bindingIndex = jumpAction.action.GetBindingIndexForControl(jumpAction.action.controls[0]);
+            int bindingIndex = inputAction.action.GetBindingIndexForControl(inputAction.action.controls[0]);
 
             bindingDisplayText.text = InputControlPath.ToHumanReadableString(
-                jumpAction.action.bindings[bindingIndex].effectivePath,
+                inputAction.action.bindings[targetBinding].effectivePath,
                 InputControlPath.HumanReadableStringOptions.OmitDevice);
         }
-        private void RebindComplete()
+        private void RebindComplete(int targetBinding)
         {
-            UpdateUI();
+            UpdateUI(targetBinding);
 
             rebindingOperation.Dispose();
-            jumpAction.action.Enable();
+            inputAction.action.Enable();
 
             startRebindObject.SetActive(true);
             waitingForInputObject.SetActive(false);
         }
-        public void StartRebinding()
+        public void StartRebinding(int targetBinding = 0)
         {
-            jumpAction.action.Disable();
+            inputAction.action.Disable();
             startRebindObject.SetActive(false);
             waitingForInputObject.SetActive(true);
 
-            rebindingOperation = jumpAction.action.PerformInteractiveRebinding()
+            rebindingOperation = inputAction.action.PerformInteractiveRebinding()
+                .WithTargetBinding(targetBinding)
                 .WithControlsExcluding("Mouse")
                 .OnMatchWaitForAnother(0.1f)
-                .OnComplete(operation => RebindComplete())
+                .OnComplete(operation => RebindComplete(targetBinding))
                 .Start();
         }
         public void Save()

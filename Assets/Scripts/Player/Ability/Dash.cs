@@ -34,11 +34,6 @@ namespace PlateformSurvivor.Player.Ability
                 return;
             }
 
-            /*if (Input.GetButtonDown("Fire3") && canDash)
-            {
-                StartCoroutine(DashAction());
-            }*/
-
         }
 
         private IEnumerator DashAction()
