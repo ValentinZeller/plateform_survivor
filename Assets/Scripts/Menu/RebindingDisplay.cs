@@ -36,6 +36,8 @@ namespace PlateformSurvivor.Assets.Scripts.Menu
         {
             UpdateUI(targetBinding);
 
+            Save();
+
             rebindingOperation.Dispose();
             inputAction.action.Enable();
 
