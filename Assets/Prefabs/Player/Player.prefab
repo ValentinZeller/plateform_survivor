@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 16391b237545eeb44ba7995cffd3dbd3, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 0fea15560aad69a4fa5cb76d75316593, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -199,12 +199,72 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: bd93a5d5-6894-493d-88df-77908713ce1c
-    m_ActionName: Player/Jump[/Keyboard/space]
+      m_Calls:
+      - m_Target: {fileID: 445672726343305017}
+        m_TargetAssemblyTypeName: PlateformSurvivor.Player.PlayerMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 59e26e95-b84d-4418-9684-90dd1ff87944
+    m_ActionName: Gameplay/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 445672726343305017}
+        m_TargetAssemblyTypeName: PlateformSurvivor.Player.PlayerMovement, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: dfe0526b-eccf-428a-8328-c04080e72dcf
+    m_ActionName: Gameplay/HorizontalMovement[/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 445672726343305011}
+        m_TargetAssemblyTypeName: PlateformSurvivor.Player.Ability.Dash, Assembly-CSharp
+        m_MethodName: DashMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 92d075c0-c400-4cf4-9938-dad186be80b7
+    m_ActionName: Gameplay/Dash[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlateformSurvivor.Player.PlayerHUD, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4a72af5d-3588-4078-a73e-276c9d2928a2
+    m_ActionName: Gameplay/Open Ingame Menu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!96 &445672726343305023
@@ -337,7 +397,8 @@ MonoBehaviour:
     m_Bits: 128
   stat: {fileID: 445672726343305021}
   dash: {fileID: 445672726343305011}
-  playerInput: {fileID: 0}
+  doubleJump: {fileID: 445672726343305010}
+  playerInput: {fileID: 1954122696014001683}
 --- !u!114 &445672726343305020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43eb510a5d278844589ce1b5512fbee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: cab2d4b9bd307ff4b84505d37f65f9e2, type: 2}
+  character: {fileID: 11400000, guid: bdb6f1d7d14aa7845831012e841da131, type: 2}
 --- !u!114 &445672726343305011
 MonoBehaviour:
   m_ObjectHideFlags: 0

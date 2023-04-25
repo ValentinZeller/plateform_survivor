@@ -15,6 +15,7 @@ namespace PlateformSurvivor.Player
         [SerializeField] private LayerMask enemyLayer;
         [SerializeField] private PlayerStat stat;
         [SerializeField] private Dash dash;
+        [SerializeField] private DoubleJump doubleJump;
         [SerializeField] private PlayerInput playerInput;
         
         private const float BounceForce = 6f;
@@ -105,6 +106,9 @@ namespace PlateformSurvivor.Player
                     rb.velocity = new Vector2(rb.velocity.x, stat.currentStats["JumpForce"]);
                     jumpBufferTimeCounter = 0f;
                 }
+            } else if (ctx.performed && !IsGrounded() && doubleJump.enabled)
+            {
+                doubleJump.DoubleJumpMove();
             }
 
 

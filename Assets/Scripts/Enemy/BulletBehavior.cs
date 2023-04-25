@@ -1,4 +1,5 @@
 using PlateformSurvivor.Service;
+using ScriptableObject;
 using UnityEngine;
 
 namespace PlateformSurvivor.Enemy
@@ -6,19 +7,18 @@ namespace PlateformSurvivor.Enemy
     public class BulletBehavior : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D rb;
-        private float strength = 1;
-        private float speed = 8f;
+        [SerializeField] private EnemyStatObject stat;
         private float direction;
         
         private void Update()
         {
-            rb.velocity = new Vector2(speed * direction, rb.velocity.y);
+            rb.velocity = new Vector2(stat.speed * direction, rb.velocity.y);
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                collision.gameObject.GetComponent<IDamageable>().Damage(strength);
+                collision.gameObject.GetComponent<IDamageable>().Damage(stat.strength);
                 
             }
             Explode();

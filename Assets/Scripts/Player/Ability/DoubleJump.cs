@@ -87,16 +87,13 @@ namespace PlateformSurvivor.Player.Ability
             isEvolved = true;
         }
 
-        public void DoubleJumpMove(InputAction.CallbackContext ctx)
+        public void DoubleJumpMove()
         {
-            if (ctx.performed && !playerMovement.IsGrounded())
+            if (currentAmount > 0)
             {
-                if (currentAmount > 0)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, doubleJumpForce + stat.currentStats["JumpForce"] * 2 / 100);
-                    currentAmount--;
-                    playerMovement.SetJumpBufferTimeCounter(0);
-                }
+                rb.velocity = new Vector2(rb.velocity.x, doubleJumpForce + stat.currentStats["JumpForce"] * 2 / 100);
+                currentAmount--;
+                playerMovement.SetJumpBufferTimeCounter(0);
             }
         }
     }

@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6313480744703309168}
+  stat: {fileID: 11400000, guid: 19661d6faf959c642895d2fad3dceab3, type: 2}
 --- !u!58 &6361750609724801210
 CircleCollider2D:
   m_ObjectHideFlags: 0

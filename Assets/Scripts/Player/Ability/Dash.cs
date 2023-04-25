@@ -25,6 +25,7 @@ namespace PlateformSurvivor.Player.Ability
             rb = GetComponent<Rigidbody2D>();
             stat= GetComponent<PlayerStat>();
             EventManager.AddListener("add_dash", OnAddDash);
+            GetComponent<PlayerInput>().actions.FindAction("Dash").Enable();
         }
         
         private void Update()

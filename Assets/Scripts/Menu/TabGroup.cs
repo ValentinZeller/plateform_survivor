@@ -7,13 +7,15 @@ namespace PlateformSurvivor.Menu
 {
     public class TabGroup : MonoBehaviour
     {
-        public List<GameObject> objectsToSwap = new();
-        public List<TabButton> tabButtons = new();
-        public Color tabIdle;
-        public Color tabHover;
-        public Color tabActive;
+        [SerializeField] private List<GameObject> objectsToSwap = new();
+        
+        [SerializeField] private Color tabIdle;
+        [SerializeField] private Color tabHover;
+        [SerializeField] private Color tabActive;
 
-        public TabButton selectedTab;
+        [SerializeField] private TabButton selectedTab;
+
+        private List<TabButton> tabButtons = new();
 
         private void Start()
         {
@@ -62,7 +64,7 @@ namespace PlateformSurvivor.Menu
             }
         }
 
-        public void ResetTabs()
+        private void ResetTabs()
         {
             foreach (TabButton button in tabButtons)
             {

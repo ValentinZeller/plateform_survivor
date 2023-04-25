@@ -9,7 +9,7 @@ namespace PlateformSurvivor.Menu
     [RequireComponent(typeof(Image))]
     public class TabButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        public TabGroup tabGroup;
+        [SerializeField] private TabGroup tabGroup;
         public Image background;
 
         private void Start()
