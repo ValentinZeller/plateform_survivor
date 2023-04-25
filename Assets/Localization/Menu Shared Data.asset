@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Menu Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Menu
+  m_TableCollectionNameGuidString: 727268915b310b94985caedc489a9e51
+  m_Entries:
+  - m_Id: 1042901610496
+    m_Key: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5312308817920
+    m_Key: ACHIEVEMENTS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5543662432256
+    m_Key: UPGRADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5735493120000
+    m_Key: START
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4565153063963983896
+  references:
+    version: 2
+    RefIds:
+    - rid: 4565153063963983896
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1682420796464

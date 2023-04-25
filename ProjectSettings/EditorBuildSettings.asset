@@ -13,6 +13,8 @@ EditorBuildSettings:
     guid: 3b0f469d930c03b4e8fffe9df412ccfb
   - enabled: 1
     path: Assets/Scenes/Stage2.unity
-    guid: 21198c5d2ee112a42961c9323d57a807
+    guid: 641cfa70b6e96ef44a1ce302fdf725c0
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 8580b307c107bd848b1810475fe11ab3, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: d71972c94c37e4d40b6d75afe9bea0c0, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 40efc8f2d2b6bfc4cb4d166e0b9c0b67, type: 2}
