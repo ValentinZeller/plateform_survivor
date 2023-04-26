@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PlateformSurvivor.Player.Ability
 {
-    public class Fireball : MonoBehaviour
+    public class Fireball : MonoBehaviour, IEvolution
     {
         [SerializeField] private GameObject fireProjectile;
         
@@ -77,6 +77,12 @@ namespace PlateformSurvivor.Player.Ability
                     fireCooldown -= 0.125f;
                     break;
             }
+        }
+
+        public bool IsEvolved { get; set; }
+        public void OnEvolution()
+        {
+            IsEvolved = true;
         }
     }
 }

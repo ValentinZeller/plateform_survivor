@@ -18,11 +18,6 @@ namespace PlateformSurvivor.Menu
             tabGroup.Subscribe(this);
         }
 
-        private void Update()
-        {
-            
-        }
-
         public void OnPointerClick(PointerEventData eventData)
         {
             tabGroup.OnTabSelected(this);

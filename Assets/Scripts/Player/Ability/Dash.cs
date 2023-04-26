@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace PlateformSurvivor.Player.Ability
 {
-    public class Dash : MonoBehaviour
+    public class Dash : MonoBehaviour, IEvolution
     {
         private bool canDash = true;
         private bool isDashing = false;
@@ -26,15 +26,6 @@ namespace PlateformSurvivor.Player.Ability
             stat= GetComponent<PlayerStat>();
             EventManager.AddListener("add_dash", OnAddDash);
             GetComponent<PlayerInput>().actions.FindAction("Dash").Enable();
-        }
-        
-        private void Update()
-        {
-            if (isDashing)
-            {
-                return;
-            }
-
         }
 
         private IEnumerator DashAction()
@@ -120,10 +111,16 @@ namespace PlateformSurvivor.Player.Ability
 
         public void DashMove(InputAction.CallbackContext ctx)
         {
-            if (ctx.performed && canDash)
+            if (ctx.performed && canDash && !isDashing)
             {
                 StartCoroutine(DashAction());
             }
+        }
+
+        public bool IsEvolved { get; set; }
+        public void OnEvolution()
+        {
+            IsEvolved = true;
         }
     }
 }

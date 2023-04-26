@@ -4,13 +4,13 @@ using PlateformSurvivor.Menu;
 using PlateformSurvivor.Service;
 using ScriptableObject;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.InputSystem;
 
 namespace PlateformSurvivor.Player
 {
     public class PlayerStat : MonoBehaviour, IDamageable
     {
-        [FormerlySerializedAs("stat")] [SerializeField] private CharacterObject character;
+        [SerializeField] private CharacterObject character;
 
         private PersistentDataManager persistentDataManager;
         private int currentCoins;
@@ -29,6 +29,7 @@ namespace PlateformSurvivor.Player
 
         private void Awake()
         {
+            GetComponent<PlayerInput>().actions.FindAction("Dash").Disable();
             if (FindObjectOfType<PersistentDataManager>())
             {
                 persistentDataManager = FindObjectOfType<PersistentDataManager>();
@@ -72,7 +73,7 @@ namespace PlateformSurvivor.Player
             timeCount += Time.deltaTime;
             if (timeCount > SurviveAchievement)
             {
-                if (persistentDataManager != null && persistentDataManager.chosenStage.name == "Stage1" && !persistentDataManager.HasAchievementUnlocked("SurviveStage1"))
+                if (persistentDataManager != null && persistentDataManager.chosenStage.name == "Stage1" && !persistentDataManager.HasAchievementUnlocked(AchievementKey.SurviveStage1.ToString()))
                 {
                     persistentDataManager.UnlockAchievement(AchievementKey.SurviveStage1);
                 }
@@ -100,7 +101,7 @@ namespace PlateformSurvivor.Player
         private void OnKill()
         {
             enemiesKilled++;
-            if (persistentDataManager != null && !persistentDataManager.HasAchievementUnlocked("Killer1") && enemiesKilled > EnemyAchievement)
+            if (persistentDataManager != null && !persistentDataManager.HasAchievementUnlocked(AchievementKey.Killer1.ToString()) && enemiesKilled > EnemyAchievement)
             {
                 persistentDataManager.UnlockAchievement(AchievementKey.Killer1);
             }
@@ -109,7 +110,7 @@ namespace PlateformSurvivor.Player
         private void HealthPicked(object data)
         {
             healthPicked++;
-            if (persistentDataManager != null && !persistentDataManager.HasAchievementUnlocked("Healing") && healthPicked > HealthAchievement)
+            if (persistentDataManager != null && !persistentDataManager.HasAchievementUnlocked(AchievementKey.Healing.ToString()) && healthPicked > HealthAchievement)
             {
                 persistentDataManager.UnlockAchievement(AchievementKey.Healing);
             }

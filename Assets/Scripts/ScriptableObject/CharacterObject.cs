@@ -13,6 +13,7 @@ namespace ScriptableObject
         public float jumpForce;
         public float strength;
         public float health;
+        
         public int price;
         public string displayName;
         public int displayOrder;

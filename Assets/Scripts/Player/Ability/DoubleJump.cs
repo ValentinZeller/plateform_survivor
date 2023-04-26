@@ -4,12 +4,11 @@ using UnityEngine.InputSystem;
 
 namespace PlateformSurvivor.Player.Ability
 {
-    public class DoubleJump : MonoBehaviour
+    public class DoubleJump : MonoBehaviour, IEvolution
     {
         private float doubleJumpForce = 10f;
         private bool canDoubleJump;
         private bool canRegain;
-        private bool isEvolved;
 
         private int maxAmount = 1;
         private int currentAmount = 1;
@@ -47,7 +46,7 @@ namespace PlateformSurvivor.Player.Ability
                 currentAmount++;
             }
 
-            if (isEvolved)
+            if (IsEvolved)
             {
                 EventManager.Trigger("regen_health", 2f);
             }
@@ -82,11 +81,6 @@ namespace PlateformSurvivor.Player.Ability
             }
         }
 
-        private void OnEvolution()
-        {
-            isEvolved = true;
-        }
-
         public void DoubleJumpMove()
         {
             if (currentAmount > 0)
@@ -95,6 +89,13 @@ namespace PlateformSurvivor.Player.Ability
                 currentAmount--;
                 playerMovement.SetJumpBufferTimeCounter(0);
             }
+        }
+
+        public bool IsEvolved { get; set; }
+
+        public void OnEvolution()
+        {
+            IsEvolved = true;
         }
     }
 }

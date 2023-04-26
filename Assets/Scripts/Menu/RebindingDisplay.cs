@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace PlateformSurvivor.Assets.Scripts.Menu
+namespace PlateformSurvivor.Menu
 {
     public class RebindingDisplay : MonoBehaviour
     {
@@ -26,12 +25,17 @@ namespace PlateformSurvivor.Assets.Scripts.Menu
         }
         private void UpdateUI(int targetBinding)
         {
-            int bindingIndex = inputAction.action.GetBindingIndexForControl(inputAction.action.controls[0]);
-
             bindingDisplayText.text = InputControlPath.ToHumanReadableString(
                 inputAction.action.bindings[targetBinding].effectivePath,
                 InputControlPath.HumanReadableStringOptions.OmitDevice);
         }
+        
+        private void Save()
+        {
+            string rebinds = playerInput.actions.SaveBindingOverridesAsJson();
+            PlayerPrefs.SetString("rebinds", rebinds);
+        }
+        
         private void RebindComplete(int targetBinding)
         {
             UpdateUI(targetBinding);
@@ -44,6 +48,7 @@ namespace PlateformSurvivor.Assets.Scripts.Menu
             startRebindObject.SetActive(true);
             waitingForInputObject.SetActive(false);
         }
+
         public void StartRebinding(int targetBinding = 0)
         {
             inputAction.action.Disable();
@@ -57,11 +62,5 @@ namespace PlateformSurvivor.Assets.Scripts.Menu
                 .OnComplete(operation => RebindComplete(targetBinding))
                 .Start();
         }
-        public void Save()
-        {
-            string rebinds = playerInput.actions.SaveBindingOverridesAsJson();
-            PlayerPrefs.SetString("rebinds", rebinds);
-        }
-
     }
 }
