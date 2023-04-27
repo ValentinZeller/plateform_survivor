@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace PlateformSurvivor.Player
 {
@@ -8,11 +9,10 @@ namespace PlateformSurvivor.Player
     {
         [SerializeField] private GameObject pause;
         [SerializeField] private GameObject setting;
+        [SerializeField] private Image playerXpBar;
         [SerializeField] private TextMeshProUGUI playerHP;
         [SerializeField] private TextMeshProUGUI playerCoin;
         [SerializeField] private TextMeshProUGUI playerLvl;
-        [SerializeField] private TextMeshProUGUI playerXp;
-        [SerializeField] private TextMeshProUGUI playerXpNeeded;
         [SerializeField] private TextMeshProUGUI timer;
         
         [SerializeField] private PlayerStat stat;
@@ -23,9 +23,8 @@ namespace PlateformSurvivor.Player
             playerHP.text = stat.GetHealth().ToString();
             playerCoin.text = stat.GetCoins().ToString();
             playerLvl.text = level.GetLvl().ToString();
-            playerXp.text = level.GetXp().ToString();
-            playerXpNeeded.text = level.GetXpNeeded().ToString();
             timer.text = DisplayTime();
+            playerXpBar.fillAmount = level.GetXp() / level.GetXpNeeded();
         }
 
         private string DisplayTime()
