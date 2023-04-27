@@ -96,6 +96,7 @@ namespace PlateformSurvivor.Player
             {
                 persistentDataManager.coins++;
             }
+            EventManager.Trigger("update_coin");
         }
 
         private void OnKill()
@@ -132,6 +133,7 @@ namespace PlateformSurvivor.Player
             {
                 health = currentStats["Health"];
             }
+            EventManager.Trigger("update_health");
         }
         
         public float GetHealth()
@@ -152,6 +154,7 @@ namespace PlateformSurvivor.Player
         public void Damage(float damage)
         {
             health--;
+            EventManager.Trigger("update_health");
             if (health <= 0)
             {
                 EventManager.Trigger("death");

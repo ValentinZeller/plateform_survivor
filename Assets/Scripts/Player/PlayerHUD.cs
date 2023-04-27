@@ -1,5 +1,6 @@
 using System;
 using PlateformSurvivor.Menu;
+using PlateformSurvivor.Service;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,14 +22,37 @@ namespace PlateformSurvivor.Player
         [SerializeField] private PlayerStat stat;
         [SerializeField] private PlayerLevel level;
 
+        private void Start()
+        {
+            EventManager.AddListener("update_hp",UpdateHealth);
+            EventManager.AddListener("update_coin",UpdateCoin);
+            EventManager.AddListener("update_xp",UpdateXP);
+            EventManager.AddListener("update_abilities",UpdateAbilities);
+            UpdateHealth();
+            UpdateCoin();
+            UpdateXP();
+            UpdateAbilities();
+        }
+        
         private void Update()
         {
-            playerHP.text = stat.GetHealth().ToString();
-            playerCoin.text = stat.GetCoins().ToString();
-            playerLvl.text = level.GetLvl().ToString();
             timer.text = DisplayTime();
+        }
+
+        private void UpdateHealth()
+        {
+            playerHP.text = stat.GetHealth().ToString();
+        }
+
+        private void UpdateCoin()
+        {
+            playerCoin.text = stat.GetCoins().ToString();
+        }
+
+        private void UpdateXP()
+        {
             playerXpBar.fillAmount = level.GetXp() / level.GetXpNeeded();
-            UpdateAbilities();
+            playerLvl.text = level.GetLvl().ToString();
         }
 
         private string DisplayTime()

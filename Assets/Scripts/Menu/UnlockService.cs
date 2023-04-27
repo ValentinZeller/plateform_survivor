@@ -169,6 +169,7 @@ namespace PlateformSurvivor.Menu
                 {
                     EventManager.Trigger("add_passive", itemName);
                 }
+                EventManager.Trigger("update_abilities");
             }
         }
         

@@ -36,7 +36,7 @@ namespace PlateformSurvivor.InteractiveObject
         private void Reload()
         {
             isEmpty = false;
-            coins = currentCoins;
+            currentCoins = coins;
             sprite.color = new Color(1, 0.92f, 0);
         }
 
