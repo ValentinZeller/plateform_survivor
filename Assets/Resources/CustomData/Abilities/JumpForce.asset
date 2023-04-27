@@ -19,3 +19,4 @@ MonoBehaviour:
   maxLevel: 5
   percent: 0.03
   evolution: {fileID: 11400000, guid: 70eda91cb2489064eb3f2881dd0ecdb8, type: 2}
+  sprite: {fileID: -2135585597343286014, guid: 9d67124996f896c4f9e21a7fdbf013d9, type: 3}

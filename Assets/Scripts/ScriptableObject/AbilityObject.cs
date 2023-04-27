@@ -12,5 +12,6 @@ namespace ScriptableObject
         public int maxLevel;
         public float percent;
         public EvolutionObject evolution;
+        public Sprite sprite;
     }
 }

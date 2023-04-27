@@ -35,7 +35,7 @@ namespace PlateformSurvivor.Player.Ability
                 Explode();
             }
 
-            if (collision.contacts[0].normal.x != 0)
+            if (collision.contacts[0].normal.x > 0)
             {
                 Explode();
             }

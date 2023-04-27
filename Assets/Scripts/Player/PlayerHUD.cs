@@ -1,3 +1,5 @@
+using System;
+using PlateformSurvivor.Menu;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +16,7 @@ namespace PlateformSurvivor.Player
         [SerializeField] private TextMeshProUGUI playerCoin;
         [SerializeField] private TextMeshProUGUI playerLvl;
         [SerializeField] private TextMeshProUGUI timer;
+        [SerializeField] private Transform abilities;
         
         [SerializeField] private PlayerStat stat;
         [SerializeField] private PlayerLevel level;
@@ -25,6 +28,7 @@ namespace PlateformSurvivor.Player
             playerLvl.text = level.GetLvl().ToString();
             timer.text = DisplayTime();
             playerXpBar.fillAmount = level.GetXp() / level.GetXpNeeded();
+            UpdateAbilities();
         }
 
         private string DisplayTime()
@@ -38,6 +42,21 @@ namespace PlateformSurvivor.Player
             }
             text = minute + " : " + second;
             return text;
+        }
+
+        private void UpdateAbilities()
+        {
+            foreach (var (isActive, dictionary) in UnlockService.AbilitiesUnlocked)
+            {
+                int index = 0;
+                foreach (var name in dictionary.Keys)
+                {
+                    Sprite abilitySprite = UnlockService.GetAbilityListByActive(isActive)
+                        .Find(ability => ability.name == name).sprite;
+                    abilities.GetChild(Convert.ToInt32(!isActive)).GetChild(index).gameObject.GetComponent<Image>().sprite = abilitySprite;
+                    index++;
+                }
+            }
         }
 
         public void Pause(InputAction.CallbackContext ctx)

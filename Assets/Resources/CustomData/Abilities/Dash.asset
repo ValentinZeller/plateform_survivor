@@ -17,3 +17,6 @@ MonoBehaviour:
   abilityDescription: 
   isActive: 1
   maxLevel: 8
+  percent: 0
+  evolution: {fileID: 0}
+  sprite: {fileID: 7482667652216324306, guid: b432ff25358b2cf438443910780f3b1e, type: 3}

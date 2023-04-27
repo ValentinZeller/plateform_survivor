@@ -129,7 +129,7 @@ namespace PlateformSurvivor.Menu
                 Instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
             }
 
-            AbilityObject abilityObject = Instance.GetAbilityListByActive(isActive).Find(abilityObject => abilityObject.name == itemName);
+            AbilityObject abilityObject = GetAbilityListByActive(isActive).Find(abilityObject => abilityObject.name == itemName);
             UnlockAbility(abilityObject);
             CheckEvolution(abilityObject);
 
@@ -156,7 +156,7 @@ namespace PlateformSurvivor.Menu
                 }
                 if (Instance.abilitiesUnlocked[isActive][itemName] == maxLevel)
                 {
-                    Instance.GetAbilityListByActive(isActive).Remove(abilityObject);
+                    GetAbilityListByActive(isActive).Remove(abilityObject);
                     Instance.abilitiesMaxLevel.Add(itemName);
                 }
             } else if (!Instance.abilitiesUnlocked[isActive].ContainsKey(itemName))
@@ -263,13 +263,13 @@ namespace PlateformSurvivor.Menu
             return passiveAbilities;
         }
 
-        private List<AbilityObject> GetAbilityListByActive(bool isActive)
+        public static List<AbilityObject> GetAbilityListByActive(bool isActive)
         {
             if (isActive)
             {
-                return activeAbilities;
+                return Instance.activeAbilities;
             }
-            return passiveAbilities;
+            return Instance.passiveAbilities;
         }
     }
 }
