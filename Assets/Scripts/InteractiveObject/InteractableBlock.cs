@@ -15,6 +15,7 @@ namespace PlateformSurvivor.InteractiveObject
         private const float RightOffset = 0.71f;
         private int currentCoins;
         private bool isEmpty;
+        private static readonly Color NotEmptyColor = new Color(1f, 0.92f, 0f);
 
         private void Start()
         {
@@ -37,7 +38,7 @@ namespace PlateformSurvivor.InteractiveObject
         {
             isEmpty = false;
             currentCoins = coins;
-            sprite.color = new Color(1, 0.92f, 0);
+            sprite.color = NotEmptyColor;
         }
 
         public bool IsDestroyable()
@@ -60,7 +61,8 @@ namespace PlateformSurvivor.InteractiveObject
 
             if (item != null && !isEmpty)
             {
-                Instantiate(item, new Vector2(transform.position.x, transform.position.y + 1.5f), Quaternion.identity);
+                var position = transform.position;
+                Instantiate(item, new Vector2(position.x, position.y + 1.5f), Quaternion.identity);
                 isEmpty = true;
             }
 

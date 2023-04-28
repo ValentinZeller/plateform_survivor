@@ -1,6 +1,7 @@
 using System;
 using PlateformSurvivor.Menu;
 using PlateformSurvivor.Service;
+using ScriptableObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -75,8 +76,15 @@ namespace PlateformSurvivor.Player
                 int index = 0;
                 foreach (var name in dictionary.Keys)
                 {
-                    Sprite abilitySprite = UnlockService.GetAbilityListByActive(isActive)
-                        .Find(ability => ability.name == name).sprite;
+                    Sprite abilitySprite;
+                    if (Resources.Load<AbilityObject>("CustomData/Abilities/"+name))
+                    {
+                        abilitySprite = Resources.Load<AbilityObject>("CustomData/Abilities/"+name).sprite;
+                    }
+                    else
+                    {
+                        abilitySprite = Resources.Load<EvolutionObject>("CustomData/Evolutions/"+name).sprite;
+                    }
                     abilities.GetChild(Convert.ToInt32(!isActive)).GetChild(index).gameObject.GetComponent<Image>().sprite = abilitySprite;
                     index++;
                 }

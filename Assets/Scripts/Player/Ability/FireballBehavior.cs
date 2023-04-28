@@ -34,8 +34,8 @@ namespace PlateformSurvivor.Player.Ability
                 collision.gameObject.GetComponent<IDamageable>().Damage(strength);
                 Explode();
             }
-
-            if (collision.contacts[0].normal.x > 0)
+            
+            if (collision.contacts[0].normal.x > 0 || collision.contacts[0].normal.x <= -1)
             {
                 Explode();
             }

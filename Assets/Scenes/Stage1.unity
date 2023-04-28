@@ -11048,7 +11048,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921657908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.404316, y: 6.6895475, z: 4.3983736}
+  m_LocalPosition: {x: 11.404316, y: 5.1, z: 4.3983736}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11094,7 +11094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6613260192724550599, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.31
+      value: 16.3
       objectReference: {fileID: 0}
     - target: {fileID: 6613260192724550599, guid: 85f7cf06016776d4badc2c24ee3f4b86, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11314,9 +11314,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 445672725981961137, guid: 51607d6d3b89c61498445cb72016f552, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 445672726343304996, guid: 51607d6d3b89c61498445cb72016f552, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 445672726343304996, guid: 51607d6d3b89c61498445cb72016f552, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 445672726343305016, guid: 51607d6d3b89c61498445cb72016f552, type: 3}
       propertyPath: m_RootOrder
@@ -11647,6 +11655,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 202363566}
+    - target: {fileID: 5542679776827994818, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: timeBeforeEvolve
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542679776827994818, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: evolutions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542679776827994818, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
+      propertyPath: evolutions.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 70eda91cb2489064eb3f2881dd0ecdb8, type: 2}
     - target: {fileID: 5542679776827994820, guid: 2c15d51131fe17e4bb7f5169935d0b18, type: 3}
       propertyPath: m_RootOrder
       value: 2

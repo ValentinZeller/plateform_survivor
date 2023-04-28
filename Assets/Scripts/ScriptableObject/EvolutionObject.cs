@@ -9,5 +9,8 @@ namespace ScriptableObject
         public AbilityObject active;
         public AbilityObject passive;
         public bool maxPassive;
+        public string evolutionName;
+        public string displayName;
+        public Sprite sprite;
     }
 }
