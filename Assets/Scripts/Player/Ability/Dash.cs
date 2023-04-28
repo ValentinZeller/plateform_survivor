@@ -26,10 +26,27 @@ namespace PlateformSurvivor.Player.Ability
             stat= GetComponent<PlayerStat>();
             EventManager.AddListener("add_dash", OnAddDash);
             GetComponent<PlayerInput>().actions.FindAction("Dash").Enable();
+            EventManager.AddListener("evolution_dash",OnEvolution);
+        }
+
+        private void Update()
+        {
+            if (isDashing && IsEvolved)
+            {
+                Collider2D enemy = Physics2D.OverlapCircle(transform.position, 2);
+                if (Physics2D.OverlapCircle(transform.position, 2) && enemy.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    enemy.gameObject.GetComponent<IDamageable>().Damage(stat.currentStats["Strength"]);
+                }
+            }
         }
 
         private IEnumerator DashAction()
         {
+            if (IsEvolved)
+            {
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"),true);
+            }
             canDash = false;
             isDashing = true;
             float originalGravity = rb.gravityScale;
@@ -40,6 +57,10 @@ namespace PlateformSurvivor.Player.Ability
             tr.emitting = false;
             rb.gravityScale = originalGravity;
             isDashing = false;
+            if (IsEvolved)
+            {
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"),false);
+            }
 
             yield return new WaitForSeconds(dashCooldown);
             canDash = true;
@@ -85,7 +106,7 @@ namespace PlateformSurvivor.Player.Ability
                     dashCooldown -= 0.125f;
                     break;
                 case 4:
-                    dashTime -= 0.1f;
+                    dashForce += dashForce * 5 / 100;
                     break;
                 case 5:
                     dashCooldown -= 0.125f;

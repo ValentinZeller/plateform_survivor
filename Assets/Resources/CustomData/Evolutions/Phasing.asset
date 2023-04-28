@@ -9,14 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdae390d5324acf47aa826e99e59a936, type: 3}
-  m_Name: Dash
+  m_Script: {fileID: 11500000, guid: 993733d06eeb45c89c02bb7136633bcb, type: 3}
+  m_Name: Phasing
   m_EditorClassIdentifier: 
-  abilityName: Dash
-  abilityDisplayName: Dash
-  abilityDescription: 
-  isActive: 1
-  maxLevel: 8
-  percent: 0
-  evolution: {fileID: 11400000, guid: afbe31a28d7d01a4495508ae7d9063e5, type: 2}
+  active: {fileID: 11400000, guid: 628f868dd2490b74dab4c9c8c53e10d9, type: 2}
+  passive: {fileID: 11400000, guid: 9b285efa6f48db249b7ff8c29e23e912, type: 2}
+  maxPassive: 0
+  evolutionName: Phasing
+  displayName: Phasing
   sprite: {fileID: 7482667652216324306, guid: b432ff25358b2cf438443910780f3b1e, type: 3}
