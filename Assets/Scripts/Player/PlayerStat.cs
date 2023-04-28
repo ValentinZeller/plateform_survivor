@@ -106,6 +106,8 @@ namespace PlateformSurvivor.Player
             {
                 persistentDataManager.UnlockAchievement(AchievementKey.Killer1);
             }
+
+            EventManager.Trigger("update_kill");
         }
 
         private void HealthPicked(object data)
@@ -144,6 +146,11 @@ namespace PlateformSurvivor.Player
         public int GetCoins()
         {
             return currentCoins;
+        }
+
+        public int GetKills()
+        {
+            return enemiesKilled;
         }
 
         public float GetTime()

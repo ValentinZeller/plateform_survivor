@@ -17,6 +17,7 @@ namespace PlateformSurvivor.Player
         [SerializeField] private TextMeshProUGUI playerHP;
         [SerializeField] private TextMeshProUGUI playerCoin;
         [SerializeField] private TextMeshProUGUI playerLvl;
+        [SerializeField] private TextMeshProUGUI enemyKill;
         [SerializeField] private TextMeshProUGUI timer;
         [SerializeField] private Transform abilities;
         
@@ -27,6 +28,7 @@ namespace PlateformSurvivor.Player
         {
             EventManager.AddListener("update_hp",UpdateHealth);
             EventManager.AddListener("update_coin",UpdateCoin);
+            EventManager.AddListener("update_kill", UpdateKill);
             EventManager.AddListener("update_xp",UpdateXP);
             EventManager.AddListener("update_abilities",UpdateAbilities);
             UpdateHealth();
@@ -48,6 +50,11 @@ namespace PlateformSurvivor.Player
         private void UpdateCoin()
         {
             playerCoin.text = stat.GetCoins().ToString();
+        }
+
+        private void UpdateKill()
+        {
+            enemyKill.text = stat.GetKills().ToString();
         }
 
         private void UpdateXP()
