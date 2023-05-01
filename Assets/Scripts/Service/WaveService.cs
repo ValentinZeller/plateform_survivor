@@ -17,7 +17,9 @@ namespace PlateformSurvivor.Service
         private const float MaxX = 31;
         private const float MinY = -4;
         private const float MaxY = 30;
-        
+
+        private static readonly Vector3 BossPos = new Vector3(0, -3, 0);
+
         private float waveDuration = 60f; //second
         private int waveIndex;
         private float waveDurationCounter;
@@ -80,7 +82,7 @@ namespace PlateformSurvivor.Service
 
             if (waves[waveIndex].isBossWave)
             {
-                Instantiate(waves[waveIndex].enemy[0], GenerateRandomSpawn(), Quaternion.identity, transform);
+                Instantiate(waves[waveIndex].enemy[0], BossPos, Quaternion.identity, transform);
             }
 
             yield return new WaitForSeconds(waves[waveIndex].spawnRate);

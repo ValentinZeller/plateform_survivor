@@ -26,7 +26,7 @@ namespace PlateformSurvivor.Player
 
         private void Start()
         {
-            EventManager.AddListener("update_hp",UpdateHealth);
+            EventManager.AddListener("update_health",UpdateHealth);
             EventManager.AddListener("update_coin",UpdateCoin);
             EventManager.AddListener("update_kill", UpdateKill);
             EventManager.AddListener("update_xp",UpdateXP);

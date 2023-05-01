@@ -81,5 +81,10 @@ namespace PlateformSurvivor.Menu
         {
             LoadStage(stageToggleGroup.GetFirstActiveToggle().name);
         }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }
