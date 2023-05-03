@@ -13,10 +13,29 @@ MonoBehaviour:
   m_Name: DoubleJump
   m_EditorClassIdentifier: 
   abilityName: DoubleJump
-  abilityDisplayName: Double Jump
-  abilityDescription: 
+  abilityDisplayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:c1ffb07d66ea3db4ab25e8e54d7c5c60
+    m_TableEntryReference:
+      m_KeyId: 340727394304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  abilityDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   isActive: 1
   maxLevel: 8
   percent: 0
   evolution: {fileID: 11400000, guid: 70eda91cb2489064eb3f2881dd0ecdb8, type: 2}
   sprite: {fileID: 3625043607559282579, guid: f8fd7029bda37074a86c8bc243a0d51d, type: 3}
+  references:
+    version: 2
+    RefIds: []

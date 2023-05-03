@@ -29,7 +29,7 @@ namespace PlateformSurvivor.Menu
                 {
                     GameObject instance = Instantiate(togglePrefab, stageToggleGroup.transform);
                     instance.name = stage.name;
-                    instance.GetComponentInChildren<Text>().text = stage.displayName;
+                    instance.GetComponentInChildren<Text>().text = stage.displayName.GetLocalizedString();
                     instance.GetComponent<Toggle>().group = stageToggleGroup;
                     instance.GetComponent<Toggle>().onValueChanged.AddListener(delegate { SelectStage(); });   
                 }
@@ -72,7 +72,7 @@ namespace PlateformSurvivor.Menu
             {
                 string stageName = stageToggleGroup.GetFirstActiveToggle().name;
                 StageObject stageObject = stages.Find(s => s.name == stageName);
-                descText.text = stageObject.description;
+                descText.text = stageObject.description.GetLocalizedString();
                 startStageButton.interactable = true;
             }
         }

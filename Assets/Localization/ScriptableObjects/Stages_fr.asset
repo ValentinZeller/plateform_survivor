@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Stages_fr
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: b1780d1d80a35fc4c9059a13fe62e3b4, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 29203853312
+    m_Localized: Plaine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70312226816
+    m_Localized: Paisible plaine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 214336237568
+    m_Localized: "D\xE9sert"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 247613845504
+    m_Localized: "Dangereux d\xE9sert"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

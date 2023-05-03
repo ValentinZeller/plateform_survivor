@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: PlayerStats Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: PlayerStats
+  m_TableCollectionNameGuidString: c7480923b9f2b194e9abcd880a9f8c09
+  m_Entries:
+  - m_Id: 24627867648
+    m_Key: HEALTH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56672350208
+    m_Key: JUMPFORCE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 129519022080
+    m_Key: SPEED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161760636928
+    m_Key: STRENGTH
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8270346223795830811
+  references:
+    version: 2
+    RefIds:
+    - rid: 8270346223795830811
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1683125366579

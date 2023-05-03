@@ -13,10 +13,29 @@ MonoBehaviour:
   m_Name: JumpForce
   m_EditorClassIdentifier: 
   abilityName: JumpForce
-  abilityDisplayName: Jump Force
-  abilityDescription: 
+  abilityDisplayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:c1ffb07d66ea3db4ab25e8e54d7c5c60
+    m_TableEntryReference:
+      m_KeyId: 523976536064
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  abilityDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   isActive: 0
   maxLevel: 5
   percent: 0.03
   evolution: {fileID: 11400000, guid: 70eda91cb2489064eb3f2881dd0ecdb8, type: 2}
   sprite: {fileID: -2135585597343286014, guid: 9d67124996f896c4f9e21a7fdbf013d9, type: 3}
+  references:
+    version: 2
+    RefIds: []

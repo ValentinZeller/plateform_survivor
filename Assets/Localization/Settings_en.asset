@@ -30,10 +30,6 @@ MonoBehaviour:
     m_Localized: Right
     m_Metadata:
       m_Items: []
-  - m_Id: 701064245248
-    m_Localized: Dash
-    m_Metadata:
-      m_Items: []
   references:
     version: 2
     RefIds: []

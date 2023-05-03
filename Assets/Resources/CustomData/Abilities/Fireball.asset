@@ -13,10 +13,29 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   abilityName: Fireball
-  abilityDisplayName: Fireball
-  abilityDescription: 
+  abilityDisplayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:c1ffb07d66ea3db4ab25e8e54d7c5c60
+    m_TableEntryReference:
+      m_KeyId: 401725157376
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  abilityDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   isActive: 1
   maxLevel: 8
   percent: 0
   evolution: {fileID: 0}
   sprite: {fileID: -9095717837082945937, guid: 7e8cba434b859934ab191f927b86dd71, type: 3}
+  references:
+    version: 2
+    RefIds: []

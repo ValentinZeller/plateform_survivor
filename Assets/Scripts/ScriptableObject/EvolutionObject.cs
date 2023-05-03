@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace ScriptableObject
 {
@@ -10,7 +11,7 @@ namespace ScriptableObject
         public AbilityObject passive;
         public bool maxPassive;
         public string evolutionName;
-        public string displayName;
+        public LocalizedString displayName;
         public Sprite sprite;
     }
 }

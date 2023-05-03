@@ -29,6 +29,48 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Preload
+  - m_GUID: f10a101ee11851a45b4de10894a232a7
+    m_Address: Achievements_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 45690f74c846fe44db1eae402a5f0c6d
+    m_Address: Abilities_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 969da45a61ce42a409889950d28cc62c
+    m_Address: Evolutions_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 7b1b860cb1e26c04681f83ef66b089e0
+    m_Address: Stages_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 9f9549e5f59104945bb205f5b8d5f2d2
+    m_Address: PlayerStats_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 5ed0164bc23dd384c8e075db4eb29ee7
+    m_Address: Characters_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 0683664c0f18bbd49bfc3ec4c5a3ad67
+    m_Address: Game_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: f90895da0cbda764eb49e547ce862d28, type: 2}
   m_SchemaSet:

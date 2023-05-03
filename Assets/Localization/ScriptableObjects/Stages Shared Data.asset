@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Stages Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Stages
+  m_TableCollectionNameGuidString: b1780d1d80a35fc4c9059a13fe62e3b4
+  m_Entries:
+  - m_Id: 29203853312
+    m_Key: STAGE1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70312226816
+    m_Key: STAGE1_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 214336237568
+    m_Key: STAGE2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 247613845504
+    m_Key: STAGE2_DESC
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8270346223795830806
+  references:
+    version: 2
+    RefIds:
+    - rid: 8270346223795830806
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1683124905254

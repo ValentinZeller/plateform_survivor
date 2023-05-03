@@ -121,7 +121,7 @@ namespace PlateformSurvivor.Menu
 
                         Instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { UpgradeOnClick(randomUnlock, randomActive); });
                 
-                        string randomUnlocktext = randomAbilities[i].abilityDisplayName;
+                        string randomUnlocktext = randomAbilities[i].abilityDisplayName.GetLocalizedString();
                         // Increment level value
                         if (Instance.abilitiesUnlocked[randomAbilities[i].isActive].ContainsKey(randomUnlock))
                         {

@@ -83,7 +83,7 @@ namespace PlateformSurvivor.Menu
             {
                 string nameSelected = characterToggleGroup.GetFirstActiveToggle().name;
                 CharacterObject characterObject = characters.Find(c => c.name == nameSelected);
-                descText.text = characterObject.description;
+                descText.text = characterObject.description.GetLocalizedString();
                 priceText.text = characterObject.price.ToString();
                 
                 if (characterObject.price == 0 || persistentDataManager.charactersBought.Contains(nameSelected))

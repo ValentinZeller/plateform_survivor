@@ -3636,6 +3636,18 @@ MonoBehaviour:
   togglePrefab: {fileID: 7849061835523977804, guid: 1fb6b4e520b013142b92e55346c2ddbb, type: 3}
   descriptionText: {fileID: 1588256682}
   persistentDataManager: {fileID: 2030511835}
+  unlocked:
+    m_TableReference:
+      m_TableCollectionName: GUID:cb63f7d12a9dd6e4d993853b7431dbbf
+    m_TableEntryReference:
+      m_KeyId: 6663443542016
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &819150602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6524,6 +6536,14 @@ PrefabInstance:
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 819150602}
+    - target: {fileID: 137743879, guid: 8e869c3698ca9f945babdbdb2510f98a, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 38745894912
+      objectReference: {fileID: 0}
+    - target: {fileID: 137743879, guid: 8e869c3698ca9f945babdbdb2510f98a, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:c1ffb07d66ea3db4ab25e8e54d7c5c60
+      objectReference: {fileID: 0}
     - target: {fileID: 723004726, guid: 8e869c3698ca9f945babdbdb2510f98a, type: 3}
       propertyPath: playerInput
       value: 

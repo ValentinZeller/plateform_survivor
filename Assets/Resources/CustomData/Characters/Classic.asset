@@ -20,4 +20,15 @@ MonoBehaviour:
   price: 0
   displayName: Classic
   displayOrder: 0
-  description: Jump high
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:dd64a661d57e3cb44972d49c691c6d4b
+    m_TableEntryReference:
+      m_KeyId: 6017740800
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

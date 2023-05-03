@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace ScriptableObject
 {
@@ -17,7 +18,7 @@ namespace ScriptableObject
         public int price;
         public string displayName;
         public int displayOrder;
-        public string description;
+        public LocalizedString description;
 
         public float this[int key]
         {

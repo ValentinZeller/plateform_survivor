@@ -4,6 +4,7 @@ using System.Linq;
 using ScriptableObject;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 namespace PlateformSurvivor.Menu
@@ -14,6 +15,7 @@ namespace PlateformSurvivor.Menu
         [SerializeField] private GameObject togglePrefab;
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private PersistentDataManager persistentDataManager;
+        [SerializeField] private LocalizedString unlocked;
 
         private List<AchievementObject> achievements = new();
 
@@ -26,7 +28,7 @@ namespace PlateformSurvivor.Menu
             {
                 GameObject instance = Instantiate(togglePrefab, achievementToggleGroup.transform);
                 instance.name = achievement.name;
-                instance.GetComponentInChildren<Text>().text = achievement.displayName;
+                instance.GetComponentInChildren<Text>().text = achievement.displayName.GetLocalizedString();
                 instance.GetComponent<Toggle>().group = achievementToggleGroup;
                 instance.GetComponent<Toggle>().onValueChanged.AddListener(delegate { UpdateDesc(); });
             }
@@ -46,10 +48,10 @@ namespace PlateformSurvivor.Menu
         {
             string achievement = achievementToggleGroup.GetFirstActiveToggle().name;
             AchievementObject achievementObject = achievements.Find(a => a.name == achievement);
-            descriptionText.text = achievementObject.description;
+            descriptionText.text = achievementObject.description.GetLocalizedString();
             if (persistentDataManager.achievementsUnlocked.Contains(achievementObject.name))
             {
-                descriptionText.text += "Unlocked";
+                descriptionText.text += " - " + unlocked.GetLocalizedString();
             }
         }
     }

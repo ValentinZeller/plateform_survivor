@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace ScriptableObject
 {
@@ -6,8 +7,8 @@ namespace ScriptableObject
     public class AbilityObject : UnityEngine.ScriptableObject
     {
         public string abilityName;
-        public string abilityDisplayName;
-        public string abilityDescription;
+        public LocalizedString abilityDisplayName;
+        public LocalizedString abilityDescription;
         public bool isActive;
         public int maxLevel;
         public float percent;

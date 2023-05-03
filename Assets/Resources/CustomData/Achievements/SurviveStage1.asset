@@ -12,6 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3041b26f7f4682a1620121f4ad5029, type: 3}
   m_Name: SurviveStage1
   m_EditorClassIdentifier: 
-  displayName: Survive Stage 1
-  description: Survive waves in the first stage
+  displayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:cb63f7d12a9dd6e4d993853b7431dbbf
+    m_TableEntryReference:
+      m_KeyId: 671569899520
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:cb63f7d12a9dd6e4d993853b7431dbbf
+    m_TableEntryReference:
+      m_KeyId: 787768897536
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   displayOrder: 2
+  references:
+    version: 2
+    RefIds: []

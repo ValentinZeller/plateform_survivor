@@ -16,5 +16,16 @@ MonoBehaviour:
   passive: {fileID: 11400000, guid: 9b285efa6f48db249b7ff8c29e23e912, type: 2}
   maxPassive: 0
   evolutionName: Phasing
-  displayName: Phasing
+  displayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:82b330d862986e041b8beb3a7031196c
+    m_TableEntryReference:
+      m_KeyId: 93452201984
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sprite: {fileID: 7482667652216324306, guid: b432ff25358b2cf438443910780f3b1e, type: 3}
+  references:
+    version: 2
+    RefIds: []

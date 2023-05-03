@@ -25,6 +25,34 @@ MonoBehaviour:
     m_Address: Assets/Localization/Settings Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: cb63f7d12a9dd6e4d993853b7431dbbf
+    m_Address: Assets/Localization/ScriptableObjects/Achievements Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: c1ffb07d66ea3db4ab25e8e54d7c5c60
+    m_Address: Assets/Localization/ScriptableObjects/Abilities Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 82b330d862986e041b8beb3a7031196c
+    m_Address: Assets/Localization/ScriptableObjects/Evolutions Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: b1780d1d80a35fc4c9059a13fe62e3b4
+    m_Address: Assets/Localization/ScriptableObjects/Stages Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: c7480923b9f2b194e9abcd880a9f8c09
+    m_Address: Assets/Localization/ScriptableObjects/PlayerStats Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: dd64a661d57e3cb44972d49c691c6d4b
+    m_Address: Assets/Localization/ScriptableObjects/Characters Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: fe90e878b0125ad4db68797eed28f4ea
+    m_Address: Assets/Localization/Game Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: f90895da0cbda764eb49e547ce862d28, type: 2}
   m_SchemaSet:

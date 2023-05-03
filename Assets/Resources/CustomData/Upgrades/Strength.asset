@@ -13,7 +13,27 @@ MonoBehaviour:
   m_Name: Strength
   m_EditorClassIdentifier: 
   upgradeName: Strength
-  upgradeDesc: 
+  displayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:c7480923b9f2b194e9abcd880a9f8c09
+    m_TableEntryReference:
+      m_KeyId: 161760636928
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  upgradeDesc:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   maxLevel: 5
   basePrice: 5
   percentEffect: 0.05
+  references:
+    version: 2
+    RefIds: []

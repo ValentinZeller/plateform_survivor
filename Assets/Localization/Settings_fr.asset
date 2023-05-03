@@ -30,10 +30,6 @@ MonoBehaviour:
     m_Localized: Droite
     m_Metadata:
       m_Items: []
-  - m_Id: 701064245248
-    m_Localized: "\xC9lan"
-    m_Metadata:
-      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -12,6 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3041b26f7f4682a1620121f4ad5029, type: 3}
   m_Name: Killer1
   m_EditorClassIdentifier: 
-  displayName: Killer 1
-  description: Kill 20 enemies
+  displayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:cb63f7d12a9dd6e4d993853b7431dbbf
+    m_TableEntryReference:
+      m_KeyId: 439775883264
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:cb63f7d12a9dd6e4d993853b7431dbbf
+    m_TableEntryReference:
+      m_KeyId: 521787109376
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   displayOrder: 1
+  references:
+    version: 2
+    RefIds: []

@@ -13,10 +13,29 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   abilityName: Dash
-  abilityDisplayName: Dash
-  abilityDescription: 
+  abilityDisplayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:c1ffb07d66ea3db4ab25e8e54d7c5c60
+    m_TableEntryReference:
+      m_KeyId: 38745894912
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  abilityDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   isActive: 1
   maxLevel: 8
   percent: 0
   evolution: {fileID: 11400000, guid: afbe31a28d7d01a4495508ae7d9063e5, type: 2}
   sprite: {fileID: 7482667652216324306, guid: b432ff25358b2cf438443910780f3b1e, type: 3}
+  references:
+    version: 2
+    RefIds: []

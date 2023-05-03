@@ -13,10 +13,29 @@ MonoBehaviour:
   m_Name: Health
   m_EditorClassIdentifier: 
   abilityName: Health
-  abilityDisplayName: Health
-  abilityDescription: 
+  abilityDisplayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:c1ffb07d66ea3db4ab25e8e54d7c5c60
+    m_TableEntryReference:
+      m_KeyId: 441625571328
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  abilityDescription:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   isActive: 0
   maxLevel: 5
   percent: 0.05
   evolution: {fileID: 0}
   sprite: {fileID: -2413806693520163455, guid: 6c0551c81d4e7df4b9ce6f2e920a934a, type: 3}
+  references:
+    version: 2
+    RefIds: []

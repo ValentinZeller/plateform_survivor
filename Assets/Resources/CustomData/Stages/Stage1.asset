@@ -12,8 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38d127544e84038bec4346acd4be602, type: 3}
   m_Name: Stage1
   m_EditorClassIdentifier: 
-  displayName: Plain
-  description: Peaceful plain
+  displayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:b1780d1d80a35fc4c9059a13fe62e3b4
+    m_TableEntryReference:
+      m_KeyId: 29203853312
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:b1780d1d80a35fc4c9059a13fe62e3b4
+    m_TableEntryReference:
+      m_KeyId: 70312226816
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   displayOrder: 0
   waves:
   - {fileID: 11400000, guid: 68ce78dddd13afe41aa339fc8a11e74f, type: 2}
@@ -24,3 +40,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d713d8ca620c76a4fa115b2a84582e07, type: 2}
   - {fileID: 11400000, guid: bc999c4b54879f3489ec712e898140b0, type: 2}
   waveDurationSecond: 60
+  references:
+    version: 2
+    RefIds: []

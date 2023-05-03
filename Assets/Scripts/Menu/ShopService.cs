@@ -28,10 +28,11 @@ namespace PlateformSurvivor.Menu
             {
                 GameObject instance = Instantiate(togglePrefab, buyToggleGroup.transform);
                 instance.name = upgrade.Key;
-                instance.GetComponentInChildren<Text>().text = upgrade.Key;
                 instance.GetComponent<Toggle>().group = buyToggleGroup;
                 instance.GetComponent<Toggle>().onValueChanged.AddListener(delegate { ActiveBuy(); });
-                upgradeObjects.Add(Resources.Load<UpgradeObject>("CustomData/Upgrades/" + upgrade.Key));
+                UpgradeObject upgradeObject = Resources.Load<UpgradeObject>("CustomData/Upgrades/" + upgrade.Key);
+                instance.GetComponentInChildren<Text>().text = upgradeObject.displayName.GetLocalizedString();
+                upgradeObjects.Add(upgradeObject);
             }
         }
         private void Update()

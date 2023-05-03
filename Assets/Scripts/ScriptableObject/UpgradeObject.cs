@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace ScriptableObject
 {
@@ -6,7 +7,8 @@ namespace ScriptableObject
     public class UpgradeObject : UnityEngine.ScriptableObject
     {
         public string upgradeName;
-        public string upgradeDesc;
+        public LocalizedString displayName;
+        public LocalizedString upgradeDesc;
         public int maxLevel;
         public int basePrice;
         public float percentEffect;

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Abilities Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Abilities
+  m_TableCollectionNameGuidString: c1ffb07d66ea3db4ab25e8e54d7c5c60
+  m_Entries:
+  - m_Id: 38745894912
+    m_Key: DASH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340727394304
+    m_Key: DOUBLEJUMP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 401725157376
+    m_Key: FIREBALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 441625571328
+    m_Key: HEALTH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 523976536064
+    m_Key: JUMPFORCE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 587209863168
+    m_Key: SPEED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 626841841664
+    m_Key: STRENGTH
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8270346223795830796
+  references:
+    version: 2
+    RefIds:
+    - rid: 8270346223795830796
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1683124123623
