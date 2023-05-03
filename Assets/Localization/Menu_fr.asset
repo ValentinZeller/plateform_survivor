@@ -38,6 +38,26 @@ MonoBehaviour:
     m_Localized: Quitter
     m_Metadata:
       m_Items: []
+  - m_Id: 2921111837700096
+    m_Localized: Choisir le Personnage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2922120609755136
+    m_Localized: Retour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2922707434827776
+    m_Localized: Rembourser
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2923129885126656
+    m_Localized: Acheter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2923530965446656
+    m_Localized: Choisir le Niveau
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

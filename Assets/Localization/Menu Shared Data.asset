@@ -35,6 +35,26 @@ MonoBehaviour:
     m_Key: QUIT
     m_Metadata:
       m_Items: []
+  - m_Id: 2921111837700096
+    m_Key: CHOOSE_CHARACTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2922120609755136
+    m_Key: BACK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2922707434827776
+    m_Key: REFUND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2923129885126656
+    m_Key: BUY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2923530965446656
+    m_Key: CHOOSE_STAGE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
