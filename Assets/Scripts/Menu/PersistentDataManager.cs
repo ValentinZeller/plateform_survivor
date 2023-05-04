@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using PlateformSurvivor.Save;
 using ScriptableObject;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 namespace PlateformSurvivor.Menu
 {
@@ -34,6 +36,14 @@ namespace PlateformSurvivor.Menu
             }
 
             DontDestroyOnLoad(gameObject);
+        }
+
+        private IEnumerator Start()
+        {
+            yield return LocalizationSettings.InitializationOperation;
+
+            LocalizationSettings.SelectedLocale =
+                LocalizationSettings.AvailableLocales.Locales[PlayerPrefs.GetInt("LanguageIndex")];
         }
 
         private void OnApplicationQuit()

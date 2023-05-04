@@ -20,4 +20,15 @@ MonoBehaviour:
   price: 5
   displayName: Speedy
   displayOrder: 1
-  description: Move fast
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:dd64a661d57e3cb44972d49c691c6d4b
+    m_TableEntryReference:
+      m_KeyId: 57360216064
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
