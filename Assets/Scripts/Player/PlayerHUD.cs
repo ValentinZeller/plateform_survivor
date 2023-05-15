@@ -39,7 +39,7 @@ namespace PlateformSurvivor.Player
         
         private void Update()
         {
-            timer.text = DisplayTime();
+            timer.text = DisplayTime(stat.GetTime());
         }
 
         private void UpdateHealth()
@@ -63,11 +63,11 @@ namespace PlateformSurvivor.Player
             playerLvl.text = level.GetLvl().ToString();
         }
 
-        private string DisplayTime()
+        public static string DisplayTime(float time)
         {
             string text = "0 : 00";
-            string minute = Mathf.FloorToInt(stat.GetTime() / 60).ToString();
-            string second = Mathf.FloorToInt(stat.GetTime() % 60).ToString();
+            string minute = Mathf.FloorToInt(time / 60).ToString();
+            string second = Mathf.FloorToInt(time % 60).ToString();
             if (second.Length == 1)
             {
                 second = "0" + second;

@@ -58,6 +58,10 @@ MonoBehaviour:
     m_Localized: Choose Stage
     m_Metadata:
       m_Items: []
+  - m_Id: 7269383211036672
+    m_Localized: Results
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

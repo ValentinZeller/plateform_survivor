@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace PlateformSurvivor.Menu {
     public class LanguageDropdown : MonoBehaviour
     {
-        public Dropdown dropdown;
+        [SerializeField] private Dropdown dropdown;
 
         IEnumerator Start()
         {

@@ -3977,11 +3977,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 379463061003488558, guid: 84a12099a800e7e4ab150798168f93a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToMenu
+      value: DisplayResults
       objectReference: {fileID: 0}
     - target: {fileID: 379463061003488558, guid: 84a12099a800e7e4ab150798168f93a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeathService, Assembly-CSharp
+      value: PlateformSurvivor.Service.DeathService, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 379463061003488558, guid: 84a12099a800e7e4ab150798168f93a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
