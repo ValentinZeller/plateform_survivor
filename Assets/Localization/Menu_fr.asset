@@ -62,6 +62,22 @@ MonoBehaviour:
     m_Localized: Resultats
     m_Metadata:
       m_Items: []
+  - m_Id: 7618268290854912
+    m_Localized: 'Survit :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618417658408960
+    m_Localized: "Gagn\xE9 :"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618496318386176
+    m_Localized: 'Atteint le niveau :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618612500606976
+    m_Localized: "Tu\xE9 :"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

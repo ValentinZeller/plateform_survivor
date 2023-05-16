@@ -59,6 +59,22 @@ MonoBehaviour:
     m_Key: RESULTS
     m_Metadata:
       m_Items: []
+  - m_Id: 7618268290854912
+    m_Key: SURVIVED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618417658408960
+    m_Key: EARNED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618496318386176
+    m_Key: REACHED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618612500606976
+    m_Key: KILLED
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

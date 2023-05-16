@@ -62,6 +62,22 @@ MonoBehaviour:
     m_Localized: Results
     m_Metadata:
       m_Items: []
+  - m_Id: 7618268290854912
+    m_Localized: 'Survived :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618417658408960
+    m_Localized: 'Earned :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618496318386176
+    m_Localized: 'Reached level :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618612500606976
+    m_Localized: Killed
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
