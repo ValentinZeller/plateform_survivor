@@ -83,6 +83,8 @@ namespace PlateformSurvivor.Player.Ability
 
                     Vector2 direction = new Vector2(collision.transform.position.x - transform.position.x, 0);
                     enemyRb.AddForce(direction * knockback);
+
+                    EventManager.Trigger("damage_done", new TypedDamage("Dash", stat.currentStats["Strength"]));
                     StartCoroutine(ResetKnockback(enemyBehavior));
                 }
             }

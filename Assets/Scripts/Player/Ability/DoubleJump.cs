@@ -50,6 +50,8 @@ namespace PlateformSurvivor.Player.Ability
             {
                 EventManager.Trigger("regen_health", 2f);
             }
+            
+            EventManager.Trigger("damage_done", new TypedDamage("DoubleJump", stat.currentStats["Strength"]));
         }
 
         private void OnAddDoubleJump(object data)

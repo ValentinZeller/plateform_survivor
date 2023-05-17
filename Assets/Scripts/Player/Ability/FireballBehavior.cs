@@ -32,6 +32,7 @@ namespace PlateformSurvivor.Player.Ability
             if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 collision.gameObject.GetComponent<IDamageable>().Damage(strength);
+                EventManager.Trigger("damage_done", new TypedDamage("Fireball", strength));
                 Explode();
             }
             

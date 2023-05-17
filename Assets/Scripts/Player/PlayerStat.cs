@@ -5,6 +5,7 @@ using PlateformSurvivor.Service;
 using ScriptableObject;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization.SmartFormat.Utilities;
 
 namespace PlateformSurvivor.Player
 {
@@ -25,6 +26,7 @@ namespace PlateformSurvivor.Player
         private const int HealthAchievement = 3;
         private const int SurviveAchievement = 300;
         
+        public Dictionary<string, float> damageDone = new();
         public Dictionary<string, float> currentStats = new();
 
         private void Awake()
@@ -46,6 +48,7 @@ namespace PlateformSurvivor.Player
             EventManager.AddListener("enemy_killed", OnKill);
             EventManager.AddListener("got_health", HealthPicked);
             EventManager.AddListener("got_chest", ChestPicked);
+            EventManager.AddListener("damage_done", DamageDone);
         }
 
         private void InitStat()
@@ -136,6 +139,19 @@ namespace PlateformSurvivor.Player
                 health = currentStats["Health"];
             }
             EventManager.Trigger("update_health");
+        }
+
+        private void DamageDone(object data)
+        {
+            TypedDamage damage = (TypedDamage)data;
+            if (damageDone.ContainsKey(damage.type))
+            {
+                damageDone[damage.type] += damage.value;
+            }
+            else
+            {
+                damageDone.Add(damage.type, damage.value);
+            }
         }
         
         public float GetHealth()

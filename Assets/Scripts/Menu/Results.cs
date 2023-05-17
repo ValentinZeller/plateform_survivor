@@ -3,6 +3,7 @@ using PlateformSurvivor.Player;
 using ScriptableObject;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.UI;
 
 namespace PlateformSurvivor.Menu
@@ -23,6 +24,8 @@ namespace PlateformSurvivor.Menu
         
         [SerializeField] private Transform abilities;
         [SerializeField] private GameObject slot;
+        [SerializeField] private Transform damage;
+        [SerializeField] private GameObject typedDamage;
 
         private void Awake()
         {
@@ -42,22 +45,42 @@ namespace PlateformSurvivor.Menu
             
             foreach (var (isActive, dictionary) in UnlockService.AbilitiesUnlocked)
             {
-                int index = 0;
-                foreach (var name in dictionary.Keys)
+                foreach (var ability in dictionary)
                 {
                     Sprite abilitySprite;
-                    if (Resources.Load<AbilityObject>("CustomData/Abilities/"+name))
+                    if (Resources.Load<AbilityObject>("CustomData/Abilities/"+ability.Key))
                     {
-                        abilitySprite = Resources.Load<AbilityObject>("CustomData/Abilities/"+name).sprite;
+                        abilitySprite = Resources.Load<AbilityObject>("CustomData/Abilities/"+ability.Key).sprite;
                     }
                     else
                     {
-                        abilitySprite = Resources.Load<EvolutionObject>("CustomData/Evolutions/"+name).sprite;
+                        abilitySprite = Resources.Load<EvolutionObject>("CustomData/Evolutions/"+ability.Key).sprite;
                     }
 
                     GameObject icon = Instantiate(slot, abilities);
-                    icon.GetComponent<Image>().sprite = abilitySprite;
-                    index++;
+                    icon.transform.GetChild(0).GetComponent<Image>().sprite = abilitySprite;
+                    
+                    GameObject abilityLvl = new GameObject();
+                    abilityLvl.transform.parent = icon.transform;
+                    abilityLvl.transform.localPosition = new Vector3(0, -15, 0);
+                    
+                    
+                    TextMeshProUGUI abilityLvlText = abilityLvl.AddComponent<TextMeshProUGUI>();
+                    abilityLvlText.text = ability.Value.ToString();
+                    abilityLvlText.fontSize = 18;
+                    abilityLvlText.alignment = TextAlignmentOptions.Top;
+                    
+                    abilityLvl.GetComponent<RectTransform>().sizeDelta = new Vector2(5, 5);
+
+                    if (isActive)
+                    {
+                        GameObject typed = Instantiate(typedDamage, damage);
+                        typed.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ability.Key;
+                        float damageValue = playerStat.damageDone.ContainsKey(ability.Key)
+                            ? playerStat.damageDone[ability.Key]
+                            : 0;
+                        typed.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = damageValue.ToString();
+                    }
                 }
             }
         }
