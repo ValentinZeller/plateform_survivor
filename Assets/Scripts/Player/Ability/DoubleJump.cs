@@ -49,9 +49,14 @@ namespace PlateformSurvivor.Player.Ability
             if (IsEvolved)
             {
                 EventManager.Trigger("regen_health", 2f);
+                EventManager.Trigger("damage_done", new TypedDamage("HealingJump", stat.currentStats["Strength"]));
+            }
+            else
+            {
+                EventManager.Trigger("damage_done", new TypedDamage("DoubleJump", stat.currentStats["Strength"]));
             }
             
-            EventManager.Trigger("damage_done", new TypedDamage("DoubleJump", stat.currentStats["Strength"]));
+            
         }
 
         private void OnAddDoubleJump(object data)

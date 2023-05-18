@@ -71,17 +71,14 @@ namespace PlateformSurvivor.Menu
                     abilityLvlText.alignment = TextAlignmentOptions.Top;
                     
                     abilityLvl.GetComponent<RectTransform>().sizeDelta = new Vector2(5, 5);
-
-                    if (isActive)
-                    {
-                        GameObject typed = Instantiate(typedDamage, damage);
-                        typed.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ability.Key;
-                        float damageValue = playerStat.damageDone.ContainsKey(ability.Key)
-                            ? playerStat.damageDone[ability.Key]
-                            : 0;
-                        typed.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = damageValue.ToString();
-                    }
                 }
+            }
+
+            foreach (var damageSource in playerStat.damageDone)
+            {
+                GameObject typed = Instantiate(typedDamage, damage);
+                typed.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = damageSource.Key;
+                typed.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = damageSource.Value.ToString();
             }
         }
     }
