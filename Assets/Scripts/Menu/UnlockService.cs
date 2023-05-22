@@ -208,6 +208,7 @@ namespace PlateformSurvivor.Menu
                     Instance.abilitiesUnlocked[true].Remove(Instance.evolutionReady[0]);
                     Instance.abilitiesUnlocked[true].Add(evolution.evolutionName, 1);
                     Instance.evolutionReady.RemoveAt(0);
+                    EventManager.Trigger("open_chest", evolution.evolutionName);
                 }
                 else if (abilitiesName.Count > i)
                 {
@@ -220,6 +221,7 @@ namespace PlateformSurvivor.Menu
                     AbilityObject random = Instance.GetAbilityListByName(randomName).Find(a => a.abilityName == randomName);
                     UnlockAbility(random);
                     randomPicked.Add(random);
+                    EventManager.Trigger("open_chest", random);
                 }
                 else
                 {
@@ -233,7 +235,7 @@ namespace PlateformSurvivor.Menu
             }
             EventManager.Trigger("update_abilities");
         }
-
+        
         private static void CheckEvolution(AbilityObject ability)
         {
             if (ability.evolution == null) return;

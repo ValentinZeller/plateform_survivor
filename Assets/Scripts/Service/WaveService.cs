@@ -11,7 +11,7 @@ namespace PlateformSurvivor.Service
         [SerializeField] private List<WaveObject> waves;
         [SerializeField] private Transform player;
         private const float MaxEnemies = 40;
-        private const int playerRadius = 8;
+        private const int PlayerRadius = 8;
         
         private const float MinX = -35;
         private const float MaxX = 31;
@@ -58,7 +58,7 @@ namespace PlateformSurvivor.Service
                 float randomSpawnX = Random.Range(MinX, MaxX);
                 float randomSpawnY = Random.Range(MinY, MaxY);
                 randomSpawn = new Vector3(randomSpawnX, randomSpawnY, 0);
-            } while (Physics.OverlapSphere(randomSpawn, 2).Length > 0 || Vector3.Distance(randomSpawn, player.position) < playerRadius);
+            } while (Physics.OverlapSphere(randomSpawn, 2).Length > 0 || Vector3.Distance(randomSpawn, player.position) < PlayerRadius);
 
             return randomSpawn;
         }

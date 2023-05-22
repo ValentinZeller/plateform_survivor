@@ -76,6 +76,21 @@ namespace PlateformSurvivor.Player
             return text;
         }
 
+        public static Sprite GetAbilitySprite(string name)
+        {
+            Sprite abilitySprite;
+            if (Resources.Load<AbilityObject>("CustomData/Abilities/"+name))
+            {
+                abilitySprite = Resources.Load<AbilityObject>("CustomData/Abilities/"+name).sprite;
+            }
+            else
+            {
+                abilitySprite = Resources.Load<EvolutionObject>("CustomData/Evolutions/"+name).sprite;
+            }
+
+            return abilitySprite;
+        }
+
         private void UpdateAbilities()
         {
             foreach (var (isActive, dictionary) in UnlockService.AbilitiesUnlocked)
@@ -83,15 +98,7 @@ namespace PlateformSurvivor.Player
                 int index = 0;
                 foreach (var name in dictionary.Keys)
                 {
-                    Sprite abilitySprite;
-                    if (Resources.Load<AbilityObject>("CustomData/Abilities/"+name))
-                    {
-                        abilitySprite = Resources.Load<AbilityObject>("CustomData/Abilities/"+name).sprite;
-                    }
-                    else
-                    {
-                        abilitySprite = Resources.Load<EvolutionObject>("CustomData/Evolutions/"+name).sprite;
-                    }
+                    Sprite abilitySprite = GetAbilitySprite(name);
                     abilities.GetChild(Convert.ToInt32(!isActive)).GetChild(index).gameObject.GetComponent<Image>().sprite = abilitySprite;
                     index++;
                 }

@@ -86,6 +86,10 @@ MonoBehaviour:
     m_Localized: "D\xE9gats Totaux"
     m_Metadata:
       m_Items: []
+  - m_Id: 9840851333656576
+    m_Localized: Fermer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

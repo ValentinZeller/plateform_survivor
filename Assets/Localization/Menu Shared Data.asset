@@ -83,6 +83,10 @@ MonoBehaviour:
     m_Key: TOTAL_DAMAGE
     m_Metadata:
       m_Items: []
+  - m_Id: 9840851333656576
+    m_Key: CLOSE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
