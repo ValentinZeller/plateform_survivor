@@ -37,6 +37,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19066c5c773ed6d4fb1a1ca3451eede9, type: 2}
   - {fileID: 11400000, guid: bc999c4b54879f3489ec712e898140b0, type: 2}
   waveDurationSecond: 60
+  timeBeforeEvolveSecond: 120
   references:
     version: 2
     RefIds: []

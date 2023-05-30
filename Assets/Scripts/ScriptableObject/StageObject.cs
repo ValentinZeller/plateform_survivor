@@ -12,5 +12,6 @@ namespace ScriptableObject
         public int displayOrder;
         public List<WaveObject> waves;
         public int waveDurationSecond;
+        public int timeBeforeEvolveSecond;
     }
 }

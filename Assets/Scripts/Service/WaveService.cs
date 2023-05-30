@@ -86,7 +86,11 @@ namespace PlateformSurvivor.Service
             }
 
             yield return new WaitForSeconds(waves[waveIndex].spawnRate);
-            StartCoroutine(nameof(Spawn));
+
+            if (waveIndex < waves.Count)
+            {
+                StartCoroutine(nameof(Spawn));
+            }
         }
     }
 }

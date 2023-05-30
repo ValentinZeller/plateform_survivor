@@ -14,6 +14,24 @@ namespace ScriptableObject
         public float jumpForce;
         public float strength;
         public float health;
+
+        public float regen;
+        public float protection;
+        public float size;
+        public float projectileSpeed;
+        public float duration;
+        public float amount;
+        public float cooldown;
+        
+        public float luck;
+        public float magnet;
+        public float xpRate;
+        public float coinRate;
+
+        public float live;
+        public float skip;
+        public float reroll;
+        public float banish;
         
         public int price;
         public string displayName;
@@ -23,14 +41,14 @@ namespace ScriptableObject
         public float this[int key]
         {
             get {
-                float[] propArray = new float[4] {speed, jumpForce, strength, health};
+                float[] propArray = {speed, jumpForce, strength, health, regen, protection, size, projectileSpeed, duration, amount, cooldown, luck, magnet, xpRate, coinRate, live, skip, reroll, banish};
                 return propArray[key]; 
             }
         }
 
         public static List<string> Keys()
         {
-            return new List<string>() { "Speed", "JumpForce", "Strength", "Health" };
+            return new List<string>() { "Speed", "JumpForce", "Strength", "Health", "Regen", "Protection", "Size", "ProjectileSpeed", "Duration", "Amount", "Cooldown", "Luck", "Magnet", "XpRate", "CoinRate", "Live", "Skip", "Reroll", "Banish" };
         }
     }
 }

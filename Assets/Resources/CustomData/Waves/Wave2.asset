@@ -15,6 +15,8 @@ MonoBehaviour:
   enemy:
   - {fileID: 1991054529647472655, guid: 243549df5cb5474489c2df7afd38a7ab, type: 3}
   - {fileID: 1991054529647472655, guid: f3757e851f83127459679712a1d847c9, type: 3}
+  - {fileID: 7411918496250281848, guid: 32a3b92b705d9a5439e0c084201f9427, type: 3}
+  - {fileID: 2203988136979598961, guid: 83e6e735bca59a64693d63dbdda3a6bd, type: 3}
   minCount: 10
   spawnRate: 0.5
   isBossWave: 0

@@ -19,14 +19,23 @@ namespace PlateformSurvivor.Menu
         [SerializeField] private List<AbilityObject> activeAbilities;
         [SerializeField] private List<AbilityObject> passiveAbilities;
 
-        [SerializeField] private float timeBeforeEvolve = 120;
-
         private const float MaxActive = 6;
         private const float MaxPassive = 6;
+        private const int UnlockCount = 3;
+        private const int NormalChest = 1;
+        private const int EpicChest = 3;
+        private const int LegendaryChest = 5;
+        
+        private const float UnlockThreshold = 0.75f;
+        private const float ChestEpicThreshold = 0.6f;
+        private const float ChestLegendaryThreshold = 0.85f;
 
+        private int currentUnlockCount = 3;
+        private float timeBeforeEvolve = 120;
         private List<string> abilitiesMaxLevel = new();
         private List<string> evolutionReady = new();
         private PersistentDataManager persistentDataManager;
+        private PlayerStat playerStat;
         private static UnlockService Instance { get; set; }
 
         // Stores unlocked ability : [Active | Passive][Ability Name] : level
@@ -38,6 +47,8 @@ namespace PlateformSurvivor.Menu
         {
             Instance = this;
             PersistentInit();
+
+            playerStat = player.GetComponent<PlayerStat>();
 
             EventManager.AddListener("level_up", _OnLevelUp);
             EventManager.AddListener("got_chest", OnChest);
@@ -64,6 +75,8 @@ namespace PlateformSurvivor.Menu
                 {
                     Instance.passiveAbilities.Add(Resources.Load<AbilityObject>("CustomData/Abilities/" + passive));
                 }
+
+                timeBeforeEvolve = persistentDataManager.chosenStage.timeBeforeEvolveSecond;
             }
         }
 
@@ -87,7 +100,16 @@ namespace PlateformSurvivor.Menu
                 abilities.AddRange(Instance.passiveAbilities);
             }
 
-            for (int i = 0; i < Instance.canvas.transform.childCount; i++)
+            if (Random.Range(0, 1) >= UnlockThreshold - playerStat.currentStats["Luck"])
+            {
+                currentUnlockCount = UnlockCount + 1;
+            }
+            else
+            {
+                currentUnlockCount = UnlockCount;
+            }
+
+            for (int i = 0; i < currentUnlockCount; i++)
             {
                 if (abilities.Count == 0)
                 {
@@ -112,7 +134,7 @@ namespace PlateformSurvivor.Menu
                     return;
                 }
 
-                for (int i = 0; i < Instance.canvas.transform.childCount; i++)
+                for (int i = 0; i < Instance.currentUnlockCount; i++)
                 {
                     if (randomAbilities.Count > i)
                     {
@@ -189,18 +211,28 @@ namespace PlateformSurvivor.Menu
                 EventManager.Trigger("update_abilities");
             }
         }
-        
+
         private static void OnChest()
         {
-            int luck = 1; // WIP
+            int luck = NormalChest;
             List<string> abilitiesName = Instance.abilitiesUnlocked[true].Where(a => Instance.activeAbilities.Any(p => p.abilityName == a.Key)).Select(a => a.Key).ToList();
             abilitiesName.AddRange(Instance.abilitiesUnlocked[false].Where(a => Instance.passiveAbilities.Any(p => p.abilityName == a.Key)).Select(a => a.Key).ToList());
 
             List<AbilityObject> randomPicked = new();
-            
+
+            float chestRandomRarity = Random.Range(0, 1);
+
+            if (chestRandomRarity >= ChestLegendaryThreshold - Instance.playerStat.currentStats["Luck"])
+            {
+                luck = LegendaryChest;
+            } else if (chestRandomRarity >= ChestEpicThreshold - Instance.playerStat.currentStats["Luck"])
+            {
+                luck = EpicChest;
+            }
+
             for (int i = 0; i < luck; i++)
             {
-                if (Instance.evolutionReady.Count > 0 && Instance.player.GetComponent<PlayerStat>().GetTime() > Instance.timeBeforeEvolve)
+                if (Instance.evolutionReady.Count > 0 && Instance.playerStat.GetTime() > Instance.timeBeforeEvolve)
                 {
                     EventManager.Trigger("evolution_" + Instance.evolutionReady[0].ToLower());
                     EvolutionObject evolution = Resources
@@ -208,9 +240,9 @@ namespace PlateformSurvivor.Menu
                     Instance.abilitiesUnlocked[true].Remove(Instance.evolutionReady[0]);
                     Instance.abilitiesUnlocked[true].Add(evolution.evolutionName, 1);
                     Instance.evolutionReady.RemoveAt(0);
-                    EventManager.Trigger("open_chest", evolution.evolutionName);
+                    ChestService.AddAbilityDisplay(evolution.evolutionName, evolution.displayName.GetLocalizedString(), 1);
                 }
-                else if (abilitiesName.Count > i)
+                else if (abilitiesName.Count > 0)
                 {
                     string randomName = abilitiesName[Random.Range(0, abilitiesName.Count)];
                     while (Instance.abilitiesMaxLevel.Contains(randomName))
@@ -221,14 +253,14 @@ namespace PlateformSurvivor.Menu
                     AbilityObject random = Instance.GetAbilityListByName(randomName).Find(a => a.abilityName == randomName);
                     UnlockAbility(random);
                     randomPicked.Add(random);
-                    EventManager.Trigger("open_chest", random);
+                    ChestService.AddAbilityDisplay(random.abilityName, random.abilityDisplayName.GetLocalizedString(), Instance.abilitiesUnlocked[random.isActive][random.abilityName]);
                 }
                 else
                 {
                     EventManager.Trigger("got_coins", 10);
                 }
             }
-
+            EventManager.Trigger("open_chest");
             foreach (var ability in randomPicked)
             {
                 CheckEvolution(ability);
