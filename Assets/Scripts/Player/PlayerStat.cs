@@ -107,10 +107,12 @@ namespace PlateformSurvivor.Player
 
         private void GotCoin(object data)
         {
-            currentCoins += (int)data;
+            int coins = (int)data;
+            coins += Mathf.FloorToInt(coins * currentStats["CoinRate"]);
+            currentCoins += coins;
             if (persistentDataManager != null)
             {
-                persistentDataManager.coins++;
+                persistentDataManager.coins += coins;
             }
             EventManager.Trigger("update_coin");
         }
