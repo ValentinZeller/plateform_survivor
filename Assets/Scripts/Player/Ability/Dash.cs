@@ -53,7 +53,7 @@ namespace PlateformSurvivor.Player.Ability
             rb.velocity = new Vector2(transform.localScale.x * dashForce, 0f);
             tr.emitting = true;
 
-            yield return new WaitForSeconds(dashTime);
+            yield return new WaitForSeconds(dashTime + stat.currentStats["Duration"]);
             tr.emitting = false;
             rb.gravityScale = originalGravity;
             isDashing = false;
@@ -62,7 +62,7 @@ namespace PlateformSurvivor.Player.Ability
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"),false);
             }
 
-            yield return new WaitForSeconds(dashCooldown);
+            yield return new WaitForSeconds(dashCooldown - dashCooldown * stat.currentStats["Cooldown"]);
             canDash = true;
         }
 

@@ -7,14 +7,20 @@ namespace PlateformSurvivor.Player.Ability
     {
         [SerializeField] private Rigidbody2D rb;
 
-        private const float Lifespan = 1.5f;
+        private float lifespan = 1.5f;
         private Vector2 velocity;
         private float strength = 1;
 
+        private PlayerStat stat;
+
         private void Start()
         {
-            Destroy(gameObject, Lifespan);
-            velocity = rb.velocity;
+            stat = FindObjectOfType<PlayerStat>();
+            strength = stat.currentStats["Strength"];
+            Destroy(gameObject, lifespan + stat.currentStats["Duration"]);
+            velocity = rb.velocity * stat.currentStats["ProjectileSpeed"];
+
+            transform.localScale += transform.localScale * stat.currentStats["Size"];
         }
         
         private void Update()
@@ -45,11 +51,6 @@ namespace PlateformSurvivor.Player.Ability
         private void Explode()
         {
             Destroy(gameObject);
-        }
-        
-        public void SetStrength(float newValue)
-        {
-            strength = newValue;
         }
     }
 }

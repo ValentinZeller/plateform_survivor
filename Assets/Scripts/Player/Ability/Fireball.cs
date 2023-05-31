@@ -39,13 +39,12 @@ namespace PlateformSurvivor.Player.Ability
         {
             GameObject instance = Instantiate(fireProjectile, (Vector2)transform.position + offset * direction, Quaternion.identity);
             instance.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * direction, velocity.y);
-            instance.GetComponent<FireballBehavior>().SetStrength(stat.currentStats["Strength"] + fireStrength);
         }
 
         private IEnumerator FireAction()
         {
             canFire = false;
-            yield return new WaitForSeconds(fireCooldown);
+            yield return new WaitForSeconds(fireCooldown - fireCooldown * stat.currentStats["Cooldown"]);
             canFire = true;
         }
 
