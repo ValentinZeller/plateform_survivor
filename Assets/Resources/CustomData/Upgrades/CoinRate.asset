@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 602d538b59badf6498879545710f6fbc, type: 3}
-  m_Name: JumpForce
+  m_Name: CoinRate
   m_EditorClassIdentifier: 
-  upgradeName: JumpForce
+  upgradeName: CoinRate
   displayName:
     m_TableReference:
       m_TableCollectionName: GUID:c7480923b9f2b194e9abcd880a9f8c09
     m_TableEntryReference:
-      m_KeyId: 56672350208
+      m_KeyId: 10096031677526016
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -31,9 +31,9 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  maxLevel: 3
+  maxLevel: 5
   basePrice: 5
-  percentEffect: 0.03
+  percentEffect: 0.05
   references:
     version: 2
     RefIds: []

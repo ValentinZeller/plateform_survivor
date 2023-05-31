@@ -20,6 +20,7 @@ namespace PlateformSurvivor.Player
         private int healthPicked;
         private int chestPicked;
         private float timeCount;
+        private float regenTime = 1;
         private Dictionary<string, float> baseStats = new();
 
         private const int EnemyAchievement = 15;
@@ -65,7 +66,14 @@ namespace PlateformSurvivor.Player
                 float bonusStats = 0;
                 if (persistentDataManager != null)
                 {
-                    bonusStats = baseStats[CharacterObject.Keys()[i]] * percent * persistentDataManager.statsUpgrade[CharacterObject.Keys()[i]];
+                    if (CharacterObject.Keys()[i] == "Regen")
+                    {
+                        bonusStats = percent * persistentDataManager.statsUpgrade[CharacterObject.Keys()[i]];
+                    }
+                    else
+                    {
+                        bonusStats = baseStats[CharacterObject.Keys()[i]] * percent * persistentDataManager.statsUpgrade[CharacterObject.Keys()[i]];
+                    }
                 }
                 currentStats.Add(CharacterObject.Keys()[i], baseStats[CharacterObject.Keys()[i]] + bonusStats);
             }
@@ -80,7 +88,12 @@ namespace PlateformSurvivor.Player
                 {
                     persistentDataManager.UnlockAchievement(AchievementKey.SurviveStage1);
                 }
-                
+            }
+
+            if (Time.time >= regenTime && currentStats["Regen"] > 0)
+            {
+                RegenHealth(0f);
+                regenTime++;
             }
         }
 
@@ -133,7 +146,7 @@ namespace PlateformSurvivor.Player
         private void RegenHealth(object data)
         {
             float regen = (float)data;
-            health += regen;
+            health += regen + currentStats["Regen"];
             if (health > currentStats["Health"])
             {
                 health = currentStats["Health"];

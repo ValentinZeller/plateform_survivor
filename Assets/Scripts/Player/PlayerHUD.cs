@@ -44,7 +44,7 @@ namespace PlateformSurvivor.Player
 
         private void UpdateHealth()
         {
-            playerHP.text = stat.GetHealth().ToString();
+            playerHP.text = Math.Truncate(stat.GetHealth()).ToString();
         }
 
         private void UpdateCoin()

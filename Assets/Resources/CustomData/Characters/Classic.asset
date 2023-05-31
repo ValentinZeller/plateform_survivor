@@ -17,6 +17,21 @@ MonoBehaviour:
   jumpForce: 12
   strength: 1
   health: 100
+  regen: 0
+  protection: 0
+  size: 0
+  projectileSpeed: 0
+  duration: 0
+  amount: 0
+  cooldown: 0
+  luck: 0
+  magnet: 0
+  xpRate: 0
+  coinRate: 0
+  live: 0
+  skip: 0
+  reroll: 0
+  banish: 0
   price: 0
   displayName: Classic
   displayOrder: 0

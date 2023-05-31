@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 24627867648
-    m_Localized: Vie
+    m_Localized: "Sant\xE9"
     m_Metadata:
       m_Items: []
   - m_Id: 56672350208
@@ -32,6 +32,66 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 161760636928
     m_Localized: Force
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10094862754361344
+    m_Localized: "R\xE9g\xE9n\xE9ration"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095115746390016
+    m_Localized: Protection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095163469180928
+    m_Localized: Taille
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095204762103808
+    m_Localized: Vitesse Projectile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095328213053440
+    m_Localized: "Dur\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095369111711744
+    m_Localized: "Quantit\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095410253639680
+    m_Localized: Recharge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095582048137216
+    m_Localized: Chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095645067554816
+    m_Localized: Attraction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095744820686848
+    m_Localized: Bonus Xp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096031677526016
+    m_Localized: "Bonus Pi\xE8ce"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096075633831936
+    m_Localized: Vie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096201500700672
+    m_Localized: Passer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096251022848000
+    m_Localized: Relancer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096293741834240
+    m_Localized: Bannir
     m_Metadata:
       m_Items: []
   references:

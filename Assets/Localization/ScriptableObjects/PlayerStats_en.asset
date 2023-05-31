@@ -34,6 +34,66 @@ MonoBehaviour:
     m_Localized: Strength
     m_Metadata:
       m_Items: []
+  - m_Id: 10094862754361344
+    m_Localized: Regen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095115746390016
+    m_Localized: Protection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095163469180928
+    m_Localized: Size
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095204762103808
+    m_Localized: Projectile Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095328213053440
+    m_Localized: Duration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095369111711744
+    m_Localized: Amount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095410253639680
+    m_Localized: Cooldown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095582048137216
+    m_Localized: Luck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095645067554816
+    m_Localized: Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095744820686848
+    m_Localized: XpRate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096031677526016
+    m_Localized: CoinRate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096075633831936
+    m_Localized: Live
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096201500700672
+    m_Localized: Skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096251022848000
+    m_Localized: Reroll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096293741834240
+    m_Localized: Banish
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

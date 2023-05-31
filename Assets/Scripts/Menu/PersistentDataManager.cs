@@ -15,7 +15,7 @@ namespace PlateformSurvivor.Menu
     {
         [HideInInspector] public CharacterObject chosenCharacter;
         public StageObject chosenStage;
-        public Dictionary<string, int> statsUpgrade = new(){{"Health",0},{"Speed",0},{"JumpForce",0},{"Strength",0}};
+        public Dictionary<string, int> statsUpgrade = new();
         public List<string> charactersUnlocked = new(){"Classic","Speedy"};
         public List<string> charactersBought = new();
         public List<string> stagesUnlocked = new(){"Stage1"};
@@ -29,6 +29,10 @@ namespace PlateformSurvivor.Menu
 
         private void Awake()
         {
+            for (int i = 0; i < CharacterObject.Keys().Count; i++)
+            {
+                statsUpgrade.Add(CharacterObject.Keys()[i], 0);
+            }
             if (savePersistentData)
             {
                 LoadPersistentData();
@@ -60,10 +64,12 @@ namespace PlateformSurvivor.Menu
             SaveDataManager.LoadJsonData(data);
             coins = data[0].coins;
             if (data[0].stagesUnlocked.Count == 0){ return; }
-            
-            statsUpgrade.Where(s => data[0].passiveBought.Count(p => p.passive == s.Key) > 0)
-                .ToDictionary(s => s.Key, s => data[0].passiveBought.Where(p => p.passive == s.Key).Select(p => p.level));
-            
+
+            for (int i = 0; i < data[0].passiveBought.Count ; i++)
+            {
+                statsUpgrade[data[0].passiveBought[i].passive] = data[0].passiveBought[i].level;
+            }
+
             ManageListData(data[0].charactersUnlocked, charactersUnlocked);
             ManageListData(data[0].stagesUnlocked, stagesUnlocked);
             ManageListData(data[0].achievementsUnlocked, achievementsUnlocked);

@@ -31,6 +31,66 @@ MonoBehaviour:
     m_Key: STRENGTH
     m_Metadata:
       m_Items: []
+  - m_Id: 10094862754361344
+    m_Key: REGEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095115746390016
+    m_Key: PROTECTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095163469180928
+    m_Key: SIZE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095204762103808
+    m_Key: PROJECTILESPEED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095328213053440
+    m_Key: DURATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095369111711744
+    m_Key: AMOUNT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095410253639680
+    m_Key: COOLDOWN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095582048137216
+    m_Key: LUCK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095645067554816
+    m_Key: MAGNET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10095744820686848
+    m_Key: XPRATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096031677526016
+    m_Key: COINRATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096075633831936
+    m_Key: LIVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096201500700672
+    m_Key: SKIP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096251022848000
+    m_Key: REROLL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10096293741834240
+    m_Key: BANISH
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
