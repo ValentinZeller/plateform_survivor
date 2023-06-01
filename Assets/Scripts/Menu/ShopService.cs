@@ -33,6 +33,11 @@ namespace PlateformSurvivor.Menu
                 UpgradeObject upgradeObject = Resources.Load<UpgradeObject>("CustomData/Upgrades/" + upgrade.Key);
                 instance.GetComponentInChildren<Text>().text = upgradeObject.displayName.GetLocalizedString();
                 upgradeObjects.Add(upgradeObject);
+
+                if (upgrade.Value > 0 && !refundButton.interactable)
+                {
+                    refundButton.interactable = true;
+                }
             }
         }
         private void Update()
