@@ -16,9 +16,9 @@ namespace PlateformSurvivor.Player.Ability
         private void Start()
         {
             stat = FindObjectOfType<PlayerStat>();
-            strength = stat.currentStats["Strength"];
             Destroy(gameObject, lifespan + stat.currentStats["Duration"]);
-            velocity = rb.velocity * stat.currentStats["ProjectileSpeed"];
+            velocity = rb.velocity;
+            velocity.x += velocity.x * stat.currentStats["ProjectileSpeed"];
 
             transform.localScale += transform.localScale * stat.currentStats["Size"];
         }
@@ -51,6 +51,11 @@ namespace PlateformSurvivor.Player.Ability
         private void Explode()
         {
             Destroy(gameObject);
+        }
+
+        public void SetStrength(float newStrength)
+        {
+            strength = newStrength;
         }
     }
 }

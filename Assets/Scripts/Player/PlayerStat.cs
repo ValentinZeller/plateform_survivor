@@ -191,7 +191,7 @@ namespace PlateformSurvivor.Player
 
         public void Damage(float damage)
         {
-            health += damage - currentStats["Protection"];
+            health -= damage - currentStats["Protection"];
             EventManager.Trigger("update_health");
             if (health <= 0)
             {

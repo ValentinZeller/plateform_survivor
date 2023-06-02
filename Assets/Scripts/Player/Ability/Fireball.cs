@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using PlateformSurvivor.Service;
 using UnityEngine;
@@ -10,10 +11,10 @@ namespace PlateformSurvivor.Player.Ability
         
         private float fireCooldown = 1.5f;
         private bool canFire = true;
-        private bool bothSide = false;
+        private float fireAmount = 1;
         private readonly Vector2 offset = new(1f, 0.5f);
         private Vector2 velocity = new(10, -10);
-        private float fireStrength;
+        private float fireStrength = 1;
         private PlayerStat stat;
 
         private void Start()
@@ -26,19 +27,22 @@ namespace PlateformSurvivor.Player.Ability
         {
             if (canFire)
             {
-                SpawnFireball(transform.localScale.x);
-                if (bothSide)
+                for (int i = 0; i < fireAmount + stat.currentStats["Amount"]; i++)
                 {
-                    SpawnFireball(- transform.localScale.x);
+                    float direction = i % 2 == 0 ? 1 : -1;
+                    float velocityYOffset = 2 * Mathf.Floor(i/2);
+                    SpawnFireball(transform.localScale.x * direction, velocityYOffset);
                 }
+                
                 StartCoroutine(FireAction());
             }
         }
 
-        private void SpawnFireball(float direction)
+        private void SpawnFireball(float direction, float velocityYOffset)
         {
             GameObject instance = Instantiate(fireProjectile, (Vector2)transform.position + offset * direction, Quaternion.identity);
-            instance.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * direction, velocity.y);
+            instance.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * direction, velocity.y + velocityYOffset);
+            instance.GetComponent<FireballBehavior>().SetStrength(fireStrength + stat.currentStats["Strength"]);
         }
 
         private IEnumerator FireAction()
@@ -57,7 +61,7 @@ namespace PlateformSurvivor.Player.Ability
                     fireCooldown -= 0.125f;
                     break;
                 case 3:
-                    bothSide = true;
+                    fireAmount++;
                     velocity.x += velocity.x + 0.05f;
                     break;
                 case 4:
