@@ -13,7 +13,12 @@ namespace PlateformSurvivor.Menu
     public class UnlockService : MonoBehaviour
     {
         [SerializeField] private GameObject canvas;
+        [SerializeField] private Transform buttonsParent;
         [SerializeField] private GameObject player;
+        
+        [SerializeField] private Button rerollButton;
+        [SerializeField] private Button skipButton;
+        [SerializeField] private Button banishButton;
 
         [SerializeField] private List<AbilityObject> activeAbilities;
         [SerializeField] private List<AbilityObject> passiveAbilities;
@@ -31,8 +36,11 @@ namespace PlateformSurvivor.Menu
 
         private int currentUnlockCount = 3;
         private float timeBeforeEvolve = 120;
+        
+        private List<string> banishAbilities = new();
         private List<string> abilitiesMaxLevel = new();
         private List<string> evolutionReady = new();
+        
         private PersistentDataManager persistentDataManager;
         private PlayerStat playerStat;
         private static UnlockService Instance { get; set; }
@@ -51,6 +59,11 @@ namespace PlateformSurvivor.Menu
 
             EventManager.AddListener("level_up", _OnLevelUp);
             EventManager.AddListener("got_chest", OnChest);
+        }
+
+        private void Start()
+        {
+            ManageUtilityButtons();
         }
         private void OnDestroy()
         {
@@ -140,7 +153,8 @@ namespace PlateformSurvivor.Menu
                         string randomUnlock = randomAbilities[i].abilityName;
                         bool randomActive = randomAbilities[i].isActive;
 
-                        Instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { UpgradeOnClick(randomUnlock, randomActive); });
+                        Instance.buttonsParent.GetChild(i).name = randomUnlock;
+                        Instance.buttonsParent.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate { UpgradeOnClick(randomUnlock, randomActive); });
                 
                         string randomUnlocktext = randomAbilities[i].abilityDisplayName.GetLocalizedString();
                         // Increment level value
@@ -148,23 +162,23 @@ namespace PlateformSurvivor.Menu
                         {
                             randomUnlocktext += " " + (Instance.abilitiesUnlocked[randomAbilities[i].isActive][randomUnlock] + 1);
                         }
-                        Instance.canvas.transform.GetChild(i).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = randomUnlocktext;
+                        Instance.buttonsParent.GetChild(i).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = randomUnlocktext;
                     }
                     else
                     {
-                        Instance.canvas.transform.GetChild(i).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "";
+                        Instance.buttonsParent.GetChild(i).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "";
                     }
                 }
             }
-            Instance.canvas.gameObject.SetActive(canDisplay);
+            Instance.canvas.SetActive(canDisplay);
             Time.timeScale = canDisplay ? 0f : 1f;
         }
 
         private static void UpgradeOnClick(string itemName, bool isActive)
         {
-            for (int i = 0; i < Instance.canvas.transform.childCount; i++)
+            for (int i = 0; i < Instance.buttonsParent.childCount; i++)
             {
-                Instance.canvas.transform.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
+                Instance.buttonsParent.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
             }
 
             AbilityObject abilityObject = GetAbilityListByActive(isActive).Find(abilityObject => abilityObject.name == itemName);
@@ -328,6 +342,71 @@ namespace PlateformSurvivor.Menu
                 return Instance.activeAbilities;
             }
             return Instance.passiveAbilities;
+        }
+
+        public static void Reroll()
+        {
+            for (int i = 0; i < Instance.buttonsParent.childCount; i++)
+            {
+                Instance.buttonsParent.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
+            }
+            DisplayUpgrade(true);
+            Instance.playerStat.currentStats["Reroll"]--;
+            Instance.ManageUtilityButtons();
+        }
+        public static void Skip()
+        {
+            for (int i = 0; i < Instance.buttonsParent.childCount; i++)
+            {
+                Instance.buttonsParent.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
+            }
+            DisplayUpgrade(false);
+            Instance.playerStat.currentStats["Skip"]--;
+            Instance.ManageUtilityButtons();
+        }
+
+        public static void Banish()
+        {
+            for (int i = 0; i < Instance.buttonsParent.childCount; i++)
+            {
+                Transform child = Instance.buttonsParent.GetChild(i);
+                child.GetComponent<Button>().onClick.RemoveAllListeners();
+                child.GetComponent<Button>().onClick.AddListener( delegate { BanishOnClick(child.name); });
+            }
+
+            Instance.banishButton.interactable = false;
+        }
+
+        private static void BanishOnClick(string abilityName)
+        {
+            List<AbilityObject> abilityList = Instance.GetAbilityListByName(abilityName);
+            AbilityObject ability = abilityList.Find(a => a.abilityName == abilityName);
+            abilityList.Remove(ability);
+            Instance.banishAbilities.Add(abilityName);
+            
+            for (int i = 0; i < Instance.buttonsParent.childCount; i++)
+            {
+                Instance.buttonsParent.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
+            }
+            DisplayUpgrade(false);
+            Instance.playerStat.currentStats["Banish"]--;
+            Instance.ManageUtilityButtons();
+        }
+
+        private void ManageUtilityButtons()
+        {
+            if (playerStat.currentStats["Reroll"] < 1)
+            {
+                rerollButton.interactable = false;
+            }
+            if (playerStat.currentStats["Skip"] < 1)
+            {
+                skipButton.interactable = false;
+            }
+            if (playerStat.currentStats["Banish"] < 1)
+            {
+                banishButton.interactable = false;
+            }
         }
     }
 }
