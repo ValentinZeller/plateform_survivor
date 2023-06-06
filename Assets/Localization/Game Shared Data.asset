@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: BACK_MENU
     m_Metadata:
       m_Items: []
+  - m_Id: 12271187405549568
+    m_Key: REVIVE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

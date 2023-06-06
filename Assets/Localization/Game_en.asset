@@ -26,6 +26,10 @@ MonoBehaviour:
     m_Localized: Back to Menu
     m_Metadata:
       m_Items: []
+  - m_Id: 12271187405549568
+    m_Localized: Revive
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

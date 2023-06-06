@@ -28,10 +28,10 @@ MonoBehaviour:
   magnet: 0
   xpRate: 0
   coinRate: 0
-  live: 0
-  skip: 1
-  reroll: 1
-  banish: 1
+  live: 1
+  skip: 0
+  reroll: 0
+  banish: 0
   price: 0
   displayName: Classic
   displayOrder: 0

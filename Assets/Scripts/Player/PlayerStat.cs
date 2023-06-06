@@ -30,7 +30,7 @@ namespace PlateformSurvivor.Player
         public Dictionary<string, float> damageDone = new();
         public Dictionary<string, float> currentStats = new();
 
-        private void Awake()
+        private void Start()
         {
             GetComponent<PlayerInput>().actions.FindAction("Dash").Disable();
             if (FindObjectOfType<PersistentDataManager>())

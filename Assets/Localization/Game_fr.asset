@@ -26,6 +26,10 @@ MonoBehaviour:
     m_Localized: Retour au menu
     m_Metadata:
       m_Items: []
+  - m_Id: 12271187405549568
+    m_Localized: "Revenir \xE0 la vie"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
