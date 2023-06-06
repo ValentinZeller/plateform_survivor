@@ -15,11 +15,9 @@ namespace PlateformSurvivor.Player.Ability
         private readonly Vector2 offset = new(1f, 0.5f);
         private Vector2 velocity = new(10, -10);
         private float fireStrength = 1;
-        private PlayerStat stat;
 
         private void Start()
         {
-            stat = GetComponent<PlayerStat>();
             EventManager.AddListener("add_fireball", OnAddFireball);
         }
 
@@ -27,7 +25,7 @@ namespace PlateformSurvivor.Player.Ability
         {
             if (canFire)
             {
-                for (int i = 0; i < fireAmount + stat.currentStats["Amount"]; i++)
+                for (int i = 0; i < fireAmount + PlayerStat.currentStats["Amount"]; i++)
                 {
                     float direction = i % 2 == 0 ? 1 : -1;
                     float velocityYOffset = 2 * Mathf.Floor(i/2);
@@ -42,13 +40,13 @@ namespace PlateformSurvivor.Player.Ability
         {
             GameObject instance = Instantiate(fireProjectile, (Vector2)transform.position + offset * direction, Quaternion.identity);
             instance.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * direction, velocity.y + velocityYOffset);
-            instance.GetComponent<FireballBehavior>().SetStrength(fireStrength + stat.currentStats["Strength"]);
+            instance.GetComponent<FireballBehavior>().SetStrength(fireStrength + PlayerStat.currentStats["Strength"]);
         }
 
         private IEnumerator FireAction()
         {
             canFire = false;
-            yield return new WaitForSeconds(fireCooldown - fireCooldown * stat.currentStats["Cooldown"]);
+            yield return new WaitForSeconds(fireCooldown - fireCooldown * PlayerStat.currentStats["Cooldown"]);
             canFire = true;
         }
 

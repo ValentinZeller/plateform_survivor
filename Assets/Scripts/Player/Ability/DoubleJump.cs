@@ -16,14 +16,12 @@ namespace PlateformSurvivor.Player.Ability
         private Rigidbody2D rb;
         private PlayerMovement playerMovement;
         private Dash dash;
-        private PlayerStat stat;
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             playerMovement = GetComponent<PlayerMovement>();
             dash = GetComponent<Dash>();
-            stat= GetComponent<PlayerStat>();
             EventManager.AddListener("add_doublejump", OnAddDoubleJump);
             EventManager.AddListener("evolution_doublejump", OnEvolution);
             EventManager.AddListener("bounce_enemy", OnBounce);
@@ -49,11 +47,11 @@ namespace PlateformSurvivor.Player.Ability
             if (IsEvolved)
             {
                 EventManager.Trigger("regen_health", 2f);
-                EventManager.Trigger("damage_done", new TypedDamage("HealingJump", stat.currentStats["Strength"]));
+                EventManager.Trigger("damage_done", new TypedDamage("HealingJump", PlayerStat.currentStats["Strength"]));
             }
             else
             {
-                EventManager.Trigger("damage_done", new TypedDamage("DoubleJump", stat.currentStats["Strength"]));
+                EventManager.Trigger("damage_done", new TypedDamage("DoubleJump", PlayerStat.currentStats["Strength"]));
             }
             
             
@@ -92,7 +90,7 @@ namespace PlateformSurvivor.Player.Ability
         {
             if (currentAmount > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, doubleJumpForce + stat.currentStats["JumpForce"] * 2 / 100);
+                rb.velocity = new Vector2(rb.velocity.x, doubleJumpForce + PlayerStat.currentStats["JumpForce"] * 2 / 100);
                 currentAmount--;
                 playerMovement.SetJumpBufferTimeCounter(0);
             }

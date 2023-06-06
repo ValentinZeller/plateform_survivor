@@ -28,7 +28,7 @@ MonoBehaviour:
   magnet: 0
   xpRate: 0
   coinRate: 0
-  live: 1
+  live: 0
   skip: 0
   reroll: 0
   banish: 0

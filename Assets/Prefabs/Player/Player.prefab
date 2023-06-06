@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 445672726343305011}
   - component: {fileID: 445672726343305010}
   - component: {fileID: 445672726343305008}
+  - component: {fileID: 8766065396580902438}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -425,7 +426,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  stat: {fileID: 445672726343305021}
   dash: {fileID: 445672726343305011}
   doubleJump: {fileID: 445672726343305010}
   playerInput: {fileID: 1954122696014001683}
@@ -491,3 +491,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireProjectile: {fileID: 1747353814447383292, guid: b9516333301091b468deda2134337d99, type: 3}
+--- !u!114 &8766065396580902438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445672726343304996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7afb11484e84744ac2f21eb3497a939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilitiesMaxLevel: []
+  evolutionReady: []

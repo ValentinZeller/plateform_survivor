@@ -10,7 +10,6 @@ namespace PlateformSurvivor.Service
         [SerializeField] private GameObject deathScreen;
         [SerializeField] private GameObject resultScreen;
         [SerializeField] private Button revive;
-        [SerializeField] private PlayerStat playerStat;
         [SerializeField] private TMPro.TextMeshProUGUI liveValue;
         private void Start()
         {
@@ -21,8 +20,8 @@ namespace PlateformSurvivor.Service
         {
             Time.timeScale = 0;
             deathScreen.SetActive(true);
-            liveValue.text = playerStat.currentStats["Live"].ToString();
-            if (playerStat.currentStats["Live"] > 0)
+            liveValue.text = PlayerStat.currentStats["Live"].ToString();
+            if (PlayerStat.currentStats["Live"] > 0)
             {
                 revive.interactable = true;
             }
@@ -30,8 +29,8 @@ namespace PlateformSurvivor.Service
 
         public void Revive()
         {
-            playerStat.currentStats["Live"]--;
-            EventManager.Trigger("regen_health", playerStat.currentStats["Health"] / 2);
+            PlayerStat.currentStats["Live"]--;
+            EventManager.Trigger("regen_health", PlayerStat.currentStats["Health"] / 2);
             Time.timeScale = 1;
             deathScreen.SetActive(false);
         }

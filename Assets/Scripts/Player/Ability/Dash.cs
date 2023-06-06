@@ -17,13 +17,11 @@ namespace PlateformSurvivor.Player.Ability
 
         private TrailRenderer tr;
         private Rigidbody2D rb;
-        private PlayerStat stat;
 
         private void Start()
         {
             tr = GetComponent<TrailRenderer>();
             rb = GetComponent<Rigidbody2D>();
-            stat= GetComponent<PlayerStat>();
             EventManager.AddListener("add_dash", OnAddDash);
             GetComponent<PlayerInput>().actions.FindAction("Dash").Enable();
             EventManager.AddListener("evolution_dash",OnEvolution);
@@ -36,7 +34,7 @@ namespace PlateformSurvivor.Player.Ability
                 Collider2D enemy = Physics2D.OverlapCircle(transform.position, 2);
                 if (Physics2D.OverlapCircle(transform.position, 2) && enemy.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                 {
-                    enemy.gameObject.GetComponent<IDamageable>().Damage(stat.currentStats["Strength"]);
+                    enemy.gameObject.GetComponent<IDamageable>().Damage(PlayerStat.currentStats["Strength"]);
                 }
             }
         }
@@ -53,7 +51,7 @@ namespace PlateformSurvivor.Player.Ability
             rb.velocity = new Vector2(transform.localScale.x * dashForce, 0f);
             tr.emitting = true;
 
-            yield return new WaitForSeconds(dashTime + stat.currentStats["Duration"]);
+            yield return new WaitForSeconds(dashTime + PlayerStat.currentStats["Duration"]);
             tr.emitting = false;
             rb.gravityScale = originalGravity;
             isDashing = false;
@@ -62,7 +60,7 @@ namespace PlateformSurvivor.Player.Ability
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"),false);
             }
 
-            yield return new WaitForSeconds(dashCooldown - dashCooldown * stat.currentStats["Cooldown"]);
+            yield return new WaitForSeconds(dashCooldown - dashCooldown * PlayerStat.currentStats["Cooldown"]);
             canDash = true;
         }
 
@@ -72,7 +70,7 @@ namespace PlateformSurvivor.Player.Ability
             {
                 if (isDashing)
                 {
-                    collision.gameObject.GetComponent<IDamageable>().Damage(stat.currentStats["Strength"]);
+                    collision.gameObject.GetComponent<IDamageable>().Damage(PlayerStat.currentStats["Strength"]);
                     if (collision.gameObject == null)
                     {
                         return;
@@ -84,7 +82,7 @@ namespace PlateformSurvivor.Player.Ability
                     Vector2 direction = new Vector2(collision.transform.position.x - transform.position.x, 0);
                     enemyRb.AddForce(direction * knockback);
 
-                    EventManager.Trigger("damage_done", new TypedDamage("Dash", stat.currentStats["Strength"]));
+                    EventManager.Trigger("damage_done", new TypedDamage("Dash", PlayerStat.currentStats["Strength"]));
                     StartCoroutine(ResetKnockback(enemyBehavior));
                 }
             }

@@ -11,16 +11,13 @@ namespace PlateformSurvivor.Player.Ability
         private Vector2 velocity;
         private float strength = 1;
 
-        private PlayerStat stat;
-
         private void Start()
         {
-            stat = FindObjectOfType<PlayerStat>();
-            Destroy(gameObject, lifespan + stat.currentStats["Duration"]);
+            Destroy(gameObject, lifespan + PlayerStat.currentStats["Duration"]);
             velocity = rb.velocity;
-            velocity.x += velocity.x * stat.currentStats["ProjectileSpeed"];
+            velocity.x += velocity.x * PlayerStat.currentStats["ProjectileSpeed"];
 
-            transform.localScale += transform.localScale * stat.currentStats["Size"];
+            transform.localScale += transform.localScale * PlayerStat.currentStats["Size"];
         }
         
         private void Update()

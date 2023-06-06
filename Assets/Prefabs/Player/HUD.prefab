@@ -1810,7 +1810,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -3026,13 +3026,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest Popup
       objectReference: {fileID: 0}
-    - target: {fileID: 8962809245145161494, guid: d22fb209709f965478f77294ab818fa5, type: 3}
-      propertyPath: m_Pivot.x
+    - target: {fileID: 8962809245145161490, guid: d22fb209709f965478f77294ab818fa5, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8962809245145161494, guid: d22fb209709f965478f77294ab818fa5, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962809245145161494, guid: d22fb209709f965478f77294ab818fa5, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8962809245145161494, guid: d22fb209709f965478f77294ab818fa5, type: 3}
       propertyPath: m_RootOrder
@@ -3040,11 +3044,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8962809245145161494, guid: d22fb209709f965478f77294ab818fa5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8962809245145161494, guid: d22fb209709f965478f77294ab818fa5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8962809245145161494, guid: d22fb209709f965478f77294ab818fa5, type: 3}
       propertyPath: m_AnchorMin.x

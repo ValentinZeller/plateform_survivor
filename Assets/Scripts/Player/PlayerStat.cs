@@ -12,7 +12,7 @@ namespace PlateformSurvivor.Player
     public class PlayerStat : MonoBehaviour, IDamageable
     {
         [SerializeField] private CharacterObject character;
-
+        
         private PersistentDataManager persistentDataManager;
         private int currentCoins;
         private float health;
@@ -28,7 +28,7 @@ namespace PlateformSurvivor.Player
         private const int SurviveAchievement = 300;
         
         public Dictionary<string, float> damageDone = new();
-        public Dictionary<string, float> currentStats = new();
+        public static Dictionary<string, float> currentStats = new();
 
         private void Start()
         {
@@ -38,7 +38,7 @@ namespace PlateformSurvivor.Player
                 persistentDataManager = FindObjectOfType<PersistentDataManager>();
                 character = persistentDataManager.chosenCharacter;
             }
-            UnlockService.AddAbility(Enum.GetName(typeof(ActiveAbility), character.startAbility));
+            GetComponent<PlayerAbility>().AddAbilityComponent(Enum.GetName(typeof(ActiveAbility), character.startAbility));
 
             InitStat();
 
@@ -102,7 +102,7 @@ namespace PlateformSurvivor.Player
             string itemName = (string)data;
             AbilityObject currentAbility = Resources.Load<AbilityObject>("CustomData/Abilities/" + itemName);
             currentStats[itemName] = currentStats[itemName] + currentStats[itemName] * currentAbility.percent *
-                UnlockService.AbilitiesUnlocked[false][itemName];
+                PlayerAbility.Abilities[false][itemName];
         }
 
         private void GotCoin(object data)

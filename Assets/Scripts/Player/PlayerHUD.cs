@@ -93,7 +93,7 @@ namespace PlateformSurvivor.Player
 
         private void UpdateAbilities()
         {
-            foreach (var (isActive, dictionary) in UnlockService.AbilitiesUnlocked)
+            foreach (var (isActive, dictionary) in PlayerAbility.Abilities)
             {
                 int index = 0;
                 foreach (var name in dictionary.Keys)

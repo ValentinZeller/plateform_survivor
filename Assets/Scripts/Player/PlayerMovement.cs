@@ -13,7 +13,6 @@ namespace PlateformSurvivor.Player
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private LayerMask enemyLayer;
-        [SerializeField] private PlayerStat stat;
         [SerializeField] private Dash dash;
         [SerializeField] private DoubleJump doubleJump;
         [SerializeField] private PlayerInput playerInput;
@@ -57,7 +56,7 @@ namespace PlateformSurvivor.Player
                     return;
                 }
             }
-            rb.velocity = new Vector2(horizontal * stat.currentStats["Speed"], rb.velocity.y);
+            rb.velocity = new Vector2(horizontal * PlayerStat.currentStats["Speed"], rb.velocity.y);
         }
 
         private IEnumerator CanDamageEnemy()
@@ -68,7 +67,7 @@ namespace PlateformSurvivor.Player
                 canDamage = false;
                 rb.velocity = new Vector2(rb.velocity.x, BounceForce);
                 EventManager.Trigger("bounce_enemy");
-                enemyCollider2D.gameObject.GetComponent<EnemyBehavior>().Damage(stat.currentStats["Strength"]);
+                enemyCollider2D.gameObject.GetComponent<EnemyBehavior>().Damage(PlayerStat.currentStats["Strength"]);
                 yield return new WaitForSeconds(0.2f);
                 canDamage = true;
             }
@@ -103,7 +102,7 @@ namespace PlateformSurvivor.Player
                 jumpBufferTimeCounter = JumpBufferTime;
                 if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, stat.currentStats["JumpForce"]);
+                    rb.velocity = new Vector2(rb.velocity.x, PlayerStat.currentStats["JumpForce"]);
                     jumpBufferTimeCounter = 0f;
                 }
             } else if (ctx.performed && !IsGrounded() && doubleJump.enabled)

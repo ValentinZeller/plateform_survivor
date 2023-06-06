@@ -43,7 +43,7 @@ namespace PlateformSurvivor.Menu
             lvl.text = playerLevel.GetLvl().ToString();
             kill.text = playerStat.GetKills().ToString();
             
-            foreach (var (isActive, dictionary) in UnlockService.AbilitiesUnlocked)
+            foreach (var (isActive, dictionary) in PlayerAbility.Abilities)
             {
                 foreach (var ability in dictionary)
                 {
