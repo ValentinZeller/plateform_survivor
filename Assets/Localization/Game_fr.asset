@@ -30,6 +30,14 @@ MonoBehaviour:
     m_Localized: "Revenir \xE0 la vie"
     m_Metadata:
       m_Items: []
+  - m_Id: 12661040752340992
+    m_Localized: Prendre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12666796776075264
+    m_Localized: "Tu as trouv\xE9 :"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

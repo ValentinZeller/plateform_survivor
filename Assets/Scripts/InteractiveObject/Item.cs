@@ -1,14 +1,16 @@
 using PlateformSurvivor.Service;
+using ScriptableObject;
 using UnityEngine;
 
 namespace PlateformSurvivor.InteractiveObject
 {
-    public enum ItemType { Health, Xp, Coin, Chest };
+    public enum ItemType { Health, Xp, Coin, Chest, Ability };
 
     public class Item : MonoBehaviour
     {
         public ItemType type;
         public float value;
+        public AbilityObject abilityObject;
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Player"))
@@ -27,7 +29,9 @@ namespace PlateformSurvivor.InteractiveObject
                     case ItemType.Chest:
                         EventManager.Trigger("got_chest");
                         break;
-
+                    case ItemType.Ability:
+                        EventManager.Trigger("got_ability", abilityObject);
+                        break;
                 }
                 Destroy(gameObject);
             }

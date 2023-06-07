@@ -27,6 +27,14 @@ MonoBehaviour:
     m_Key: REVIVE
     m_Metadata:
       m_Items: []
+  - m_Id: 12661040752340992
+    m_Key: TAKE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12666796776075264
+    m_Key: FOUND_ABILITY
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
