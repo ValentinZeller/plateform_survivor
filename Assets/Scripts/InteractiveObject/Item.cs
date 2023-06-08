@@ -11,6 +11,7 @@ namespace PlateformSurvivor.InteractiveObject
         public ItemType type;
         public float value;
         public AbilityObject abilityObject;
+        
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Player"))
