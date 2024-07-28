@@ -20,7 +20,7 @@ namespace PlateformSurvivor.Enemy
             {
                 var position = transform.position;
                 Vector3 dropPos = new Vector3(position.x, position.y - Offset, position.z);
-                Instantiate(loot, dropPos, Quaternion.identity);
+                Instantiate(loot, dropPos, Quaternion.identity, transform.parent);
             }
         }
     }

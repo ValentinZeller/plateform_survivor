@@ -46,13 +46,20 @@ namespace PlateformSurvivor.Menu
 
         private void UpdateDesc()
         {
-            string achievement = achievementToggleGroup.GetFirstActiveToggle().name;
-            AchievementObject achievementObject = achievements.Find(a => a.name == achievement);
-            descriptionText.text = achievementObject.description.GetLocalizedString();
-            if (persistentDataManager.achievementsUnlocked.Contains(achievementObject.name))
+            if (achievementToggleGroup.AnyTogglesOn())
             {
-                descriptionText.text += " - " + unlocked.GetLocalizedString();
+                string achievement = achievementToggleGroup.GetFirstActiveToggle().name;
+                AchievementObject achievementObject = achievements.Find(a => a.name == achievement);
+                descriptionText.text = achievementObject.description.GetLocalizedString();
+                if (persistentDataManager.achievementsUnlocked.Contains(achievementObject.name))
+                {
+                    descriptionText.text += " - " + unlocked.GetLocalizedString();
+                }
+            } else
+            {
+                descriptionText.text = "";
             }
+
         }
     }
 }

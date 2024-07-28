@@ -121,7 +121,7 @@ namespace PlateformSurvivor.Enemy
             stats["Health"] -= damage;
             if (stats["Health"] <= 0)
             {
-                GameObject xpInstance = Instantiate(xpObject, transform.position, Quaternion.identity);
+                GameObject xpInstance = Instantiate(xpObject, transform.position, Quaternion.identity, transform.parent);
                 xpInstance.GetComponent<Item>().value = enemy.xpDrop;
                 EventManager.Trigger("enemy_killed");
                 Destroy(gameObject);

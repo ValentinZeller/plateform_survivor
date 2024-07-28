@@ -17,7 +17,7 @@ namespace PlateformSurvivor.InteractiveObject
         private const float LeftOffset = -0.71f;
         private const float RightOffset = 0.71f;
         private int currentCoins;
-        private bool isEmpty;
+        private bool isEmpty = false;
         private static readonly Color EmptyColor = new Color(0.48f, 0.35f, 0.22f);
         private static readonly Color NotEmptyColor = new Color(1f, 0.92f, 0f);
 
@@ -28,7 +28,7 @@ namespace PlateformSurvivor.InteractiveObject
             {
                 EventManager.AddListener("reload_block", Reload);
             }
-            if (isEmpty || currentCoins == 0)
+            if (isEmpty && currentCoins == 0)
             {
                 sprite.color = EmptyColor;
             }
@@ -74,7 +74,7 @@ namespace PlateformSurvivor.InteractiveObject
             if (item != null && !isEmpty)
             {
                 var position = transform.position;
-                GameObject instance = Instantiate(item, new Vector2(position.x, position.y + 1.5f), Quaternion.identity);
+                GameObject instance = Instantiate(item, new Vector2(position.x, position.y + 1.5f), Quaternion.identity, transform.parent);
                 instance.GetComponent<Item>().abilityObject = abilityObject;
                 isEmpty = true;
             }
