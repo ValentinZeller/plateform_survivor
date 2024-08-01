@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c612aed58ecfeb247bd2554d79382479, type: 3}
-  m_Name: Wave2
+  m_Name: WaveSpiky
   m_EditorClassIdentifier: 
   enemy:
-  - {fileID: 1991054529647472655, guid: 243549df5cb5474489c2df7afd38a7ab, type: 3}
-  - {fileID: 1991054529647472655, guid: f3757e851f83127459679712a1d847c9, type: 3}
-  - {fileID: 7411918496250281848, guid: 32a3b92b705d9a5439e0c084201f9427, type: 3}
   - {fileID: 2203988136979598961, guid: 83e6e735bca59a64693d63dbdda3a6bd, type: 3}
   minCount: 5
-  spawnRate: 1
+  spawnRate: 2
   isBossWave: 0

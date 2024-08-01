@@ -23,7 +23,7 @@ namespace PlateformSurvivor
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
+            if (collision.gameObject.layer != LayerMask.NameToLayer("Ground") && collision.gameObject.layer != LayerMask.NameToLayer("Spike"))
             {
                 collision.transform.SetParent(transform,true);
                
@@ -46,6 +46,10 @@ namespace PlateformSurvivor
             int movePart = (int)data;
 
             stagePart = (stagePart + movePart) % 3;
+            if (stagePart < 0)
+            {
+                stagePart = 2;
+            }
 
             transform.SetPositionAndRotation(new Vector3((stagePart-1) * 60, transform.position.y, transform.position.z), transform.rotation);
         }

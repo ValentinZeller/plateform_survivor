@@ -19,19 +19,19 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 29203853312
-    m_Localized: Plain
+    m_Localized: Arena
     m_Metadata:
       m_Items: []
   - m_Id: 70312226816
-    m_Localized: Peaceful plain
+    m_Localized: Fight in a big platforming arena
     m_Metadata:
       m_Items: []
   - m_Id: 214336237568
-    m_Localized: Desert
+    m_Localized: Looping Plain
     m_Metadata:
       m_Items: []
   - m_Id: 247613845504
-    m_Localized: Dangerous desert
+    m_Localized: This plain never ends
     m_Metadata:
       m_Items: []
   references:

@@ -25,7 +25,7 @@ namespace PlateformSurvivor.Enemy
 
         private void SpawnBullet(float direction)
         {
-            GameObject instance = Instantiate(bullet, (Vector2)transform.position + offset * direction, Quaternion.identity);
+            GameObject instance = Instantiate(bullet, (Vector2)transform.position + offset * direction, Quaternion.identity, transform.parent);
             instance.GetComponent<BulletBehavior>().SetDirection(direction);
         }
 

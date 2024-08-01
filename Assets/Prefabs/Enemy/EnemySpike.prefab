@@ -125,6 +125,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 3
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -139,6 +145,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 44250f56fd2e03e429833bfcdcfeeada, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -181,6 +206,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2203988136979598972}
     m_Modifications:
     - target: {fileID: 2020086639608324446, guid: f0f01b46d6575a74ab5e76b5bc9f5b6f, type: 3}
@@ -190,10 +216,6 @@ PrefabInstance:
     - target: {fileID: 3638780731175535243, guid: f0f01b46d6575a74ab5e76b5bc9f5b6f, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3638780731175535243, guid: f0f01b46d6575a74ab5e76b5bc9f5b6f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5853
       objectReference: {fileID: 0}
     - target: {fileID: 3638780731175535243, guid: f0f01b46d6575a74ab5e76b5bc9f5b6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -236,6 +258,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f01b46d6575a74ab5e76b5bc9f5b6f, type: 3}
 --- !u!4 &4062181275686827117 stripped
 Transform:

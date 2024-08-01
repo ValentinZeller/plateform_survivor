@@ -12,11 +12,11 @@ namespace PlateformSurvivor.Service
         [SerializeField] private Transform player;
         private const float MaxEnemies = 40;
         private const int PlayerRadius = 8;
-        
-        private const float MinX = -35;
-        private const float MaxX = 31;
-        private const float MinY = -4;
-        private const float MaxY = 30;
+
+        [SerializeField] private float MinX = -35;
+        [SerializeField] private float MaxX = 31;
+        [SerializeField] private float MinY = -4;
+        [SerializeField] private float MaxY = 30;
 
         private static readonly Vector3 BossPos = new Vector3(0, -3, 0);
 
@@ -58,7 +58,7 @@ namespace PlateformSurvivor.Service
                 float randomSpawnX = Random.Range(MinX, MaxX);
                 float randomSpawnY = Random.Range(MinY, MaxY);
                 randomSpawn = new Vector3(randomSpawnX, randomSpawnY, 0);
-            } while (Physics.OverlapSphere(randomSpawn, 2).Length > 0 || Vector3.Distance(randomSpawn, player.position) < PlayerRadius);
+            } while (Physics2D.OverlapCircleAll(randomSpawn,2, LayerMask.NameToLayer("Ground")).Length > 0 || Vector3.Distance(randomSpawn, player.position) < PlayerRadius);
 
             return randomSpawn;
         }

@@ -39,7 +39,14 @@ namespace PlateformSurvivor.Menu
                 coins = 100; //for testing
             }
 
-            DontDestroyOnLoad(gameObject);
+            if (FindObjectsOfType<PersistentDataManager>().Length > 1)
+            {
+                Destroy(gameObject);
+            } else
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+            
         }
 
         private IEnumerator Start()

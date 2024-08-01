@@ -97,6 +97,14 @@ namespace PlateformSurvivor.Menu
                     return;
                 }
 
+                if (currentUnlockCount == 3)
+                {
+                    buttonsParent.GetChild(3).gameObject.SetActive(false);
+                } else
+                {
+                    buttonsParent.GetChild(3).gameObject.SetActive(true);
+                }
+
                 for (int i = 0; i < currentUnlockCount; i++)
                 {
                     if (randomAbilities.Count > i)

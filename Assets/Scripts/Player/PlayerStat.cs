@@ -43,6 +43,7 @@ namespace PlateformSurvivor.Player
             InitStat();
 
             health = currentStats["Health"];
+            EventManager.Trigger("update_health");
             EventManager.AddListener("add_passive", OnAddPassive);
             EventManager.AddListener("got_coin", GotCoin);
             EventManager.AddListener("regen_health", RegenHealth);
@@ -75,7 +76,15 @@ namespace PlateformSurvivor.Player
                         bonusStats = baseStats[CharacterObject.Keys()[i]] * percent * persistentDataManager.statsUpgrade[CharacterObject.Keys()[i]];
                     }
                 }
-                currentStats.Add(CharacterObject.Keys()[i], baseStats[CharacterObject.Keys()[i]] + bonusStats);
+                if (currentStats.ContainsKey(CharacterObject.Keys()[i]))
+                {
+                    currentStats[CharacterObject.Keys()[i]] = baseStats[CharacterObject.Keys()[i]] + bonusStats;
+                } 
+                else
+                {
+                    currentStats.Add(CharacterObject.Keys()[i], baseStats[CharacterObject.Keys()[i]] + bonusStats);
+                }
+                
             }
         }
 

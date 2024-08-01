@@ -19,19 +19,19 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 29203853312
-    m_Localized: Plaine
+    m_Localized: "Ar\xE8ne"
     m_Metadata:
       m_Items: []
   - m_Id: 70312226816
-    m_Localized: Paisible plaine
+    m_Localized: "Combats dans une grande ar\xE8ne de plate-formes"
     m_Metadata:
       m_Items: []
   - m_Id: 214336237568
-    m_Localized: "D\xE9sert"
+    m_Localized: Plaine bouclante
     m_Metadata:
       m_Items: []
   - m_Id: 247613845504
-    m_Localized: "Dangereux d\xE9sert"
+    m_Localized: "Cette plaine ne s'arr\xEAte jamais"
     m_Metadata:
       m_Items: []
   references:

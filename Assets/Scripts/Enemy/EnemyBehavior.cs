@@ -83,6 +83,7 @@ namespace PlateformSurvivor.Enemy
                 {
                     return;
                 }
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * horizontal * 1000f);
                 collision.gameObject.GetComponent<IDamageable>().Damage(stats["Strength"]);
             }
         }
